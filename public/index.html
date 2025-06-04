@@ -492,75 +492,100 @@
       </div>
     </section>
 
-    <section id="contact" style="padding: 60px 20px;">
-      <h2 style="text-align:center;">Get in Touch</h2>
-      <form id="contactForm" style="max-width: 600px; margin: auto;" method="POST" action="/submit-contact">
-        <!-- Name -->
-        <label for="name">Name*</label>
-        <input type="text" id="name" name="name" required style="width:100%; padding:10px; margin-bottom:15px;">
 
-        <!-- Phone -->
-        <label for="phone">Phone Number*</label>
-        <input type="tel" id="phone" name="phone" placeholder="+1 123-456-7890" pattern="^\+?\d{1,4}?[\s-]?\(?\d{1,4}?\)?[\s-]?\d{1,9}$" required style="width:100%; padding:10px; margin-bottom:15px;">
+<!-- Include Flatpickr CSS and confirmDate plugin CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.css">
 
-        <!-- Email -->
-        <label for="email">Email*</label>
-        <input type="email" id="email" name="email" required style="width:100%; padding:10px; margin-bottom:15px;">
+<section id="contact" style="padding: 60px 20px;">
+  <h2 style="text-align:center;">Get in Touch</h2>
+  <form id="contactForm" style="max-width:600px; margin:auto;" method="POST" action="/submit-contact">
 
-<div class="checkbox-container" style="margin-bottom: 20px; display: inline-flex; align-items: center;">
-  <input type="checkbox" id="onlineMeeting" name="onlineMeeting" style="margin: 0 8px 0 0; display: inline !important;">
-  <span style="display: inline !important;">Connect with me over an online meeting</span>
-</div>
+    <!-- Name (inline placeholder) -->
+    <input type="text" id="name" name="name" placeholder="Name*" required 
+           style="width:100%; padding:10px; margin-bottom:15px;">
+
+    <!-- Phone Number (inline placeholder) -->
+    <input type="tel" id="phone" name="phone" 
+           placeholder="Phone Number* (e.g., +1 123-456-7890)" 
+           pattern="^\+?\d{1,4}?[\s-]?\(?\d{1,4}?\)?[\s-]?\d{1,9}$" 
+           required style="width:100%; padding:10px; margin-bottom:15px;">
+
+    <!-- Email (inline placeholder) -->
+    <input type="email" id="email" name="email" placeholder="Email*" required 
+           style="width:100%; padding:10px; margin-bottom:15px;">
+
+    <!-- Calendar Input for Date & Time with attached Timezone (both inline) -->
+    <div style="display: flex; gap:10px; margin-bottom:15px;">
+      <input type="text" id="preferredDateTime" name="preferredDateTime" 
+             placeholder="Choose date & time" style="flex:1; padding:10px;">
+      <input type="text" id="timezone" name="timezone" 
+             placeholder="Timezone (e.g., CET)" 
+             style="width:100px; padding:10px;">
+    </div>
+
+    <!-- Checkbox for Online Meeting -->
+    <div class="checkbox-container" style="margin-bottom:20px; display:inline-flex; align-items:center;">
+      <input type="checkbox" id="onlineMeeting" name="onlineMeeting" 
+             style="margin:0 8px 0 0; display:inline;">
+      <span>Connect with me over an online meeting</span>
+    </div>
+
+    <!-- Reason for Contact (inline placeholder via select default option) -->
+    <select id="reason" name="reason" required 
+            style="width:100%; padding:10px; margin-bottom:15px;">
+      <option value="" disabled selected>Reason for Contact*</option>
+      <option value="Sales">Sales</option>
+      <option value="Project">Project</option>
+      <option value="Technical Support">Technical Support</option>
+      <option value="Press">Press</option>
+      <option value="Others">Others</option>
+    </select>
+
+    <!-- Relevant Service (inline placeholder via select default option) -->
+    <select id="service" name="service" required 
+            style="width:100%; padding:10px; margin-bottom:15px;">
+      <option value="" disabled selected>Relevant Service*</option>
+      <option>Managed IT & Consulting</option>
+      <option>Cybersecurity</option>
+      <option>Cloud</option>
+      <option>Artificial Intelligence</option>
+      <option>DevOps & Automation</option>
+      <option>Data Analytics</option>
+      <option>Engineering Solutions</option>
+      <option>On Premise & Legacy Apps</option>
+      <option>Migration Services</option>
+      <option>Digital Transformation</option>
+      <option>Smart Apps</option>
+      <option>Startup Zone</option>
+      <option>Other</option>
+    </select>
+
+    <!-- Your Message (inline placeholder) -->
+    <textarea id="message" name="message" rows="5" placeholder="Your Message*" required 
+              style="width:100%; padding:10px; margin-bottom:15px;"></textarea>
+
+    <button type="submit" class="btn" style="width:20%;">Submit</button>
+  </form>
+</section>
+
+<!-- Include required Flatpickr JS and the confirmDate plugin JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.js"></script>
+<script>
+  flatpickr("#preferredDateTime", {
+    enableTime: true,
+    dateFormat: "Y-m-d h:i K",  // e.g., "2025-06-24 12:00 PM"
+    time_24hr: false,          // Uses 12-hour time with AM/PM
+    plugins: [new confirmDatePlugin({
+      confirmText: "OK",       // Text for the confirmation button
+      showAlways: false        // Button appears only after a date/time is selected
+    })]
+  });
+</script>
 
 
-        <!-- Preferred Time & Timezone -->
-        <label for="preferredTime">Preferred Time & Timezone</label>
-        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-          <input type="time" id="preferredTime" name="preferredTime" style="flex: 1; padding: 10px;">
-          <input type="text" id="timezone" name="timezone" placeholder="e.g., UTC+5:30 or PST" style="flex: 1; padding: 10px;">
-        </div>
 
-        <!-- Timezone -->
-        <label for="timezone">Timezone</label>
-        <input type="text" id="timezone" name="timezone" placeholder="e.g., UTC+5:30 or PST" style="width:100%; padding:10px; margin-bottom:15px;">
-
-        <!-- Reason for Contact -->
-        <label for="reason">Reason for Contact*</label>
-        <select id="reason" name="reason" required style="width:100%; padding:10px; margin-bottom:15px;">
-          <option value="">-- Please choose an option --</option>
-          <option value="Sales">Sales</option>
-          <option value="Project">Project</option>
-          <option value="Technical Support">Technical Support</option>
-          <option value="Press">Press</option>
-          <option value="Others">Others</option>
-        </select>
-
-        <!-- Services Dropdown -->
-        <label for="service">Relevant Service*</label>
-        <select id="service" name="service" required style="width:100%; padding:10px; margin-bottom:15px;">
-          <option value="">-- Choose a service --</option>
-          <option>Managed IT & Consulting</option>
-          <option>Cybersecurity</option>
-          <option>Cloud</option>
-          <option>Artificial Intelligence</option>
-          <option>DevOps & Automation</option>
-          <option>Data Analytics</option>
-          <option>Engineering Solutions</option>
-          <option>On Premise & Legacy Apps</option>
-          <option>Migration Services</option>
-          <option>Digital Transformation</option>
-          <option>Smart Apps</option>
-          <option>Startup Zone</option>
-          <option>Other</option>
-        </select>
-
-        <!-- Message -->
-        <label for="message">Your Message*</label>
-        <textarea id="message" name="message" rows="5" required style="width:100%; padding:10px; margin-bottom:15px;"></textarea>
-
-        <button type="submit" class="btn">Submit</button>
-      </form>
-    </section>
   </main>
 
   <!-- Footer -->
