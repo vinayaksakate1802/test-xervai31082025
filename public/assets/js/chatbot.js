@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const chatbotContainer = document.getElementById('xervai-chatbot');
-  const chatbotIcon = document.querySelector('.chatbot-icon');
+  const chatbotIcon = document.querySelector('.chatbot-toggle');
   const chatbotBody = document.createElement('div');
   chatbotBody.className = 'chatbot-body';
   chatbotBody.style.display = 'none';
