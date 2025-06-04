@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Services - XervAi</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/favicon-16x16.png">
+  <link rel="icon" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/android-chrome-512x512.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="stylesheet" href="/assets/css/chatbot.css" />
+  <style>
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #eaeaea;
+      border-radius: 8px;
+      width: 170px;
+      height: 170px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease;
+      transform-origin: center;
+    }
+    .card:hover {
+      width: 208px;
+      height: 208px;
+      transform: scale(1.2235);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    .card-description {
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    .btn {
+      background: #FF4500;
+      color: white;
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:hover {
+      background: #e03c00;
+    }
+    @media (max-width: 768px) {
+      .cards {
+        grid-template-columns: 1fr;
+        justify-content: center;
+      }
+      .card {
+        width: 170px;
+        height: 170px;
+        margin: 0 auto;
+      }
+      .card:hover {
+        width: 208px;
+        height: 208px;
+      }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <a href="/">
+        <span class="logo-text">Xerv<span class="logo-ai">Ai</span></span>
+        <span class="motto">Infinity is just the beginning</span>
+      </a>
+    </div>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul class="menu">
+      <li>
+        <a href="#">What we do</a>
+        <ul class="dropdown">
+          <li><a href="https://xervai.com/it-consulting">Managed IT & Consulting</a></li>
+          <li><a href="https://xervai.com/cybersecurity">Cybersecurity</a></li>
+          <li><a href="https://xervai.com/cloud">Cloud</a></li>
+          <li><a href="https://xervai.com/ai">Artificial Intelligence</a></li>
+          <li><a href="https://xervai.com/devops">DevOps & Automation</a></li>
+          <li><a href="https://xervai.com/data-analytics">Data Analytics</a></li>
+          <li><a href="https://xervai.com/engineering-solutions">Engineering Solutions</a></li>
+          <li><a href="https://xervai.com/onpremise">On Premise & Legacy Apps</a></li>
+          <li><a href="https://xervai.com/migration">Migration</a></li>
+          <li><a href="https://xervai.com/go-digital">Digital Transformation</a></li>
+          <li><a href="https://xervai.com/smartapps">Smart Apps Development</a></li>
+          <li><a href="https://xervai.com/startup-zone">Startup Zone</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Industries</a>
+        <ul class="dropdown">
+          <li><a href="https://xervai.com/healthcare">Healthcare</a></li>
+          <li><a href="https://xervai.com/banking-finance">Banking & Finance</a></li>
+          <li><a href="https://xervai.com/pharma">Pharma</a></li>
+          <li><a href="https://xervai.com/consumer">Consumer</a></li>
+          <li><a href="https://xervai.com/energy">Energy</a></li>
+          <li><a href="https://xervai.com/retail">Retail</a></li>
+          <li><a href="https://xervai.com/manufacturing">Manufacturing</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">About</a>
+        <ul class="dropdown">
+          <li><a href="https://xervai.com/our-story">Our Story</a></li>
+          <li><a href="https://xervai.com/our-team">Our Team</a></li>
+          <li><a href="https://xervai.com/vision">Mission & Vision</a></li>
+        </ul>
+      </li>
+      <li><a href="https://xervai.com/careers">Careers</a></li>
+      <li><a href="https://xervai.com/contact-us">Contact Us</a></li>
+    </ul>
+  </nav>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>
+        <span class="word">Our</span>
+        <span class="word">Services</span>
+      </h1>
+      <p>
+        <span class="word">Transforming</span>
+        <span class="word">businesses</span>
+        <span class="word">with</span>
+        <span class="word">innovative</span>
+        <span class="word">solutions</span>
+      </p>
+      <a href="#services" class="btn">Explore Now</a>
+    </div>
+  </header>
+  <main>
+    <section id="services" style="padding: 60px 20px; background: #f9f6f2;">
+      <h2>Why Choose XervAi?</h2>
+      <p>At XervAi, we deliver cutting-edge solutions tailored to your business needs, leveraging Azure, AWS, and SailPoint expertise. Our services drive innovation, efficiency, and growth, empowering you to stay ahead in a dynamic world.</p>
+      <div class="cards">
+        <div class="card">
+          <img src="https://xervaiblobstorage.blob.core.windows.net/blog-images/servicesimages/ai.jpg" alt="Artificial Intelligence" />
+          <div class="card-overlay">
+            <div class="card-title">Artificial Intelligence</div>
+            <div class="card-description">Harness AI with Azure and AWS for predictive analytics and automation.</div>
+            <a href="https://xervai.com/ai" class="btn">Discover More</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://xervaiblobstorage.blob.core.windows.net/blog-images/servicesimages/cybersecurity.JPG" alt="Cybersecurity" />
+          <div class="card-overlay">
+            <div class="card-title">Cybersecurity</div>
+            <div class="card-description">Secure your business with SSO, MFA, and proactive threat detection.</div>
+            <a href="https://xervai.com/cybersecurity" class="btn">Discover More</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://xervaiblobstorage.blob.core.windows.net/blog-images/servicesimages/data-analytics.jpg" alt="Data Analytics" />
+          <div class="card-overlay">
+            <div class="card-title">Data Analytics</div>
+            <div class="card-description">Unlock insights with advanced analytics on Azure and AWS platforms.</div>
+            <a href="https://xervai.com/data-analytics" class="btn">Discover More</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://xervaiblobstorage.blob.core.windows.net/blog-images/servicesimages/devops.jpg" alt="DevOps & Automation" />
+          <div class="card-overlay">
+            <div class="card-title">DevOps & Automation</div>
+            <div class="card-description">Streamline CI/CD pipelines with Azure DevOps and AWS automation.</div>
+            <a href="https://xervai.com/devops" class="btn">Discover More</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://xervaiblobstorage.blob.core.windows.net/blog-images/servicesimages/engineering-solutions.jpg" alt="Engineering Solutions" />
+          <div class="card-overlay">
+            <div class="card-title">Engineering Solutions</div>
+            <div class="card-description">Custom engineering for complex challenges using modern tech stacks.</div>
+            <a href="https://xervai.com/engineering-solutions" class="btn">Discover More</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://xervaiblobstorage.blob.core.windows.net/blog-images/servicesimages/managed-it.jpg" alt="Managed IT & Consulting" />
+          <div class="card-overlay">
+            <div class="card-title">Managed IT & Consulting</div>
+            <div class="card-description">Optimize IT with SailPoint, AD, ADFS, and break-fix expertise.</div>
+            <a href="https://xervai.com/it-consulting" class="btn">Discover More</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://xervaiblobstorage.blob.core.windows.net/blog-images/servicesimages/migration.jpg" alt="Migration" />
+          <div class="card-overlay">
+            <div class="card-title">Migration</div>
+            <div class="card-description">Seamless cloud migrations to Azure and AWS with zero downtime.</div>
+            <a href="https://xervai.com/migration" class="btn">Discover More</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://xervaiblobstorage.blob.core.windows.net/blog-images/servicesimages/onpremise.jpg" alt="On Premise & Legacy Apps" />
+          <div class="card-overlay">
+            <div class="card-title">On Premise & Legacy Apps</div>
+            <div class="card-description">Modernize legacy systems with hybrid cloud integration.</div>
+            <a href="https://xervai.com/onpremise" class="btn">Discover More</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://xervaiblobstorage.blob.core.windows.net/blog-images/servicesimages/cloud.jpg" alt="Cloud" />
+          <div class="card-overlay">
+            <div class="card-title">Cloud</div>
+            <div class="card-description">Scale with secure, flexible cloud solutions on Azure and AWS.</div>
+            <a href="https://xervai.com/cloud" class="btn">Discover More</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://xervaiblobstorage.blob.core.windows.net/blog-images/servicesimages/startup-zone.jpg" alt="Startup Zone" />
+          <div class="card-overlay">
+            <div class="card-title">Startup Zone</div>
+            <div class="card-description">Accelerate startups with cost-effective IT and cloud solutions.</div>
+            <a href="https://xervai.com/startup-zone" class="btn">Discover More</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://xervaiblobstorage.blob.core.windows.net/blog-images/servicesimages/smart-apps.jpg" alt="Smart Apps Development" />
+          <div class="card-overlay">
+            <div class="card-title">Smart Apps Development</div>
+            <div class="card-description">Build AI-powered apps for superior performance and engagement.</div>
+            <a href="https://xervai.com/smartapps" class="btn">Discover More</a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://xervaiblobstorage.blob.core.windows.net/blog-images/servicesimages/go-digital.jpg" alt="Digital Transformation" />
+          <div class="card-overlay">
+            <div class="card-title">Digital Transformation</div>
+            <div class="card-description">Reimagine processes with end-to-end digital strategies.</div>
+            <a href="https://xervai.com/go-digital" class="btn">Discover More</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="py-6 text-center text-sm border-t border-gray-700">
+    <p>© 2023 <a href="https://xervai.com/" class="hover:opacity-80">xervai solutions LLP</a>. All rights reserved.</p>
+    <p>
+      <a href="https://xervai.com/privacy" class="hover:opacity-80">Privacy Policy</a> | 
+      <a href="https://xervai.com/contact-us" class="hover:opacity-80">Contact Us</a> | 
+      <a href="https://xervai.com/terms" class="hover:opacity-80">Terms & Conditions</a>
+    </p>
+    <div id="xervai-chatbot" class="chatbot-container">
+      <button class="chatbot-toggle">Talk to Xerv-Ai</button>
+    </div>
+  </footer>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/chatbot.js"></script>
+</body>
+</html>
