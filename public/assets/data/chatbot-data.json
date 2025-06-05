@@ -155,10 +155,15 @@
       "response": "Goodbye! It was a pleasure chatting with you. Before you head out, would you like to leave your contact details so our team can follow up with you? Just drop your number or email here, and we’ll make sure one of our PA pros gets in touch."
     }
   },
-  "fallbacks": [
-    "Well, you’ve slipped one past me, partner! Try another question, and I’ll hit it out of the park.",
-    "That’s a curveball even I can’t catch! Toss me another, and let’s keep this con rolling.",
-    "Hmm, my playbook’s missing that one. Give me something else, and I’ll dazzle you with the Xerv-Ai charm!",
-    "You’re moving too fast for me! Slow it down with another question, and I’ll pull out all the stops."
-  ]
-}
+"fallbacks": [
+  "Oops! I didn't catch that. Maybe you'd like to <a href='#' onclick='handleQuickReply(\"services\")'>check our services</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>contact us</a>?",
+  "I'm not sure I got that—would you like to <a href='#' onclick='handleQuickReply(\"services\")'>explore our offerings</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>speak to a representative</a>?",
+  "That one flew over my circuits! How about checking out our <a href='#' onclick='handleQuickReply(\"services\")'>services</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>getting in touch</a> for more details?",
+  "Hmm, I'm a bit stumped. Perhaps you'd prefer to <a href='#' onclick='handleQuickReply(\"services\")'>learn more about what we offer</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>reach out to us</a>?",
+  "I didn’t quite understand that. Would you like to <a href='#' onclick='handleQuickReply(\"services\")'>see our services</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>connect with our team</a> for more info?",
+  "My apologies, but that one didn't compute. Maybe try <a href='#' onclick='handleQuickReply(\"services\")'>viewing our services</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>getting in touch</a>?",
+  "That doesn’t seem to work for me. How about you <a href='#' onclick='handleQuickReply(\"services\")'>check out our offerings</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>contact us</a> for further assistance?",
+  "I'm drawing a blank here. Perhaps you'd like to <a href='#' onclick='handleQuickReply(\"services\")'>see what we offer</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>speak with our team</a>?",
+  "Sorry, I’m not sure what you mean. Would you care to <a href='#' onclick='handleQuickReply(\"services\")'>explore our services</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>reach out</a> to us?",
+  "I’m having trouble with that one. How about choosing one of these: <a href='#' onclick='handleQuickReply(\"services\")'>services info</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>contact details</a>?"
+]
