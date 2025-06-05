@@ -1,11 +1,19 @@
 {
   "intents": {
+    "greeting": {
+      "patterns": ["hey", "hi", "hello"],
+      "response": "Well, hello there! I’m Xerv-Ai, ready to charm you with answers smoother than a first-class flight. What’s the plan?"
+    },
+    "status_check": {
+      "patterns": ["all good", "how are you", "how's it going"],
+      "response": "I’m running smoother than a con on a good day, my friend! How about you—what’s the vibe today?"
+    },
     "company_info": {
       "patterns": ["what does your company do", "about your company", "what is xervai"],
       "response": "XervAi? We’re the masterminds behind innovative IT solutions, making businesses run smoother than a con artist’s pitch. From cloud to AI, we’ve got the tech to take you places. Want the full scoop?"
     },
     "services": {
-      "patterns": ["services you offer", "what services", "your services"],
+      "patterns": ["services you offer", "what services", "your services", "what do you guys offer"],
       "response": "We’ve got a full deck: AI, cloud, cybersecurity, DevOps, data analytics, and more. We handle everything from migrations to smart apps. Pick a card, any card, and let’s make your business shine!"
     },
     "efficiency": {
@@ -25,8 +33,16 @@
       "response": "Ready to roll? Just reach out via our contact form or book a call. We’ll assess your needs faster than you can say ‘cloud migration’ and craft a plan that’s all you. Let’s make waves!"
     },
     "contact": {
-      "patterns": ["contact your team", "how to contact", "reach out"],
+      "patterns": ["contact your team", "how to contact", "reach out", "when can you team reach out"],
       "response": "Hit us up through the contact form at xervai.com/contact-us or schedule a call. I’m Xerv-Ai, by the way—always here to smooth-talk you into the next step!"
+    },
+    "schedule_call": {
+      "patterns": ["schedule a call", "book a call", "set up a meeting"],
+      "response": "Trying to pencil me in, eh? Use the contact form at xervai.com/contact-us, pick your date and time, and I’ll make sure the team’s ready to dazzle you. What’s a good time for you?"
+    },
+    "phone_number": {
+      "patterns": ["give you my phone number", "my phone number", "contact number"],
+      "response": "Smooth move, but I’m a bot, not a phonebook! Drop your number in the contact form at xervai.com/contact-us, and our team will give you a ring faster than you can say ‘deal.’ Sound good?"
     },
     "it_service_management": {
       "patterns": ["it service management", "about it service", "itsm"],
@@ -38,9 +54,9 @@
     }
   },
   "fallbacks": [
-    "Well, you’ve stumped me there, partner! Mind rephrasing that, or shall I charm you with another topic?",
-    "That’s a curveball even I can’t catch! Try another question, and let’s keep this con rolling.",
-    "Hmm, my playbook’s missing that one. Toss me another question, and I’ll give you the Xerv-Ai treatment!",
-    "You’re moving too fast for me! Slow it down with another question, and I’ll dazzle you with an answer."
+    "Well, you’ve slipped one past me, partner! Try another question, and I’ll hit it out of the park.",
+    "That’s a curveball even I can’t catch! Toss me another, and let’s keep this con rolling.",
+    "Hmm, my playbook’s missing that one. Give me something else, and I’ll dazzle you with the Xerv-Ai charm!",
+    "You’re moving too fast for me! Slow it down with another question, and I’ll pull out all the stops."
   ]
 }
