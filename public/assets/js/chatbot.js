@@ -3,6 +3,7 @@ const chatbotContainer = document.querySelector('.chatbot-container');
 
 let chatWindow = null;
 let responses = {};
+let userName = null;
 
 function initializeChatbot() {
   fetch('/assets/data/chatbot-data.json')
@@ -98,7 +99,7 @@ function handleUserMessage(message) {
   userMessage.textContent = message;
   chatBody.appendChild(userMessage);
 
-  const response = getBotResponse(message.toLowerCase());
+  const response = getBotResponse(message.toLowerCase(), message);
   const botMessage = document.createElement('div');
   botMessage.className = 'bot-message';
   botMessage.style.margin = '10px';
@@ -111,22 +112,53 @@ function handleUserMessage(message) {
   chatBody.scrollTop = chatBody.scrollHeight;
 }
 
-function getBotResponse(message) {
+function getBotResponse(message, originalMessage) {
   const nameMatch = message.match(/my name is (\w+)/i);
   if (nameMatch) {
-    return `Nice to meet you, ${nameMatch[1]}! I’m Xerv-Ai, the smoothest AI this side of the cloud. What’s up?`;
+    userName = nameMatch[1];
+    return `Nice to meet you, ${userName}! I’m Xerv-Ai, the smoothest AI this side of the cloud. What’s up?`;
   }
 
   for (const intent in responses.intents) {
     const patterns = responses.intents[intent].patterns;
     for (const pattern of patterns) {
       if (message.includes(pattern)) {
-        return responses.intents[intent].response;
+        const response = responses.intents[intent].response;
+        if (intent === 'schedule_call') {
+          const timeMatch = originalMessage.match(/(\d{1,2}[ -]?\w{3}[ -]?\d{4})\s*(?:at)?\s*(\d{1,2}(?::\d{2})?\s*(?:am|pm)?)?\s*(\w{2,3})?/i);
+          if (timeMatch) {
+            const [, date, time, timezone] = timeMatch;
+            notifyServer('schedule', originalMessage, { preferredTime: `${date} ${time || ''}`, timezone: timezone || 'Not specified' });
+          } else {
+            notifyServer('schedule', originalMessage);
+          }
+        } else if (intent === 'phone_number') {
+          notifyServer('phone', originalMessage);
+        }
+        return response;
       }
     }
   }
 
   return responses.fallbacks[Math.floor(Math.random() * responses.fallbacks.length)];
+}
+
+function notifyServer(type, message, details = {}) {
+  const payload = {
+    type,
+    name: userName,
+    message,
+    ...details
+  };
+
+  fetch('/chatbot-notify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+    .then(response => response.json())
+    .then(data => console.log('Notification sent:', data))
+    .catch(error => console.error('Error sending notification:', error));
 }
 
 document.addEventListener('DOMContentLoaded', initializeChatbot);
