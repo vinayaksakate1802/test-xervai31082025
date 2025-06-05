@@ -69,7 +69,7 @@ a {
 }
 
 .menu > li > a:hover {
-  background: #ff8c40; /* 3 shades darker than #ffd4a3 */
+  background: #ff8c40;
 }
 
 .dropdown {
@@ -240,6 +240,31 @@ footer {
   text-align: center;
   padding: 20px;
   border-top: 1px solid #eaeaea;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.social-links {
+  display: flex;
+  gap: 20px;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #ff8c40;
+  color: #fff;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.social-links a:hover {
+  background: #e07b36;
 }
 
 .cards {
