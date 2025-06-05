@@ -4,389 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Think Smart, Think XervAi</title>
-
-  <!-- Favicons for XervAi -->
   <link rel="apple-touch-icon" sizes="180x180" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/favicon-16x16.png">
   <link rel="icon" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/favicon.ico" type="image/x-icon">
   <link rel="icon" type="image/png" sizes="192x192" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/android-chrome-192x192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/android-chrome-512x512.png">
-
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: #fff;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .navbar {
-      width: 100%;
-      background: #fff;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #eaeaea;
-      position: fixed;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .logo a {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .logo-text {
-      font-size: 24px;
-      font-weight: 700;
-      color: #333;
-    }
-
-    .logo-ai {
-      color: #FF4500; /* Dark orange color */
-      font-weight: 700;
-    }
-
-    .motto {
-      font-size: 12px;
-      color: #555;
-    }
-
-    .menu {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-
-    .menu > li {
-      position: relative;
-    }
-
-    .menu > li > a {
-      padding: 8px 12px;
-      font-size: 16px;
-      border-radius: 4px;
-      transition: background-color 0.3s ease;
-    }
-
-    .menu > li > a:hover {
-      background: #ffd4a3;
-    }
-
-    .dropdown {
-      position: absolute;
-      top: calc(100% - 5px);
-      left: 0;
-      background: #fff;
-      min-width: 220px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 4px;
-      overflow: hidden;
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 2000;
-    }
-
-    .menu > li.open .dropdown {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
-
-    .dropdown li a {
-      display: block;
-      padding: 10px 15px;
-      font-size: 14px;
-      transition: background 0.3s ease;
-      color: #333;
-    }
-
-    .dropdown li a:hover {
-      background: #ffd4a3;
-    }
-
-    .hero {
-      background: url('https://xervaiblobstorage.blob.core.windows.net/blog-images/AI.jpg') no-repeat center center/cover;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding-top: 80px;
-    }
-
-    .hero-content {
-      max-width: 800px;
-      padding: 20px;
-      margin-top: 2cm; /* Move text 2cm lower */
-    }
-
-    .hero-content h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
-
-    .hero-content h1 .word {
-      display: inline-block;
-      opacity: 0;
-      animation-duration: 0.8s;
-      animation-fill-mode: forwards;
-      animation-timing-function: ease-out;
-      color: #000; /* Black font for Welcome and to */
-      text-shadow:
-        0 0 5px rgba(255, 255, 255, 0.8),
-        0 0 10px rgba(255, 255, 255, 0.6),
-        0 0 15px rgba(255, 255, 255, 0.4); /* White glow */
-    }
-
-    .hero-content h1 .word.xerv {
-      color: #000; /* Black for Xerv */
-    }
-
-    .hero-content h1 .word .ai {
-      color: #FF4500; /* Dark orange for Ai */
-    }
-
-    .hero-content p {
-      font-size: 30px;
-      color: #fff;
-      margin-bottom: 30px;
-      text-shadow:
-        0 0 4px rgba(255, 255, 255, 0.9),
-        0 0 10px rgba(255, 255, 255, 0.9),
-        0 0 20px rgba(255, 255, 255, 1);
-    }
-
-    .hero-content p .word {
-      display: inline-block;
-      opacity: 0;
-      animation-duration: 0.8s;
-      animation-fill-mode: forwards;
-      animation-timing-function: ease-out;
-    }
-
-    .hero-content h1 .word:nth-child(odd) {
-      animation-name: scrambleLeft;
-    }
-
-    .hero-content h1 .word:nth-child(even) {
-      animation-name: scrambleRight;
-    }
-
-    .hero-content p .word:nth-child(odd) {
-      animation-name: scrambleLeft;
-      animation-delay: 0.5s; /* Delay for p to start after h1 */
-    }
-
-    .hero-content p .word:nth-child(even) {
-      animation-name: scrambleRight;
-      animation-delay: 0.5s;
-    }
-
-    @keyframes scrambleLeft {
-      0% {
-        transform: translateX(-100vw);
-        opacity: 0;
-      }
-      100% {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    @keyframes scrambleRight {
-      0% {
-        transform: translateX(100vw);
-        opacity: 0;
-      }
-      100% {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    /* Assign delays to each word */
-    .hero-content h1 .word:nth-child(1) { animation-delay: 0.1s; }
-    .hero-content h1 .word:nth-child(2) { animation-delay: 0.2s; }
-    .hero-content h1 .word:nth-child(3) { animation-delay: 0.3s; }
-    .hero-content p .word:nth-child(1) { animation-delay: 0.6s; }
-    .hero-content p .word:nth-child(2) { animation-delay: 0.7s; }
-    .hero-content p .word:nth-child(3) { animation-delay: 0.8s; }
-    .hero-content p .word:nth-child(4) { animation-delay: 0.9s; }
-    .hero-content p .word:nth-child(5) { animation-delay: 1.0s; }
-    .hero-content p .word:nth-child(6) { animation-delay: 1.1s; }
-    .hero-content p .word:nth-child(7) { animation-delay: 1.2s; }
-
-    .btn {
-      padding: 12px 30px;
-      background: #ffd4a3;
-      color: #333;
-      font-weight: 700;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .btn:hover {
-      background: #ffbb80;
-    }
-
-    main {
-      padding: 120px 20px 60px;
-    }
-
-    section {
-      margin-bottom: 60px;
-    }
-
-    section h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 32px;
-    }
-
-    section p {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-      font-size: 16px;
-    }
-
-    footer {
-      background: #fff;
-      text-align: center;
-      padding: 20px;
-      border-top: 1px solid #eaeaea;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .card {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid #eaeaea;
-      border-radius: 8px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    }
-
-    .card img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .card-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.6);
-      color: #333;
-      padding: 20px;
-      backdrop-filter: blur(5px);
-      text-align: center;
-    }
-
-    .card-title {
-      font-size: 20px;
-      font-weight: 700;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    /* Hamburger Menu */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 25px;
-      height: 20px;
-      cursor: pointer;
-    }
-
-    .hamburger span {
-      height: 3px;
-      background: #333;
-      border-radius: 2px;
-    }
-
-    /* Responsive Navigation */
-    @media (max-width: 768px) {
-      .menu {
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        background: #fff;
-        width: 100%;
-        display: none;
-        padding: 20px 0;
-        border-top: 1px solid #eaeaea;
-      }
-
-      .menu.show {
-        display: flex;
-      }
-
-      .menu > li {
-        width: 100%;
-        text-align: center;
-      }
-
-      .dropdown {
-        position: static;
-        box-shadow: none;
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        display: none;
-      }
-
-      .menu > li.open .dropdown {
-        display: block;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-    }
-    #onlineMeeting {
-  accent-color: #FF4500; /* Dark orange */
-}
-
-  </style>
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="stylesheet" href="/assets/css/chatbot.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.css">
 </head>
 <body>
-  <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="logo">
       <a href="/">
@@ -441,9 +71,7 @@
       <li><a href="https://xervai.com/contact-us">Contact Us</a></li>
     </ul>
   </nav>
-
-  <!-- Hero Section -->
-  <header class="hero">
+  <header class="hero" style="background-image: url('https://xervaiblobstorage.blob.core.windows.net/blog-images/AI.jpg');">
     <div class="hero-content">
       <h1>
         <span class="word">Welcome</span>
@@ -462,8 +90,6 @@
       <a href="https://xervai.com/services" class="btn">Discover More</a>
     </div>
   </header>
-
-  <!-- Main Content -->
   <main>
     <section id="explore" style="padding: 60px 20px; background: #f9f6f2;">
       <h2><a href="https://xervai.com/services">Our Services</a></h2>
@@ -491,130 +117,80 @@
         </div>
       </div>
     </section>
-
-
-<!-- Include Flatpickr CSS and confirmDate plugin CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.css">
-
-<section id="contact" style="padding: 60px 20px;">
-  <h2 style="text-align:center;">Get in Touch</h2>
-  <form id="contactForm" style="max-width:600px; margin:auto;" method="POST" action="/submit-contact">
-
-    <!-- Name (inline placeholder) -->
-    <input type="text" id="name" name="name" placeholder="Name*" required 
-           style="width:100%; padding:10px; margin-bottom:15px;">
-
-    <!-- Phone Number (inline placeholder) -->
-    <input type="tel" id="phone" name="phone" 
-           placeholder="Phone Number* (e.g., +1 123-456-7890)" 
-           pattern="^\+?\d{1,4}?[\s-]?\(?\d{1,4}?\)?[\s-]?\d{1,9}$" 
-           required style="width:100%; padding:10px; margin-bottom:15px;">
-
-    <!-- Email (inline placeholder) -->
-    <input type="email" id="email" name="email" placeholder="Email*" required 
-           style="width:100%; padding:10px; margin-bottom:15px;">
-
-    <!-- Calendar Input for Date & Time with attached Timezone (both inline) -->
-    <div style="display: flex; gap:10px; margin-bottom:15px;">
-      <input type="text" id="preferredDateTime" name="preferredDateTime" 
-             placeholder="Choose date & time" style="flex:1; padding:10px;">
-      <input type="text" id="timezone" name="timezone" 
-             placeholder="Timezone (e.g., CET)" 
-             style="width:100px; padding:10px;">
-    </div>
-
-    <!-- Checkbox for Online Meeting -->
-    <div class="checkbox-container" style="margin-bottom:20px; display:inline-flex; align-items:center;">
-      <input type="checkbox" id="onlineMeeting" name="onlineMeeting" 
-             style="margin:0 8px 0 0; display:inline;">
-      <span>Connect with me over an online meeting</span>
-    </div>
-
-    <!-- Reason for Contact (inline placeholder via select default option) -->
-    <select id="reason" name="reason" required 
-            style="width:100%; padding:10px; margin-bottom:15px;">
-      <option value="" disabled selected>Choose reason for Contact*</option>
-      <option value="Sales">Sales</option>
-      <option value="Project">Project</option>
-      <option value="Technical Support">Technical Support</option>
-      <option value="Press">Press</option>
-      <option value="Others">Others</option>
-    </select>
-
-    <!-- Relevant Service (inline placeholder via select default option) -->
-    <select id="service" name="service" required 
-            style="width:100%; padding:10px; margin-bottom:15px;">
-      <option value="" disabled selected>Choose relevant Service*</option>
-      <option>Managed IT & Consulting</option>
-      <option>Cybersecurity</option>
-      <option>Cloud</option>
-      <option>Artificial Intelligence</option>
-      <option>DevOps & Automation</option>
-      <option>Data Analytics</option>
-      <option>Engineering Solutions</option>
-      <option>On Premise & Legacy Apps</option>
-      <option>Migration Services</option>
-      <option>Digital Transformation</option>
-      <option>Smart Apps</option>
-      <option>Startup Zone</option>
-      <option>Other</option>
-    </select>
-
-    <!-- Your Message (inline placeholder) -->
-    <textarea id="message" name="message" rows="5" placeholder="Your Message*" required 
-              style="width:100%; padding:10px; margin-bottom:15px;"></textarea>
-
-    <button type="submit" class="btn" style="width:20%;">Submit</button>
-  </form>
-</section>
-
-<!-- Include required Flatpickr JS and the confirmDate plugin JS -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.js"></script>
-<script>
-  flatpickr("#preferredDateTime", {
-    enableTime: true,
-    dateFormat: "Y-m-d h:i K",  // e.g., "2025-06-24 12:00 PM"
-    time_24hr: false,          // Uses 12-hour time with AM/PM
-    plugins: [new confirmDatePlugin({
-      confirmText: "OK",       // Text for the confirmation button
-      showAlways: false        // Button appears only after a date/time is selected
-    })]
-  });
-</script>
-
-
-
+    <section id="contact" style="padding: 60px 20px;">
+      <h2 style="text-align:center;">Get in Touch</h2>
+      <form id="contactForm" style="max-width:600px; margin:auto;" method="POST" action="/submit-contact">
+        <input type="text" id="name" name="name" placeholder="Name*" required style="width:100%; padding:10px; margin-bottom:15px;">
+        <input type="tel" id="phone" name="phone" placeholder="Phone Number* (e.g., +1 123-456-7890)" pattern="^\+?\d{1,4}?[\s-]?\(?\d{1,4}?\)?[\s-]?\d{1,9}$" required style="width:100%; padding:10px; margin-bottom:15px;">
+        <input type="email" id="email" name="email" placeholder="Email*" required style="width:100%; padding:10px; margin-bottom:15px;">
+        <div style="display: flex; gap:10px; margin-bottom:15px;">
+          <input type="text" id="preferredDateTime" name="preferredDateTime" placeholder="Choose date & time" style="flex:1; padding:10px;">
+          <input type="text" id="timezone" name="timezone" placeholder="Timezone (e.g., CET)" style="width:100px; padding:10px;">
+        </div>
+        <div class="checkbox-container" style="margin-bottom:20px; display:inline-flex; align-items:center;">
+          <input type="checkbox" id="onlineMeeting" name="onlineMeeting" style="margin:0 8px 0 0; display:inline;">
+          <span>Connect with me over an online meeting</span>
+        </div>
+        <select id="reason" name="reason" required style="width:100%; padding:10px; margin-bottom:15px;">
+          <option value="" disabled selected>Choose reason for Contact*</option>
+          <option value="Sales">Sales</option>
+          <option value="Project">Project</option>
+          <option value="Technical Support">Technical Support</option>
+          <option value="Press">Press</option>
+          <option value="Others">Others</option>
+        </select>
+        <select id="service" name="service" required style="width:100%; padding:10px; margin-bottom:15px;">
+          <option value="" disabled selected>Choose relevant Service*</option>
+          <option>Managed IT & Consulting</option>
+          <option>Cybersecurity</option>
+          <option>Cloud</option>
+          <option>Artificial Intelligence</option>
+          <option>DevOps & Automation</option>
+          <option>Data Analytics</option>
+          <option>Engineering Solutions</option>
+          <option>On Premise & Legacy Apps</option>
+          <option>Migration Services</option>
+          <option>Digital Transformation</option>
+          <option>Smart Apps</option>
+          <option>Startup Zone</option>
+          <option>Other</option>
+        </select>
+        <textarea id="message" name="message" rows="5" placeholder="Your Message*" required style="width:100%; padding:10px; margin-bottom:15px;"></textarea>
+        <button type="submit" class="btn" style="width:20%;">Submit</button>
+      </form>
+    </section>
   </main>
-
-  <!-- Footer -->
   <footer class="py-6 text-center text-sm border-t border-gray-700">
-    <p>© 2025 <a href="https://xervai.com/" class="hover:opacity-80">xervai solutions LLP</a> . All rights reserved.</p>
+    <p>© 2025 <a href="https://xervai.com/" class="hover:opacity-80">xervai solutions LLP</a>. All rights reserved.</p>
     <p>
-      <a href="https://xervai.com/privacy" class="hover:opacity-80">Privacy Policy</a> | 
-      <a href="https://xervai.com/contactus" class="hover:opacity-80">Contact Us</a> | 
+      <a href="https://xervai.com/privacy" class="hover:opacity-80">Privacy Policy</a> |
+      <a href="https://xervai.com/contactus" class="hover:opacity-80">Contact Us</a> |
       <a href="https://xervai.com/terms" class="hover:opacity-80">Terms & Conditions</a>
     </p>
+    <div id="xervai-chatbot" class="chatbot-container">
+      <button class="chatbot-toggle">Talk to Xerv-Ai</button>
+    </div>
   </footer>
-
-  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.js"></script>
   <script>
+    flatpickr("#preferredDateTime", {
+      enableTime: true,
+      dateFormat: "Y-m-d h:i K",
+      time_24hr: false,
+      plugins: [new confirmDatePlugin({ confirmText: "OK", showAlways: false })]
+    });
     document.addEventListener('DOMContentLoaded', function () {
       const hamburger = document.getElementById('hamburger');
       const menu = document.querySelector('.menu');
-
       hamburger.addEventListener('click', () => {
         menu.classList.toggle('show');
       });
-
       if (window.innerWidth <= 768) {
         const dropdownParents = document.querySelectorAll('.menu > li');
-
         dropdownParents.forEach(parent => {
           const link = parent.querySelector('a');
           const hasDropdown = parent.querySelector('.dropdown');
-
           if (hasDropdown) {
             link.addEventListener('click', function (e) {
               e.preventDefault();
@@ -623,7 +199,6 @@
           }
         });
       }
-
       if (window.innerWidth > 768) {
         const items = document.querySelectorAll('.menu > li');
         items.forEach(item => {
@@ -640,10 +215,8 @@
         });
       }
     });
-
   </script>
-  <script src="/assets/js/script.js"></script>
+  <script src="/assets/js/main.js"></script>
   <script src="/assets/js/chatbot.js"></script>
-  
 </body>
 </html>
