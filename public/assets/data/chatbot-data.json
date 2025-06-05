@@ -1,7 +1,7 @@
 {
   "intents": {
     "greeting": {
-      "patterns": ["hey", "hi", "hello"],
+      "patterns": ["hey", "hi", "hello","wassup","hola","Namaste"],
       "response": "Well, hello there! I’m Xerv-Ai, ready to charm you with answers smoother than a first-class flight. What’s the plan?"
     },
     "status_check": {
