@@ -63,65 +63,9 @@
         "services you offer",
         "what services",
         "your services",
-        "what do you guys offer",
-        "need services",
-        "i need services",
-        "i need it services",
-        "need it services",
-        "help me with services",
-        "i need help",
-        "it support"
+        "what do you guys offer"
       ],
       "response": "We’ve got a full deck: AI, cloud, cybersecurity, DevOps, data analytics, and more. We handle everything from migrations to smart apps. Dive into the details at <a href='https://xervai.com/services' target='_blank'>xervai.com/services</a>!"
-    },
-    "azure_services": {
-      "patterns": [
-        "need help with azure",
-        "help with azure",
-        "i need azure help",
-        "azure services",
-        "azure support",
-        "help me with azure",
-        "azure assistance",
-        "azure migration help"
-      ],
-      "response": "Azure is our playground for cloud solutions. We offer full Azure support—including migration, deployment, and cost optimization—to help your business soar. Discover more at <a href='https://xervai.com/cloud' target='_blank'>xervai.com/cloud</a>!"
-    },
-    "active_directory": {
-      "patterns": [
-        "need help with ad",
-        "help with ad",
-        "active directory",
-        "need active directory help",
-        "help me with ad",
-        "ad support",
-        "active directory assistance"
-      ],
-      "response": "Our Active Directory experts ensure secure, streamlined identity and access management for your business. Find out how we can optimize your IT environment at <a href='https://xervai.com/it-consulting' target='_blank'>xervai.com/it-consulting</a>!"
-    },
-    "migration_help": {
-      "patterns": [
-        "need help on migration",
-        "help with migration",
-        "i need migration help",
-        "cloud migration",
-        "help me with cloud migration",
-        "migration assistance",
-        "need to migrate"
-      ],
-      "response": "We specialize in seamless cloud migrations that minimize downtime and maximize efficiency. Let us guide you through a smooth transition. Learn more at <a href='https://xervai.com/services' target='_blank'>xervai.com/services</a>!"
-    },
-    "ai_services": {
-      "patterns": [
-        "need help with ai",
-        "help with ai",
-        "i need ai help",
-        "ai services",
-        "assist me with ai",
-        "ai support",
-        "artificial intelligence help"
-      ],
-      "response": "Our AI solutions unlock actionable insights through machine learning and data analytics tailored to your business needs. Discover how AI can transform your workflow at <a href='https://xervai.com/services' target='_blank'>xervai.com/services</a>!"
     },
     "efficiency": {
       "patterns": [
