@@ -44,7 +44,15 @@ function createChatWindow() {
   chatHeader.style.color = '#fff';
   chatHeader.style.padding = '10px';
   chatHeader.style.borderRadius = '8px 8px 0 0';
-  chatHeader.innerHTML = '<span>Xerv-Ai</span><span style="float:right;cursor:pointer;">&times;</span>';
+  chatHeader.style.display = 'flex';
+  chatHeader.style.alignItems = 'center';
+  chatHeader.innerHTML = `
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-3.86-.81-5.21-2.12.69-1.29 2.05-2.18 3.71-2.18h2.99c1.66 0 3.02.89 3.71 2.18C15.86 19.19 14.03 20 12 20z"/>
+    </svg>
+    <span>Xerv-Ai</span>
+    <span style="float:right;cursor:pointer;">×</span>
+  `;
   chatHeader.querySelector('span:last-child').addEventListener('click', () => {
     chatWindow.style.display = 'none';
   });
