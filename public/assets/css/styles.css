@@ -69,8 +69,7 @@ a {
 }
 
 .menu > li > a:hover {
-  background: #FF4500;
-  color: #fff;
+  background: #ff8c40; /* 3 shades darker than #ffd4a3 */
 }
 
 .dropdown {
@@ -104,12 +103,11 @@ a {
 }
 
 .dropdown li a:hover {
-  background: #FF4500;
-  color: #fff;
+  background: #ff8c40;
 }
 
 .hero {
-  background: url('https://xervaiblobstorage.blob.core.windows.net/blog-images/AI.jpg') no-repeat center center/cover;
+  background: no-repeat center center/cover;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -181,25 +179,13 @@ a {
 }
 
 @keyframes scrambleLeft {
-  0% {
-    transform: translateX(-100vw);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
+  0% { transform: translateX(-100vw); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
 }
 
 @keyframes scrambleRight {
-  0% {
-    transform: translateX(100vw);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
+  0% { transform: translateX(100vw); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
 }
 
 .hero-content h1 .word:nth-child(1) { animation-delay: 0.1s; }
@@ -215,8 +201,8 @@ a {
 
 .btn {
   padding: 12px 30px;
-  background: #FF4500;
-  color: #fff;
+  background: #ff8c40;
+  color: #333;
   font-weight: 700;
   border: none;
   border-radius: 4px;
@@ -225,7 +211,7 @@ a {
 }
 
 .btn:hover {
-  background: #e03c00;
+  background: #e07b36;
 }
 
 main {
@@ -358,34 +344,4 @@ footer {
 
 #onlineMeeting {
   accent-color: #FF4500;
-}
-
-form label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 700;
-}
-
-form input, form select, form textarea {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-family: 'Montserrat', sans-serif;
-  padding: 10px;
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-.checkbox-container {
-  display: inline-flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.checkbox-container input {
-  margin: 0 8px 0 0;
-  display: inline !important;
-}
-
-.checkbox-container span {
-  display: inline !important;
 }
