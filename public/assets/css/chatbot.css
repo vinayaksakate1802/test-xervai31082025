@@ -6,8 +6,8 @@
 }
 
 .chatbot-toggle {
-  background: #ff8c40; /* Your theme color */
-  color: #fff;
+  background: #ff8c40; /* Theme background color */
+  color: #fff;         /* For currentColor usage in the SVG */
   border: none;
   border-radius: 50%;
   width: 60px;
@@ -19,8 +19,9 @@
   justify-content: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: background 0.3s ease, transform 0.3s ease;
-  /* Embed your inline SVG icon */
-  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Cpath%20fill='currentColor'%20d='M32,2C15.432,2,2,12.292,2,25.742c0,5.404,2.18,10.43,5.868,14.442C6.304,48.153,2,52.08,2,59.198V62l5.694-3.078C13.54,61.071,22.752,63.8,32,63.8c16.568,0,30-10.292,30-23.742S48.568,2,32,2z%20M22,30c0,2.209,1.791,4,4,4s4-1.791,4-4s-1.791-4-4-4S22,27.791,22,30z%20M38,30c0,2.209,1.791,4,4,4s4-1.791,4-4s-1.791-4-4-4S38,27.791,38,30z%20M22,42c4,2,10,2,14,0'%3E%3C/path%3E%3C/svg%3E");
+  
+  /* Embed the cute robot head as an inline SVG background image */
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20x='8'%20y='16'%20width='48'%20height='40'%20rx='8'%20ry='8'%20fill='currentColor'/%3E%3Cline%20x1='18'%20y1='16'%20x2='18'%20y2='8'%20stroke='currentColor'%20stroke-width='2'%20stroke-linecap='round'/%3E%3Ccircle%20cx='18'%20cy='8'%20r='2'%20fill='currentColor'/%3E%3Cline%20x1='46'%20y1='16'%20x2='46'%20y2='8'%20stroke='currentColor'%20stroke-width='2'%20stroke-linecap='round'/%3E%3Ccircle%20cx='46'%20cy='8'%20r='2'%20fill='currentColor'/%3E%3Ccircle%20cx='24'%20cy='34'%20r='4'%20fill='%23fff'/%3E%3Ccircle%20cx='40'%20cy='34'%20r='4'%20fill='%23fff'/%3E%3Ccircle%20cx='24'%20cy='34'%20r='2'%20fill='currentColor'/%3E%3Ccircle%20cx='40'%20cy='34'%20r='2'%20fill='currentColor'/%3E%3Cpath%20d='M22,46%20Q32,52%2042,46'%20stroke='%23fff'%20stroke-width='3'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E");
   background-size: 30px;   /* Adjust the size as needed */
   background-repeat: no-repeat;
   background-position: center;
