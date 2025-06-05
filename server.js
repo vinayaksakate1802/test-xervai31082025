@@ -51,6 +51,11 @@ function validateInput(data, requiredFields) {
   return true;
 }
 
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
+});
+
 app.post('/submit-contact', async (req, res) => {
   const { name, phone, emailId, onlineMeeting, preferredDateTime, timezone, reason, service, message } = req.body;
 
@@ -100,7 +105,7 @@ app.post('/chatbot-notify', async (req, res) => {
   let body = `User Message: ${message}\n`;
   if (type === 'schedule') {
     subject = `Chatbot Scheduling Request from ${name || 'Anonymous'}`;
-    body += `Type: Schedule Call\nPreferred Time: ${preferredTime}\nTimezone: ${timezone}\nName: ${name || 'Unknown'};
+    body += `Type: Schedule Call\nPreferred Time: ${preferredTime}\nTimezone: ${timezone}\nName: ${name || 'Unknown'}`;
   } else if (type === 'phone') {
     subject = `Chatbot Phone Inquiry from ${name || 'Anonymous'}`;
     body += `Type: Phone Inquiry\nName: ${name || 'Unknown'}`;
@@ -130,6 +135,13 @@ app.get('/services', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'services', 'index.html'));
 });
 
+// Catch-all for unmatched routes
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
+});
+
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`XervAi server started on port ${port} at ${new Date().toISOString()}`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'Production'}`);
+  console.log(`Email configured for: ${process.env.EMAIL_ADDRESS || 'Not set'}`);
 });
