@@ -74,7 +74,7 @@
         "it support",
         "help with services"
       ],
-      "response": "We’ve got a full deck: AI, cloud, cybersecurity, DevOps, data analytics, and more. We handle everything from migrations to smart apps. Dive into the details at <a href='https://xervai.com/services' class='button-link' target='_blank'>xervai.com/services</a>!"
+      "response": "We’ve got a full deck: AI, cloud, cybersecurity, DevOps, data analytics, and more. We handle everything from migrations to smart apps. Dive into the details at <a href='https://xervai.com/services' class='button-link' target='_blank'>Services</a>!"
     },
     "aws_services": {
       "patterns": [
