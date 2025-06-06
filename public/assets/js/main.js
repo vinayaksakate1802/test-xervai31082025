@@ -77,7 +77,21 @@ document.addEventListener('DOMContentLoaded', function () {
   if (hamburger && menu) {
     hamburger.addEventListener('click', () => {
       menu.classList.toggle('show');
+      console.log('Hamburger clicked, menu show:', menu.classList.contains('show'));
     });
+    hamburger.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      menu.classList.toggle('show');
+      console.log('Hamburger touched, menu show:', menu.classList.contains('show'));
+    });
+    // Close menu when clicking links
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('show');
+      });
+    });
+  } else {
+    console.error('Hamburger or menu not found:', { hamburger, menu });
   }
 
   // Initialize navigation on load
@@ -90,37 +104,4 @@ document.addEventListener('DOMContentLoaded', function () {
     desktopItems = document.querySelectorAll('.menu > li');
     initializeNav();
   }, 200));
-
-  // -------------------------------------------------------------------
-  // Quick Reply Handler for Chatbot Fallback Quick Replies
-  // This function simulates a user message based on the choice made
-  // in a clickable fallback response.
-  function handleQuickReply(choice) {
-    const chatBody = document.querySelector('.chat-body');
-    let simulatedMessage = '';
-
-    if (choice === "services") {
-      simulatedMessage = 'Tell me about your services';
-    } else if (choice === "contact") {
-      simulatedMessage = 'I would like to contact you';
-    }
-
-    // Create and append a user message element if chatBody exists
-    if (chatBody) {
-      const userMessage = document.createElement('div');
-      userMessage.className = 'user-message';
-      userMessage.textContent = simulatedMessage;
-      chatBody.appendChild(userMessage);
-    }
-
-    // Process the simulated message as if the user typed it.
-    // Ensure that handleUserMessage is defined in your chatbot logic.
-    if (typeof handleUserMessage === 'function') {
-      handleUserMessage(simulatedMessage);
-    } else {
-      console.warn("handleUserMessage function is not defined.");
-    }
-  }
-  // Expose the function globally if needed by fallback HTML handlers
-  window.handleQuickReply = handleQuickReply;
 });
