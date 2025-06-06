@@ -5,16 +5,14 @@
   z-index: 1000;
 }
 
-/* Flicker/Glow animation keyframes */
-@keyframes flicker {
-  0%, 100% {
-    opacity: 1;
-    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
-  }
-  50% {
-    opacity: 0.7;
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1));
-  }
+/* Wave animation keyframes */
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(15deg); }
+  40% { transform: rotate(-10deg); }
+  60% { transform: rotate(10deg); }
+  80% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
 }
 
 .chatbot-toggle {
@@ -38,11 +36,13 @@
   background-repeat: no-repeat;
   background-position: center;
   
-  /* Apply the flicker animation */
-  animation: flicker 2s infinite;
+  /* Apply the wave animation */
+  animation: wave 2s ease-in-out;
 }
 
 .chatbot-toggle:hover {
   background: #e07b36;
   transform: scale(1.1);
+  /* Optionally accentuate the wave effect on hover */
+  animation: wave 1.5s ease-in-out;
 }
