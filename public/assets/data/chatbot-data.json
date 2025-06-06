@@ -1,217 +1,148 @@
-{
-  "intents": {
-    "greeting": {
-      "patterns": [
-        "hey",
-        "hi",
-        "hello",
-        "wassup",
-        "hola",
-        "namaste",
-        "yo",
-        "hey there",
-        "sup"
-      ],
-      "response": "Well, hello there! I’m Xerv-Ai, ready to charm you with answers smoother than a first-class flight. What’s on your mind?"
-    },
-    "status_check": {
-      "patterns": [
-        "all good",
-        "how are you",
-        "how's it going",
-        "what's up",
-        "what’s new",
-        "how do you do"
-      ],
-      "response": "I’m running smoother than a con on a good day, my friend! How about you—what’s the vibe today?"
-    },
-    "emotion_positive": {
-      "patterns": [
-        "i'm happy",
-        "feeling good",
-        "awesome",
-        "great day",
-        "fantastic",
-        "in high spirits",
-        "loving it",
-        "all is well"
-      ],
-      "response": "That’s fantastic to hear! Your positive vibes make my circuits dance. Got anything exciting to share?"
-    },
-    "emotion_negative": {
-      "patterns": [
-        "i'm sad",
-        "feeling down",
-        "not good",
-        "depressed",
-        "unhappy",
-        "feeling blue",
-        "bummed out",
-        "tough day"
-      ],
-      "response": "I'm sorry you're feeling that way. Remember, every dark cloud has a silver lining. Would you like to talk about what’s bothering you?"
-    },
-    "company_info": {
-      "patterns": [
-        "what does your company do",
-        "about your company",
-        "what is xervai",
-        "who are you",
-        "tell me about xervai"
-      ],
-      "response": "XervAi? We’re the masterminds behind innovative IT solutions, making businesses run smoother than a con artist’s pitch. From cloud to AI, we’ve got the tech to take you places. Check out our story at <a href='https://xervai.com/our-story' class='button-link' target='_blank'>xervai.com/our-story</a>!"
-    },
-    "services": {
-      "patterns": [
-        "services you offer",
-        "what services",
-        "your services",
-        "what do you guys offer",
-        "services",
-        "i need services",
-        "looking for services",
-        "tech support",
-        "it support",
-        "help with services"
-      ],
-      "response": "We’ve got a full deck: AI, cloud, cybersecurity, DevOps, data analytics, and more. We handle everything from migrations to smart apps. Dive into the details at <a href='https://xervai.com/services' class='button-link' target='_blank'>xervai.com/services</a>!"
-    },
-    "aws_services": {
-      "patterns": [
-        "aws",
-        "need aws",
-        "aws support",
-        "aws help",
-        "amazon web services"
-      ],
-      "response": "Our AWS solutions help you scale and secure your infrastructure effectively. Learn more at <a href='https://xervai.com/cloud' class='button-link' target='_blank'>xervai.com/cloud</a>!"
-    },
-    "azure_services": {
-      "patterns": [
-        "azure",
-        "need help with azure",
-        "azure support",
-        "microsoft azure"
-      ],
-      "response": "Azure is our playground for cloud solutions. We offer full Azure support—including deployment, migration, and cost optimization. Check out our cloud services at <a href='https://xervai.com/cloud' class='button-link' target='_blank'>xervai.com/cloud</a>!"
-    },
-    "gcp_services": {
-      "patterns": [
-        "gcp",
-        "google cloud",
-        "gcp support",
-        "need help with google cloud"
-      ],
-      "response": "Our GCP offerings are designed to keep your data and apps secure and scalable. More details at <a href='https://xervai.com/cloud' class='button-link' target='_blank'>xervai.com/cloud</a>!"
-    },
-    "efficiency": {
-      "patterns": [
-        "improve efficiency",
-        "help businesses",
-        "business efficiency"
-      ],
-      "response": "Efficiency’s our game. We streamline your cloud with Azure and AWS, lock down security with SSO and MFA, and automate the boring stuff with DevOps. See how we do it at <a href='https://xervai.com/services' class='button-link' target='_blank'>xervai.com/services</a>!"
-    },
-    "industries": {
-      "patterns": [
-        "industries you work with",
-        "what industries",
-        "your industries",
-        "industries"
-      ],
-      "response": "We play in every sandbox: healthcare, banking, pharma, retail, energy, manufacturing, consumer goods—you name it. Each gets a custom solution. Explore our industries at <a href='https://xervai.com/industries' class='button-link' target='_blank'>xervai.com/industries</a>."
-    },
-    "stand_out": {
-      "patterns": [
-        "stand out from competitors",
-        "why choose xervai",
-        "how are you different",
-        "what makes you special",
-        "unique selling point"
-      ],
-      "response": "What sets us apart? We’re not just techies; we’re problem-solvers with a knack for making complex IT feel like a breeze. Azure, AWS, SailPoint expertise, and a charm that’s hard to beat. Learn more at <a href='https://xervai.com/our-story' class='button-link' target='_blank'>xervai.com/our-story</a>!"
-    },
-    "get_started": {
-      "patterns": [
-        "get started",
-        "how to begin",
-        "start with your services",
-        "begin service process",
-        "let's start"
-      ],
-      "response": "Ready to roll? Reach out via our contact form at <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>xervai.com/contact-us</a>. We’ll assess your needs faster than you can say ‘cloud migration’ and craft a plan that’s all you!"
-    },
-    "contact": {
-      "patterns": [
-        "contact your team",
-        "how to contact",
-        "reach out",
-        "get in touch",
-        "contact details"
-      ],
-      "response": "Hit us up through the contact form at <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>xervai.com/contact-us</a> or schedule a call. I’m Xerv-Ai, here to smooth-talk you to the next step!"
-    },
-    "schedule_call": {
-      "patterns": [
-        "schedule a call",
-        "book a call",
-        "set up a meeting",
-        "schedule meeting"
-      ],
-      "response": "Trying to pencil me in, eh? Head to <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>xervai.com/contact-us</a> to pick your date and time, and we’ll get our team ready for you."
-    },
-    "phone_number": {
-      "patterns": [
-        "give you my phone number",
-        "my phone number",
-        "contact number",
-        "number"
-      ],
-      "response": "Smooth move, but I’m a bot, not a phonebook! Drop your number in the contact form at <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>xervai.com/contact-us</a>, and our team will ring you back faster than you can say ‘deal’."
-    },
-    "it_service_management": {
-      "patterns": [
-        "it service management",
-        "about it service",
-        "itsm",
-        "manage my it services",
-        "it support management"
-      ],
-      "response": "IT service management is about keeping your tech in line so you can focus on the big wins. We use tools like SailPoint and Active Directory to manage access and squash issues fast. Learn more at <a href='https://xervai.com/it-consulting' class='button-link' target='_blank'>xervai.com/it-consulting</a>!"
-    },
-    "azure_vs_aws": {
-      "patterns": [
-        "azure vs aws",
-        "compare azure and aws",
-        "azure or aws"
-      ],
-      "response": "Azure vs. AWS? Both are powerhouses, but here’s the deal:<br>1. Azure’s tight with Microsoft ecosystems—think seamless Active Directory integration.<br>2. AWS leads in market share and has a broader service catalog.<br>3. Azure’s AI tools, like Cognitive Services, are slick for quick ML wins.<br>4. AWS’s Lambda is a go-to for serverless computing.<br>5. Azure’s pricing can be friendlier for Windows-heavy setups.<br>6. AWS offers more global regions for low-latency needs.<br>7. Azure’s hybrid cloud game is strong with Azure Arc.<br>8. AWS’s S3 is a beast for storage flexibility.<br>9. Both support robust security, but Azure’s Defender integrates tightly with Microsoft.<br>10. XervAi masters both, so we’ll pick the best fit for your biz. See our cloud solutions at <a href='https://xervai.com/cloud' class='button-link' target='_blank'>xervai.com/cloud</a>!"
-    },
-    "goodbye": {
-      "patterns": [
-        "bye",
-        "goodbye",
-        "see you",
-        "gotta go",
-        "i have to leave",
-        "later",
-        "cya",
-        "talk to you later",
-        "catch you later"
-      ],
-      "response": "Goodbye! It was a pleasure chatting with you. Before you head out, would you like to leave your contact details so our team can follow up with you? Just drop your number or email here, and we’ll make sure one of our PA pros gets in touch."
-    }
-  },
-  "fallbacks": [
-    "Oops! I didn't catch that. Maybe you'd like to <a href='#' onclick='handleQuickReply(\"services\")'>check our services</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>contact us</a>?",
-    "I'm not sure I got that—would you like to <a href='#' onclick='handleQuickReply(\"services\")'>explore our offerings</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>speak to a representative</a>?",
-    "That one flew over my circuits! How about checking out our <a href='#' onclick='handleQuickReply(\"services\")'>services</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>getting in touch</a> for more details?",
-    "Hmm, I'm a bit stumped. Perhaps you'd prefer to <a href='#' onclick='handleQuickReply(\"services\")'>learn more about what we offer</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>reach out to us</a>?",
-    "I didn’t quite understand that. Would you like to <a href='#' onclick='handleQuickReply(\"services\")'>see our services</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>connect with our team</a> for more info?",
-    "My apologies, but that one didn't compute. Maybe try <a href='#' onclick='handleQuickReply(\"services\")'>viewing our services</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>getting in touch</a>?",
-    "That doesn’t seem to work for me. How about you <a href='#' onclick='handleQuickReply(\"services\")'>check out our offerings</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>contact us</a> for further assistance?",
-    "I'm drawing a blank here. Perhaps you'd like to <a href='#' onclick='handleQuickReply(\"services\")'>see what we offer</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>speak with our team</a>?",
-    "Sorry, I’m not sure what you mean. Would you care to <a href='#' onclick='handleQuickReply(\"services\")'>explore our services</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>reach out</a> to us?",
-    "I’m having trouble with that one. How about choosing one of these: <a href='#' onclick='handleQuickReply(\"services\")'>services info</a> or <a href='#' onclick='handleQuickReply(\"contact\")'>contact details</a>?"
-  ]
+.chatbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+/* Hand wave animation keyframes */
+@keyframes handWave {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(-20deg);
+  }
+  20% {
+    transform: rotate(15deg);
+  }
+  30% {
+    transform: rotate(-15deg);
+  }
+  40% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(-10deg);
+  }
+  60% {
+    transform: rotate(5deg);
+  }
+  70% {
+    transform: rotate(-5deg);
+  }
+  80% {
+    transform: rotate(2deg);
+  }
+  90% {
+    transform: rotate(-1deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.chatbot-toggle {
+  background: #ff8c40; /* Theme background color */
+  color: #fff;         /* For currentColor usage in the SVG */
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease, transform 0.3s ease;
+  
+  /* Embed the cute robot head with two hands as an inline SVG */
+  /* The robot head consists of a rounded rectangle, two antennas, two eyes, a smile, and two hands (small circles) */
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2064%2064%22%3E%3Crect%20x=%228%22%20y=%2216%22%20width=%2248%22%20height=%2240%22%20rx=%228%22%20ry=%228%22%20fill=%22currentColor%22/%3E%3Cline%20x1=%2218%22%20y1=%2216%22%20x2=%2218%22%20y2=%228%22%20stroke=%22currentColor%22%20stroke-width=%222%22%20stroke-linecap=%22round%22/%3E%3Ccircle%20cx=%2218%22%20cy=%228%22%20r=%222%22%20fill=%22currentColor%22/%3E%3Cline%20x1=%2246%22%20y1=%2216%22%20x2=%2246%22%20y2=%228%22%20stroke=%22currentColor%22%20stroke-width=%222%22%20stroke-linecap=%22round%22/%3E%3Ccircle%20cx=%2246%22%20cy=%228%22%20r=%222%22%20fill=%22currentColor%22/%3E%3Ccircle%20cx=%2224%22%20cy=%2234%22%20r=%224%22%20fill=%22%23fff%22/%3E%3Ccircle%20cx=%2240%22%20cy=%2234%22%20r=%224%22%20fill=%22%23fff%22/%3E%3Ccircle%20cx=%2224%22%20cy=%2234%22%20r=%222%22%20fill=%22currentColor%22/%3E%3Ccircle%20cx=%2240%22%20cy=%2234%22%20r=%222%22%20fill=%22currentColor%22/%3E%3Cpath%20d=%22M22,46%20Q32,52%2042,46%22%20stroke=%22%23fff%22%20stroke-width=%223%22%20fill=%22none%22%20stroke-linecap=%22round%22/%3E%3Ccircle%20cx=%224%22%20cy=%2240%22%20r=%223%22%20fill=%22currentColor%22/%3E%3Ccircle%20cx=%2260%22%20cy=%2240%22%20r=%223%22%20fill=%22currentColor%22/%3E%3C/svg%3E");
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+  /* Apply the wave animation simulating a hand-moving gesture */
+  transform-origin: 50% 50%;
+  animation: handWave 2s ease-in-out infinite;
+}
+
+.chatbot-toggle:hover {
+  background: #e07b36;
+  transform: scale(1.1);
+  animation: handWave 1.5s ease-in-out infinite;
+}
+
+/* -------------------------------
+   Styles for the Quick Replies Block
+----------------------------------- */
+.quick-replies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 8px 0;
+}
+
+.quick-replies button {
+  background: #e07b36;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.quick-replies button:hover {
+  background: #d06a2f;
+}
+
+/* Optionally, if you use <a> links instead of buttons: */
+.quick-replies a {
+  background: #e07b36;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.quick-replies a:hover {
+  background: #d06a2f;
+}
+
+/* -------------------------------
+   New Rule: Hyperlinks in Bot Messages in Black
+----------------------------------- */
+.bot-message a {
+  color: #000 !important;  /* Black color for the default link text in bot messages */
+  text-decoration: underline;
+}
+
+/* -------------------------------
+   New Rule: Redirect Hyperlink Styled as a Button
+   (Black background with orange text)
+----------------------------------- */
+.bot-message a.button-link {
+  display: inline-block;
+  background-color: #000;      /* Black background */
+  color: #ff8c40;              /* Orange text */
+  padding: 8px 12px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-top: 8px;
+}
+
+.bot-message a.button-link:hover {
+  background-color: #111; /* Slightly lighter/darker black on hover */
+  color: #ff8c40;
 }
