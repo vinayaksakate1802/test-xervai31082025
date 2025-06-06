@@ -95,6 +95,71 @@
       ],
       "response": "Azure is our playground for cloud solutions. We offer full Azure support—including deployment, migration, and cost optimization. Check out our cloud services below: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/cloud' class='button-link' target='_blank'>Azure</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
     },
+    "migration_services": {
+  "patterns": [
+    "migration services",
+    "mailbox migration",
+    "sharepoint migration",
+    "tenant migration",
+    "move my data",
+    "email migration",
+    "cloud migration"
+  ],
+  "response": "Migration magic? We're pros at mailbox, tenant, SharePoint, and cloud migrations—seamless, secure, and swift. Explore the migration zone below: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/migration' class='button-link' target='_blank'>Migration Services</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
+},
+
+"on_premise_support": {
+  "patterns": [
+    "on premise support",
+    "legacy apps",
+    "old systems",
+    "on prem",
+    "need help with legacy systems"
+  ],
+  "response": "Still rocking legacy systems? We make on-prem and hybrid solutions play nice with modern tech. Let’s modernize together: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/onpremise' class='button-link' target='_blank'>On Premise & Legacy</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
+},
+
+"digital_transformation": {
+  "patterns": [
+    "digital transformation",
+    "go digital",
+    "modernize my business",
+    "digital shift"
+  ],
+  "response": "Digital transformation is our superpower—from strategy to implementation. Let's future-proof your business: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/go-digital' class='button-link' target='_blank'>Digital Transformation</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
+},
+
+"engineering_solutions": {
+  "patterns": [
+    "engineering solutions",
+    "engineering support",
+    "tech engineering",
+    "custom engineering services"
+  ],
+  "response": "Need robust engineering solutions? We offer full-stack system architecture, embedded systems, and more. Dive into our expertise here: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/engineering-solutions' class='button-link' target='_blank'>Engineering Solutions</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
+},
+
+"smart_apps": {
+  "patterns": [
+    "smart apps",
+    "smart application",
+    "custom apps",
+    "intelligent apps"
+  ],
+  "response": "We craft smart apps that think ahead—AI-enabled, mobile-ready, and business-friendly. Peek at what we can build: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/smartapps' class='button-link' target='_blank'>Smart Apps</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
+},
+
+"startup_zone": {
+  "patterns": [
+    "startup support",
+    "help for startups",
+    "startup zone",
+    "i run a startup",
+    "early stage company"
+  ],
+  "response": "Running a startup? We’ve got tailored tech, strategy, and scale support to fuel your next big thing. Start strong here: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/startup-zone' class='button-link' target='_blank'>Startup Zone</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
+}
+
     "gcp_services": {
       "patterns": [
         "gcp",
