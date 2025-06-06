@@ -134,7 +134,7 @@ function levenshteinDistance(a, b) {
 }
 
 // Fuzzy intent matcher
-function getIntent(userInput, responses, threshold = 5) {
+function getIntent(userInput, responses, threshold = 3) {
   userInput = preprocess(userInput);
   let bestIntent = null;
   let bestDistance = Infinity;
