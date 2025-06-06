@@ -117,3 +117,11 @@
 .quick-replies a:hover {
   background: #d06a2f;
 }
+
+/* -------------------------------
+   New Rule: Hyperlinks in Bot Messages in Black
+----------------------------------- */
+.bot-message a {
+  color: #000 !important;  /* Black color for the link text */
+  text-decoration: underline; /* Underline the link to indicate it's clickable */
+}
