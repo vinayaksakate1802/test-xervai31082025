@@ -297,6 +297,30 @@
       ],
       "response": "IT service management is about keeping your tech in line so you can focus on the big wins. We use tools like SailPoint and Active Directory to manage access and squash issues fast. Learn more below: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/it-consulting' class='button-link' target='_blank'>IT Consulting</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
     },
+    "bot_reaction": {
+  "patterns": [
+    "cool intro",
+    "nice intro",
+    "funny bot",
+    "you're funny",
+    "haha",
+    "lol",
+    "okay",
+    "nice",
+    "thanks",
+    "sounds good",
+    "whatever",
+    "alright",
+    "let’s go",
+    "don’t waste time",
+    "stop joking",
+    "just answer",
+    "get to the point",
+    "not funny"
+  ],
+  "response": "Not sure if that was a compliment or a curveball—but hey, I’m here to help either way. Want to dive into our <a href='#' onclick='handleQuickReply(\"services\")'>services</a>, explore <a href='#' onclick='handleQuickReply(\"careers\")'>careers</a>, or just <a href='#' onclick='handleQuickReply(\"contact\")'>talk to the team</a>?"
+},
+
     "azure_vs_aws": {
       "patterns": [
         "azure vs aws",
