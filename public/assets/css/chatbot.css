@@ -5,14 +5,38 @@
   z-index: 1000;
 }
 
-/* Wave animation keyframes */
-@keyframes wave {
-  0% { transform: rotate(0deg); }
-  20% { transform: rotate(15deg); }
-  40% { transform: rotate(-10deg); }
-  60% { transform: rotate(10deg); }
-  80% { transform: rotate(-5deg); }
-  100% { transform: rotate(0deg); }
+/* Hand wave animation keyframes */
+@keyframes handWave {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(-20deg);
+  }
+  20% {
+    transform: rotate(10deg);
+  }
+  30% {
+    transform: rotate(-15deg);
+  }
+  40% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-10deg);
+  }
+  60% {
+    transform: rotate(5deg);
+  }
+  70% {
+    transform: rotate(-5deg);
+  }
+  80% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 .chatbot-toggle {
@@ -36,13 +60,14 @@
   background-repeat: no-repeat;
   background-position: center;
   
-  /* Apply the wave animation */
-  animation: wave 2s ease-in-out;
+  /* Adjust the transform origin so it appears to wave like a hand */
+  transform-origin: 85% 20%;
+  animation: handWave 2s ease-in-out infinite;
 }
 
 .chatbot-toggle:hover {
   background: #e07b36;
   transform: scale(1.1);
-  /* Optionally accentuate the wave effect on hover */
-  animation: wave 1.5s ease-in-out;
+  /* On hover, we slightly reduce the animation duration for a more dynamic effect */
+  animation: handWave 1.5s ease-in-out infinite;
 }
