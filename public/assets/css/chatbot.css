@@ -60,7 +60,7 @@
   /* Embed the cute robot head with two hands as an inline SVG */
   /* The robot head consists of a rounded rectangle, two antennas, two eyes, a smile, and two hands (small circles) */
   background-image: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2064%2064%22%3E%3Crect%20x=%228%22%20y=%2216%22%20width=%2248%22%20height=%2240%22%20rx=%228%22%20ry=%228%22%20fill=%22currentColor%22/%3E%3Cline%20x1=%2218%22%20y1=%2216%22%20x2=%2218%22%20y2=%228%22%20stroke=%22currentColor%22%20stroke-width=%222%22%20stroke-linecap=%22round%22/%3E%3Ccircle%20cx=%2218%22%20cy=%228%22%20r=%222%22%20fill=%22currentColor%22/%3E%3Cline%20x1=%2246%22%20y1=%2216%22%20x2=%2246%22%20y2=%228%22%20stroke=%22currentColor%22%20stroke-width=%222%22%20stroke-linecap=%22round%22/%3E%3Ccircle%20cx=%2246%22%20cy=%228%22%20r=%222%22%20fill=%22currentColor%22/%3E%3Ccircle%20cx=%2224%22%20cy=%2234%22%20r=%224%22%20fill=%22%23fff%22/%3E%3Ccircle%20cx=%2240%22%20cy=%2234%22%20r=%224%22%20fill=%22%23fff%22/%3E%3Ccircle%20cx=%2224%22%20cy=%2234%22%20r=%222%22%20fill=%22currentColor%22/%3E%3Ccircle%20cx=%2240%22%20cy=%2234%22%20r=%222%22%20fill=%22currentColor%22/%3E%3Cpath%20d=%22M22,46%20Q32,52%2042,46%22%20stroke=%22%23fff%22%20stroke-width=%223%22%20fill=%22none%22%20stroke-linecap=%22round%22/%3E%3Ccircle%20cx=%224%22%20cy=%2240%22%20r=%223%22%20fill=%22currentColor%22/%3E%3Ccircle%20cx=%2260%22%20cy=%2240%22%20r=%223%22%20fill=%22currentColor%22/%3E%3C/svg%3E");
-  background-size: 30px;   /* Adjust the size as needed */
+  background-size: 30px;
   background-repeat: no-repeat;
   background-position: center;
   
@@ -122,25 +122,27 @@
    New Rule: Hyperlinks in Bot Messages in Black
 ----------------------------------- */
 .bot-message a {
-  color: #000 !important;  /* Black color for the link text */
-  text-decoration: underline; /* Underline the link to indicate it's clickable */
+  color: #000 !important;  /* Black color for the default link text in bot messages */
+  text-decoration: underline;
 }
 
 /* -------------------------------
    New Rule: Redirect Hyperlink Styled as a Button
+   (Black background with orange text)
 ----------------------------------- */
 .bot-message a.button-link {
   display: inline-block;
-  background-color: #ff8c40;
-  color: #fff;
+  background-color: #000;      /* Black background */
+  color: #ff8c40;              /* Orange text */
   padding: 8px 12px;
   text-decoration: none;
   border-radius: 4px;
   font-size: 14px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
   margin-top: 8px;
 }
 
 .bot-message a.button-link:hover {
-  background-color: #e07b36;
+  background-color: #111; /* Slightly lighter/darker black on hover */
+  color: #ff8c40;
 }
