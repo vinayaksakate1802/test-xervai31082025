@@ -5,6 +5,18 @@
   z-index: 1000;
 }
 
+/* Flicker/Glow animation keyframes */
+@keyframes flicker {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+  }
+  50% {
+    opacity: 0.7;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1));
+  }
+}
+
 .chatbot-toggle {
   background: #ff8c40; /* Theme background color */
   color: #fff;         /* For currentColor usage in the SVG */
@@ -25,6 +37,9 @@
   background-size: 30px;   /* Adjust the size as needed */
   background-repeat: no-repeat;
   background-position: center;
+  
+  /* Apply the flicker animation */
+  animation: flicker 2s infinite;
 }
 
 .chatbot-toggle:hover {
