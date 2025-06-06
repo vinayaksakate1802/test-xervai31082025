@@ -59,7 +59,7 @@
         "who are you",
         "tell me about xervai"
       ],
-      "response": "XervAi? We’re the masterminds behind innovative IT solutions, making businesses run smoother than a con artist’s pitch. From cloud to AI, we’ve got the tech to take you places. Check out our story at <a href='https://xervai.com/our-story' class='button-link' target='_blank'>xervai.com/our-story</a>!"
+      "response": "XervAi? We’re the masterminds behind innovative IT solutions, making businesses run smoother than a con artist’s pitch. From cloud to AI, we’ve got the tech to take you places. Check out our story below: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/our-story' class='button-link' target='_blank'>Our Story</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
     },
     "services": {
       "patterns": [
@@ -74,7 +74,7 @@
         "it support",
         "help with services"
       ],
-      "response": "We’ve got a full deck: AI, cloud, cybersecurity, DevOps, data analytics, and more. We handle everything from migrations to smart apps. Dive into the details at <a href='https://xervai.com/services' class='button-link' target='_blank'>Services</a>!"
+      "response": "We’ve got a full deck: AI, cloud, cybersecurity, DevOps, data analytics, and more. We handle everything from migrations to smart apps. Dive into the details below: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/services' class='button-link' target='_blank'>Services</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
     },
     "aws_services": {
       "patterns": [
@@ -84,7 +84,7 @@
         "aws help",
         "amazon web services"
       ],
-      "response": "Our AWS solutions help you scale and secure your infrastructure effectively. Learn more at <a href='https://xervai.com/cloud' class='button-link' target='_blank'>xervai.com/cloud</a>!"
+      "response": "Our AWS solutions help you scale and secure your infrastructure effectively. Learn more below: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/cloud' class='button-link' target='_blank'>AWS</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
     },
     "azure_services": {
       "patterns": [
@@ -93,7 +93,7 @@
         "azure support",
         "microsoft azure"
       ],
-      "response": "Azure is our playground for cloud solutions. We offer full Azure support—including deployment, migration, and cost optimization. Check out our cloud services at <a href='https://xervai.com/cloud' class='button-link' target='_blank'>xervai.com/cloud</a>!"
+      "response": "Azure is our playground for cloud solutions. We offer full Azure support—including deployment, migration, and cost optimization. Check out our cloud services below: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/cloud' class='button-link' target='_blank'>Azure</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
     },
     "gcp_services": {
       "patterns": [
@@ -102,7 +102,7 @@
         "gcp support",
         "need help with google cloud"
       ],
-      "response": "Our GCP offerings are designed to keep your data and apps secure and scalable. More details at <a href='https://xervai.com/cloud' class='button-link' target='_blank'>xervai.com/cloud</a>!"
+      "response": "Our GCP offerings are designed to keep your data and apps secure and scalable. More details below: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/cloud' class='button-link' target='_blank'>GCP</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
     },
     "efficiency": {
       "patterns": [
@@ -110,7 +110,7 @@
         "help businesses",
         "business efficiency"
       ],
-      "response": "Efficiency’s our game. We streamline your cloud with Azure and AWS, lock down security with SSO and MFA, and automate the boring stuff with DevOps. See how we do it at <a href='https://xervai.com/services' class='button-link' target='_blank'>xervai.com/services</a>!"
+      "response": "Efficiency’s our game. We streamline your cloud with Azure and AWS, lock down security with SSO and MFA, and automate the boring stuff with DevOps. See how we do it below: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/services' class='button-link' target='_blank'>Services</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
     },
     "industries": {
       "patterns": [
@@ -119,7 +119,7 @@
         "your industries",
         "industries"
       ],
-      "response": "We play in every sandbox: healthcare, banking, pharma, retail, energy, manufacturing, consumer goods—you name it. Each gets a custom solution. Explore our industries at <a href='https://xervai.com/industries' class='button-link' target='_blank'>xervai.com/industries</a>."
+      "response": "We play in every sandbox: healthcare, banking, pharma, retail, energy, manufacturing, consumer goods—you name it. Each gets a custom solution. Explore our industries below: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/industries' class='button-link' target='_blank'>Industries</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
     },
     "stand_out": {
       "patterns": [
@@ -129,7 +129,7 @@
         "what makes you special",
         "unique selling point"
       ],
-      "response": "What sets us apart? We’re not just techies; we’re problem-solvers with a knack for making complex IT feel like a breeze. Azure, AWS, SailPoint expertise, and a charm that’s hard to beat. Learn more at <a href='https://xervai.com/our-story' class='button-link' target='_blank'>xervai.com/our-story</a>!"
+      "response": "What sets us apart? We’re not just techies; we’re problem-solvers with a knack for making complex IT feel like a breeze. Azure, AWS, SailPoint expertise, and a charm that’s hard to beat. Learn more below: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/our-story' class='button-link' target='_blank'>Our Story</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
     },
     "get_started": {
       "patterns": [
@@ -139,7 +139,7 @@
         "begin service process",
         "let's start"
       ],
-      "response": "Ready to roll? Reach out via our contact form at <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>xervai.com/contact-us</a>. We’ll assess your needs faster than you can say ‘cloud migration’ and craft a plan that’s all you!"
+      "response": "Ready to roll? Reach out via our contact form below: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
     },
     "contact": {
       "patterns": [
@@ -149,7 +149,7 @@
         "get in touch",
         "contact details"
       ],
-      "response": "Hit us up through the contact form at <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>xervai.com/contact-us</a> or schedule a call. I’m Xerv-Ai, here to smooth-talk you to the next step!"
+      "response": "Hit us up through the contact form below or schedule a call: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
     },
     "schedule_call": {
       "patterns": [
@@ -158,7 +158,7 @@
         "set up a meeting",
         "schedule meeting"
       ],
-      "response": "Trying to pencil me in, eh? Head to <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>xervai.com/contact-us</a> to pick your date and time, and we’ll get our team ready for you."
+      "response": "Trying to pencil me in, eh? Head to our scheduling page below: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Schedule Call</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
     },
     "phone_number": {
       "patterns": [
@@ -167,7 +167,7 @@
         "contact number",
         "number"
       ],
-      "response": "Smooth move, but I’m a bot, not a phonebook! Drop your number in the contact form at <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>xervai.com/contact-us</a>, and our team will ring you back faster than you can say ‘deal’."
+      "response": "Smooth move, but I’m a bot, not a phonebook! Drop your number in our contact form below, and our team will ring you back faster than you can say ‘deal’: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
     },
     "it_service_management": {
       "patterns": [
@@ -177,7 +177,7 @@
         "manage my it services",
         "it support management"
       ],
-      "response": "IT service management is about keeping your tech in line so you can focus on the big wins. We use tools like SailPoint and Active Directory to manage access and squash issues fast. Learn more at <a href='https://xervai.com/it-consulting' class='button-link' target='_blank'>xervai.com/it-consulting</a>!"
+      "response": "IT service management is about keeping your tech in line so you can focus on the big wins. We use tools like SailPoint and Active Directory to manage access and squash issues fast. Learn more below: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/it-consulting' class='button-link' target='_blank'>IT Consulting</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
     },
     "azure_vs_aws": {
       "patterns": [
@@ -185,7 +185,7 @@
         "compare azure and aws",
         "azure or aws"
       ],
-      "response": "Azure vs. AWS? Both are powerhouses, but here’s the deal:<br>1. Azure’s tight with Microsoft ecosystems—think seamless Active Directory integration.<br>2. AWS leads in market share and has a broader service catalog.<br>3. Azure’s AI tools, like Cognitive Services, are slick for quick ML wins.<br>4. AWS’s Lambda is a go-to for serverless computing.<br>5. Azure’s pricing can be friendlier for Windows-heavy setups.<br>6. AWS offers more global regions for low-latency needs.<br>7. Azure’s hybrid cloud game is strong with Azure Arc.<br>8. AWS’s S3 is a beast for storage flexibility.<br>9. Both support robust security, but Azure’s Defender integrates tightly with Microsoft.<br>10. XervAi masters both, so we’ll pick the best fit for your biz. See our cloud solutions at <a href='https://xervai.com/cloud' class='button-link' target='_blank'>xervai.com/cloud</a>!"
+      "response": "Azure vs. AWS? Both are powerhouses, but here’s the deal:<br>1. Azure’s tight with Microsoft ecosystems—think seamless Active Directory integration.<br>2. AWS leads in market share and has a broader service catalog.<br>3. Azure’s AI tools, like Cognitive Services, are slick for quick ML wins.<br>4. AWS’s Lambda is a go-to for serverless computing.<br>5. Azure’s pricing can be friendlier for Windows-heavy setups.<br>6. AWS offers more global regions for low-latency needs.<br>7. Azure’s hybrid cloud game is strong with Azure Arc.<br>8. AWS’s S3 is a beast for storage flexibility.<br>9. Both support robust security, but Azure’s Defender integrates tightly with Microsoft.<br>10. XervAi masters both, so we’ll pick the best fit for your biz. See our cloud solutions below: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/cloud' class='button-link' target='_blank'>Cloud Solutions</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
     },
     "goodbye": {
       "patterns": [
