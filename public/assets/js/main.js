@@ -13,8 +13,23 @@ document.addEventListener('DOMContentLoaded', function () {
     };
   }
 
+  // Toggle dropdown menu
+  function toggleDropdown(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const parent = e.target.closest('li');
+    if (parent) {
+      parent.classList.toggle('open');
+      console.log('Dropdown toggled for:', parent.querySelector('a').textContent, 'Open:', parent.classList.contains('open'));
+    }
+  }
+
   // Initialize navigation behavior based on screen size
   function initializeNav() {
+    // Refresh selectors to prevent stale references
+    dropdownParents = document.querySelectorAll('.menu > li');
+    desktopItems = document.querySelectorAll('.menu > li');
+
     if (window.innerWidth <= 768) {
       // Mobile: Click-based dropdowns
       dropdownParents.forEach(parent => {
@@ -23,14 +38,16 @@ document.addEventListener('DOMContentLoaded', function () {
         if (hasDropdown) {
           // Remove existing listeners to prevent duplicates
           link.removeEventListener('click', toggleDropdown);
+          link.removeEventListener('touchstart', toggleDropdown);
+          link.removeEventListener('keydown', handleKeydown);
+          // Add click and touch listeners
           link.addEventListener('click', toggleDropdown);
-          // Add keyboard support
-          link.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              toggleDropdown(e);
-            }
+          link.addEventListener('touchstart', (e) => {
+            toggleDropdown(e);
+            console.log('Touch event on dropdown link:', link.textContent);
           });
+          // Add keyboard support
+          link.addEventListener('keydown', handleKeydown);
         }
       });
       // Remove desktop hover listeners
@@ -41,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       // Desktop: Hover-based dropdowns
       desktopItems.forEach(item => {
-        let hideTimer;
         item.removeEventListener('mouseenter', handleMouseEnter);
         item.removeEventListener('mouseleave', handleMouseLeave);
         item.addEventListener('mouseenter', handleMouseEnter);
@@ -51,15 +67,18 @@ document.addEventListener('DOMContentLoaded', function () {
       dropdownParents.forEach(parent => {
         const link = parent.querySelector('a');
         link.removeEventListener('click', toggleDropdown);
-        link.removeEventListener('keydown', toggleDropdown);
+        link.removeEventListener('touchstart', toggleDropdown);
+        link.removeEventListener('keydown', handleKeydown);
       });
     }
   }
 
-  function toggleDropdown(e) {
-    e.preventDefault();
-    const parent = e.target.closest('li');
-    parent.classList.toggle('open');
+  // Handle keyboard events for dropdowns
+  function handleKeydown(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleDropdown(e);
+    }
   }
 
   function handleMouseEnter() {
@@ -86,12 +105,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     // Close menu when clicking links
     menu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        menu.classList.remove('show');
-      });
+      link.removeEventListener('click', closeMenuOnLinkClick); // Prevent duplicate listeners
+      link.addEventListener('click', closeMenuOnLinkClick);
     });
   } else {
     console.error('Hamburger or menu not found:', { hamburger, menu });
+  }
+
+  // Close menu on link click
+  function closeMenuOnLinkClick() {
+    menu.classList.remove('show');
   }
 
   // Initialize navigation on load
@@ -99,9 +122,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Re-initialize on window resize with debounce
   window.addEventListener('resize', debounce(() => {
-    // Refresh selectors to handle dynamic content
-    dropdownParents = document.querySelectorAll('.menu > li');
-    desktopItems = document.querySelectorAll('.menu > li');
     initializeNav();
   }, 200));
 });
