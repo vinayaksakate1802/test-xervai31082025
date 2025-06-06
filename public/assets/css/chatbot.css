@@ -119,10 +119,10 @@
 }
 
 /* -------------------------------
-   New Rule: Hyperlinks in Bot Messages in Black
+   New Rule: Hyperlinks in Bot Messages in Black (for non-button links)
 ----------------------------------- */
-.bot-message a {
-  color: #000 !important;  /* Black color for the default link text in bot messages */
+.bot-message a:not(.button-link) {
+  color: #000 !important;
   text-decoration: underline;
 }
 
@@ -132,8 +132,8 @@
 ----------------------------------- */
 .bot-message a.button-link {
   display: inline-block;
-  background-color: #000;      /* Black background */
-  color: #ff8c40;              /* Orange text */
+  background-color: #000;    /* Black background */
+  color: #ff8c40;            /* Orange text */
   padding: 8px 12px;
   text-decoration: none;
   border-radius: 4px;
@@ -143,6 +143,6 @@
 }
 
 .bot-message a.button-link:hover {
-  background-color: #111; /* Slightly lighter/darker black on hover */
+  background-color: #111;
   color: #ff8c40;
 }
