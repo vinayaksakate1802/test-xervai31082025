@@ -12,7 +12,7 @@
         "hey there",
         "sup"
       ],
-      "response": "Well, hello there! I’m Xerv-Ai, ready to charm you with answers smoother than a first-class flight. What’s the plan?"
+      "response": "Well, hello there! I’m Xerv-Ai, ready to charm you with answers smoother than a first-class flight. What’s on your mind?"
     },
     "status_check": {
       "patterns": [
@@ -20,7 +20,8 @@
         "how are you",
         "how's it going",
         "what's up",
-        "what’s new"
+        "what’s new",
+        "how do you do"
       ],
       "response": "I’m running smoother than a con on a good day, my friend! How about you—what’s the vibe today?"
     },
@@ -48,13 +49,15 @@
         "bummed out",
         "tough day"
       ],
-      "response": "I'm sorry you're feeling that way. Remember, every dark cloud has a silver lining. Would you like to talk about what’s bothering you?"
+      "response": "I'm sorry you're feeling that way. Remember, every dark cloud has a silver lining. Why don't you grab a glass of water and take a few minutes of me time. I'll be happy to wait?"
     },
     "company_info": {
       "patterns": [
         "what does your company do",
         "about your company",
-        "what is xervai"
+        "what is xervai",
+        "who are you",
+        "tell me about xervai"
       ],
       "response": "XervAi? We’re the masterminds behind innovative IT solutions, making businesses run smoother than a con artist’s pitch. From cloud to AI, we’ve got the tech to take you places. Check out our story at <a href='https://xervai.com/our-story' target='_blank'>xervai.com/our-story</a>!"
     },
@@ -63,9 +66,43 @@
         "services you offer",
         "what services",
         "your services",
-        "what do you guys offer"
+        "what do you guys offer",
+        "services",
+        "i need services",
+        "looking for services",
+        "tech support",
+        "it support",
+        "help with services"
       ],
       "response": "We’ve got a full deck: AI, cloud, cybersecurity, DevOps, data analytics, and more. We handle everything from migrations to smart apps. Dive into the details at <a href='https://xervai.com/services' target='_blank'>xervai.com/services</a>!"
+    },
+    "aws_services": {
+      "patterns": [
+        "aws",
+        "need aws",
+        "aws support",
+        "aws help",
+        "amazon web services"
+      ],
+      "response": "Our AWS solutions help you scale and secure your infrastructure effectively. Learn more at <a href='https://xervai.com/cloud' target='_blank'>xervai.com/cloud</a>!"
+    },
+    "azure_services": {
+      "patterns": [
+        "azure",
+        "need help with azure",
+        "azure support",
+        "microsoft azure"
+      ],
+      "response": "Azure is our playground for cloud solutions. We offer full Azure support—including deployment, migration, and cost optimization. Check out our cloud services at <a href='https://xervai.com/cloud' target='_blank'>xervai.com/cloud</a>!"
+    },
+    "gcp_services": {
+      "patterns": [
+        "gcp",
+        "google cloud",
+        "gcp support",
+        "need help with google cloud"
+      ],
+      "response": "Our GCP offerings are designed to keep your data and apps secure and scalable. More details at <a href='https://xervai.com/cloud' target='_blank'>xervai.com/cloud</a>!"
     },
     "efficiency": {
       "patterns": [
@@ -79,7 +116,8 @@
       "patterns": [
         "industries you work with",
         "what industries",
-        "your industries"
+        "your industries",
+        "industries"
       ],
       "response": "We play in every sandbox: healthcare, banking, pharma, retail, energy, manufacturing, consumer goods—you name it. Each gets a custom solution. Explore our industries at <a href='https://xervai.com/industries' target='_blank'>xervai.com/industries</a>."
     },
@@ -87,7 +125,9 @@
       "patterns": [
         "stand out from competitors",
         "why choose xervai",
-        "how are you different"
+        "how are you different",
+        "what makes you special",
+        "unique selling point"
       ],
       "response": "What sets us apart? We’re not just techies; we’re problem-solvers with a knack for making complex IT feel like a breeze. Azure, AWS, SailPoint expertise, and a charm that’s hard to beat. Learn more at <a href='https://xervai.com/our-story' target='_blank'>xervai.com/our-story</a>!"
     },
@@ -95,7 +135,9 @@
       "patterns": [
         "get started",
         "how to begin",
-        "start with your services"
+        "start with your services",
+        "begin service process",
+        "let's start"
       ],
       "response": "Ready to roll? Reach out via our contact form at <a href='https://xervai.com/contact-us' target='_blank'>xervai.com/contact-us</a>. We’ll assess your needs faster than you can say ‘cloud migration’ and craft a plan that’s all you!"
     },
@@ -104,31 +146,36 @@
         "contact your team",
         "how to contact",
         "reach out",
-        "when can you team reach out"
+        "get in touch",
+        "contact details"
       ],
-      "response": "Hit us up through the contact form at <a href='https://xervai.com/contact-us' target='_blank'>xervai.com/contact-us</a> or schedule a call. I’m Xerv-Ai, always here to smooth-talk you into the next step!"
+      "response": "Hit us up through the contact form at <a href='https://xervai.com/contact-us' target='_blank'>xervai.com/contact-us</a> or schedule a call. I’m Xerv-Ai, here to smooth-talk you to the next step!"
     },
     "schedule_call": {
       "patterns": [
         "schedule a call",
         "book a call",
-        "set up a meeting"
+        "set up a meeting",
+        "schedule meeting"
       ],
-      "response": "Trying to pencil me in, eh? Head to <a href='https://xervai.com/contact-us' target='_blank'>xervai.com/contact-us</a>, pick your date and time, and I’ll make sure the team’s ready to dazzle you!"
+      "response": "Trying to pencil me in, eh? Head to <a href='https://xervai.com/contact-us' target='_blank'>xervai.com/contact-us</a> to pick your date and time, and we’ll get our team ready for you."
     },
     "phone_number": {
       "patterns": [
         "give you my phone number",
         "my phone number",
-        "contact number"
+        "contact number",
+        "number"
       ],
-      "response": "Smooth move, but I’m a bot, not a phonebook! Drop your number in the contact form at <a href='https://xervai.com/contact-us' target='_blank'>xervai.com/contact-us</a>, and our team will ring you faster than you can say ‘deal.’"
+      "response": "Smooth move, but I’m a bot, not a phonebook! Drop your number in the contact form at <a href='https://xervai.com/contact-us' target='_blank'>xervai.com/contact-us</a>, and our team will ring you back faster than you can say ‘deal’."
     },
     "it_service_management": {
       "patterns": [
         "it service management",
         "about it service",
-        "itsm"
+        "itsm",
+        "manage my it services",
+        "it support management"
       ],
       "response": "IT service management is about keeping your tech in line so you can focus on the big wins. We use tools like SailPoint and Active Directory to manage access and squash issues fast. Learn more at <a href='https://xervai.com/it-consulting' target='_blank'>xervai.com/it-consulting</a>!"
     },
