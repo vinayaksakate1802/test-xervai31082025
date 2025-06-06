@@ -116,8 +116,13 @@ window.handleQuickReply = handleQuickReply;
 
 // -------------------------------------------------------------------
 // Fuzzy Matching Chatbot Logic
-// We'll implement a basic Levenshtein distance and a fuzzy matching function for intent matching.
 
+// Preprocess function: remove punctuation and extra whitespace, convert to lower case.
+function preprocess(input) {
+  return input.toLowerCase().replace(/[^\w\s]/gi, '').trim();
+}
+
+// Levenshtein distance function
 function levenshteinDistance(a, b) {
   a = a.toLowerCase();
   b = b.toLowerCase();
@@ -131,7 +136,7 @@ function levenshteinDistance(a, b) {
     matrix[0][j] = j;
   }
   
-  // Fill in the rest of the matrix
+  // Fill in the matrix
   for (let i = 1; i <= b.length; i++) {
     for (let j = 1; j <= a.length; j++) {
       if (b.charAt(i - 1) === a.charAt(j - 1)) {
@@ -148,14 +153,16 @@ function levenshteinDistance(a, b) {
   return matrix[b.length][a.length];
 }
 
+// Fuzzy matching function, using preprocessing for both user input and each pattern
 function getIntent(userInput, responses, threshold = 5) {
-  userInput = userInput.toLowerCase().trim();
+  userInput = preprocess(userInput);
   let bestIntent = null;
   let bestDistance = Infinity;
   for (const intent in responses.intents) {
     const patterns = responses.intents[intent].patterns;
     for (const pattern of patterns) {
-      const distance = levenshteinDistance(userInput, pattern.toLowerCase().trim());
+      const processedPattern = preprocess(pattern);
+      const distance = levenshteinDistance(userInput, processedPattern);
       if (distance < bestDistance) {
         bestDistance = distance;
         bestIntent = intent;
@@ -179,7 +186,7 @@ function handleUserMessage(message) {
   userMessage.textContent = message;
   chatBody.appendChild(userMessage);
 
-  // Get bot response via fuzzy matching
+  // Get bot response using fuzzy matching logic
   const response = getBotResponse(message.toLowerCase(), message);
   const botMessage = document.createElement('div');
   botMessage.className = 'bot-message';
@@ -188,7 +195,7 @@ function handleUserMessage(message) {
   botMessage.style.background = '#ff8c40';
   botMessage.style.color = '#fff';
   botMessage.style.borderRadius = '8px';
-  // Use innerHTML for clickable links in responses
+  // Use innerHTML so that clickable links render properly
   botMessage.innerHTML = response;
   chatBody.appendChild(botMessage);
   chatBody.scrollTop = chatBody.scrollHeight;
@@ -196,7 +203,7 @@ function handleUserMessage(message) {
 
 // Update getBotResponse to use fuzzy matching
 function getBotResponse(message, originalMessage) {
-  // Check for a name-giving pattern first
+  // Look for an introductory name pattern first
   const nameMatch = message.match(/my name is (\w+)/i);
   if (nameMatch) {
     userName = nameMatch[1];
@@ -206,7 +213,7 @@ function getBotResponse(message, originalMessage) {
   // Use fuzzy matching to determine the best intent
   const intent = getIntent(message, responses, 5);
   if (intent) {
-    // Notify server for certain intents if needed
+    // For specific intents, notify the server if needed
     if (intent === 'schedule_call') {
       const timeMatch = originalMessage.match(/(\d{1,2}[ -]?\w{3}[ -]?\d{4})\s*(?:at)?\s*(\d{1,2}(?::\d{2})?\s*(?:am|pm)?)?\s*(\w{2,3})?/i);
       if (timeMatch) {
@@ -220,12 +227,12 @@ function getBotResponse(message, originalMessage) {
     }
     return responses.intents[intent].response;
   }
-  // If no intent matches closely, return a fallback response.
+  // If no intent is matched closely, return a fallback response.
   return responses.fallbacks[Math.floor(Math.random() * responses.fallbacks.length)];
 }
 
 // -------------------------------------------------------------------
-// Function to notify the server for scheduling or phone notifications
+// Server notification (for scheduling/phone alerts)
 function notifyServer(type, message, details = {}) {
   const payload = {
     type,
