@@ -125,3 +125,22 @@
   color: #000 !important;  /* Black color for the link text */
   text-decoration: underline; /* Underline the link to indicate it's clickable */
 }
+
+/* -------------------------------
+   New Rule: Redirect Hyperlink Styled as a Button
+----------------------------------- */
+.bot-message a.button-link {
+  display: inline-block;
+  background-color: #ff8c40;
+  color: #fff;
+  padding: 8px 12px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  margin-top: 8px;
+}
+
+.bot-message a.button-link:hover {
+  background-color: #e07b36;
+}
