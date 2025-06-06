@@ -87,6 +87,86 @@ function createChatWindow() {
   chatbotContainer.appendChild(chatWindow);
 }
 
+// -------------------------------------------------------------------
+// Quick Reply Handler for Chatbot Fallback Quick Replies
+function handleQuickReply(choice) {
+  const chatBody = document.querySelector('.chat-body');
+  let simulatedMessage = '';
+
+  if (choice === "services") {
+    simulatedMessage = 'Tell me about your services';
+  } else if (choice === "contact") {
+    simulatedMessage = 'I would like to contact you';
+  }
+  
+  if (chatBody) {
+    const userMessage = document.createElement('div');
+    userMessage.className = 'user-message';
+    userMessage.textContent = simulatedMessage;
+    chatBody.appendChild(userMessage);
+  }
+  
+  if (typeof handleUserMessage === 'function') {
+    handleUserMessage(simulatedMessage);
+  } else {
+    console.warn("handleUserMessage function is not defined.");
+  }
+}
+window.handleQuickReply = handleQuickReply;
+
+// -------------------------------------------------------------------
+// Fuzzy Matching Chatbot Logic
+// We'll implement a basic Levenshtein distance and a fuzzy matching function for intent matching.
+
+function levenshteinDistance(a, b) {
+  a = a.toLowerCase();
+  b = b.toLowerCase();
+  const matrix = [];
+  
+  // Initialize first row and column
+  for (let i = 0; i <= b.length; i++) {
+    matrix[i] = [i];
+  }
+  for (let j = 0; j <= a.length; j++) {
+    matrix[0][j] = j;
+  }
+  
+  // Fill in the rest of the matrix
+  for (let i = 1; i <= b.length; i++) {
+    for (let j = 1; j <= a.length; j++) {
+      if (b.charAt(i - 1) === a.charAt(j - 1)) {
+        matrix[i][j] = matrix[i - 1][j - 1];
+      } else {
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j] + 1,      // deletion
+          matrix[i][j - 1] + 1,      // insertion
+          matrix[i - 1][j - 1] + 1   // substitution
+        );
+      }
+    }
+  }
+  return matrix[b.length][a.length];
+}
+
+function getIntent(userInput, responses, threshold = 5) {
+  userInput = userInput.toLowerCase().trim();
+  let bestIntent = null;
+  let bestDistance = Infinity;
+  for (const intent in responses.intents) {
+    const patterns = responses.intents[intent].patterns;
+    for (const pattern of patterns) {
+      const distance = levenshteinDistance(userInput, pattern.toLowerCase().trim());
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        bestIntent = intent;
+      }
+    }
+  }
+  return bestDistance <= threshold ? bestIntent : null;
+}
+
+// -------------------------------------------------------------------
+// Handle User Message with Fuzzy Matching
 function handleUserMessage(message) {
   const chatBody = chatWindow.querySelector('.chat-body');
   const userMessage = document.createElement('div');
@@ -99,6 +179,7 @@ function handleUserMessage(message) {
   userMessage.textContent = message;
   chatBody.appendChild(userMessage);
 
+  // Get bot response via fuzzy matching
   const response = getBotResponse(message.toLowerCase(), message);
   const botMessage = document.createElement('div');
   botMessage.className = 'bot-message';
@@ -107,42 +188,44 @@ function handleUserMessage(message) {
   botMessage.style.background = '#ff8c40';
   botMessage.style.color = '#fff';
   botMessage.style.borderRadius = '8px';
+  // Use innerHTML for clickable links in responses
   botMessage.innerHTML = response;
   chatBody.appendChild(botMessage);
   chatBody.scrollTop = chatBody.scrollHeight;
 }
 
+// Update getBotResponse to use fuzzy matching
 function getBotResponse(message, originalMessage) {
+  // Check for a name-giving pattern first
   const nameMatch = message.match(/my name is (\w+)/i);
   if (nameMatch) {
     userName = nameMatch[1];
     return `Nice to meet you, ${userName}! I’m Xerv-Ai, the smoothest AI this side of the cloud. What’s up?`;
   }
 
-  for (const intent in responses.intents) {
-    const patterns = responses.intents[intent].patterns;
-    for (const pattern of patterns) {
-      if (message.includes(pattern)) {
-        const response = responses.intents[intent].response;
-        if (intent === 'schedule_call') {
-          const timeMatch = originalMessage.match(/(\d{1,2}[ -]?\w{3}[ -]?\d{4})\s*(?:at)?\s*(\d{1,2}(?::\d{2})?\s*(?:am|pm)?)?\s*(\w{2,3})?/i);
-          if (timeMatch) {
-            const [, date, time, timezone] = timeMatch;
-            notifyServer('schedule', originalMessage, { preferredTime: `${date} ${time || ''}`, timezone: timezone || 'Not specified' });
-          } else {
-            notifyServer('schedule', originalMessage);
-          }
-        } else if (intent === 'phone_number') {
-          notifyServer('phone', originalMessage);
-        }
-        return response;
+  // Use fuzzy matching to determine the best intent
+  const intent = getIntent(message, responses, 5);
+  if (intent) {
+    // Notify server for certain intents if needed
+    if (intent === 'schedule_call') {
+      const timeMatch = originalMessage.match(/(\d{1,2}[ -]?\w{3}[ -]?\d{4})\s*(?:at)?\s*(\d{1,2}(?::\d{2})?\s*(?:am|pm)?)?\s*(\w{2,3})?/i);
+      if (timeMatch) {
+        const [, date, time, timezone] = timeMatch;
+        notifyServer('schedule', originalMessage, { preferredTime: `${date} ${time || ''}`, timezone: timezone || 'Not specified' });
+      } else {
+        notifyServer('schedule', originalMessage);
       }
+    } else if (intent === 'phone_number') {
+      notifyServer('phone', originalMessage);
     }
+    return responses.intents[intent].response;
   }
-
+  // If no intent matches closely, return a fallback response.
   return responses.fallbacks[Math.floor(Math.random() * responses.fallbacks.length)];
 }
 
+// -------------------------------------------------------------------
+// Function to notify the server for scheduling or phone notifications
 function notifyServer(type, message, details = {}) {
   const payload = {
     type,
