@@ -158,7 +158,7 @@
     "not funny"
   ],
   "response": "Glad you noticed my flair  — or not! Either way, I’m here to help. Want to check out our <a href='#' onclick='handleQuickReply(\"services\")'>services</a>, <a href='#' onclick='handleQuickReply(\"careers\")'>careers</a>, or <a href='#' onclick='handleQuickReply(\"contact\")'>contact our team</a>?"
-}
+},
 
 
 "on_premise_support": {
