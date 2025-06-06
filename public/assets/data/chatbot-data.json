@@ -107,6 +107,59 @@
   ],
   "response": "Migration magic? We're pros at mailbox, tenant, SharePoint, and cloud migrations—seamless, secure, and swift. Explore the migration zone below: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/migration' class='button-link' target='_blank'>Migration Services</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
 },
+    "careers": {
+  "patterns": [
+    "careers",
+    "jobs",
+    "job openings",
+    "hiring",
+    "open positions",
+    "career opportunities",
+    "work with you",
+    "work at xervai",
+    "join your team"
+  ],
+  "response": "Looking to join the crew? We're always on the lookout for sharp minds and bold spirits. Check out open roles or drop us your resume here: <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/careers' class='button-link' target='_blank'>Careers</a> <a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Send Resume</a></div>"
+},
+
+"call_request": {
+  "patterns": [
+    "call me",
+    "give me a call",
+    "can someone call me",
+    "phone call",
+    "i want a call",
+    "schedule a call",
+    "someone from your team call me",
+    "ring me"
+  ],
+  "response": "Absolutely! Just drop your number in the form below and our team will call you faster than you can say 'cloud migration': <div style='text-align:center; margin-top:10px;'><a href='https://xervai.com/contact-us' class='button-link' target='_blank'>Contact Us</a></div>"
+},
+
+"bot_reaction": {
+  "patterns": [
+    "cool intro",
+    "nice intro",
+    "funny bot",
+    "you're funny",
+    "haha",
+    "lol",
+    "okay",
+    "nice",
+    "thanks",
+    "sounds good",
+    "whatever",
+    "alright",
+    "let’s go",
+    "don’t waste time",
+    "stop joking",
+    "just answer",
+    "get to the point",
+    "not funny"
+  ],
+  "response": "Glad you noticed my flair  — or not! Either way, I’m here to help. Want to check out our <a href='#' onclick='handleQuickReply(\"services\")'>services</a>, <a href='#' onclick='handleQuickReply(\"careers\")'>careers</a>, or <a href='#' onclick='handleQuickReply(\"contact\")'>contact our team</a>?"
+}
+
 
 "on_premise_support": {
   "patterns": [
