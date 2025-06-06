@@ -252,3 +252,4 @@ function notifyServer(type, message, details = {}) {
 }
 
 document.addEventListener('DOMContentLoaded', initializeChatbot);
+ 
