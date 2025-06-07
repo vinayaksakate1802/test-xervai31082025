@@ -123,6 +123,9 @@ document.addEventListener('DOMContentLoaded', function () {
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const formData = new FormData(contactForm);
+      // Ensure onlineMeeting is sent as a boolean
+      formData.set('onlineMeeting', formData.get('onlineMeeting') === 'on' ? 'true' : 'false');
+      console.log('Form data being sent:', Object.fromEntries(formData));
       try {
         const response = await fetch('/submit-contact', {
           method: 'POST',
