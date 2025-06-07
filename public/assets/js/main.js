@@ -125,7 +125,30 @@ document.addEventListener('DOMContentLoaded', function () {
     captchaNum2 = Math.floor(Math.random() * 9) + 1; // 1-9
     if (captchaElement) {
       captchaElement.textContent = `What is ${captchaNum1} + ${captchaNum2}?`;
+      document.getElementById('captchaNum1').value = captchaNum1;
+      document.getElementById('captchaNum2').value = captchaNum2;
     }
+  }
+
+  // Popup handling
+  const popupOverlay = document.getElementById('popupOverlay');
+  const popup = document.getElementById('popup');
+  const popupIcon = document.getElementById('popupIcon');
+  const popupMessage = document.getElementById('popupMessage');
+
+  function showPopup(type, message) {
+    popup.className = `popup ${type}`;
+    popupIcon.innerHTML = type === 'success' ? '✓' : '✗';
+    popupMessage.textContent = message;
+    popupOverlay.classList.add('show');
+    popup.classList.add('show');
+    // Auto-hide after 3 seconds
+    setTimeout(hidePopup, 3000);
+  }
+
+  function hidePopup() {
+    popup.classList.remove('show');
+    popupOverlay.classList.remove('show');
   }
 
   // Handle contact form submission
@@ -146,8 +169,8 @@ document.addEventListener('DOMContentLoaded', function () {
         service: formData.get('service') || '',
         message: formData.get('message') || '',
         captchaAnswer: formData.get('captchaAnswer') || '',
-        captchaNum1: captchaNum1.toString(),
-        captchaNum2: captchaNum2.toString()
+        captchaNum1: formData.get('captchaNum1') || '',
+        captchaNum2: formData.get('captchaNum2') || ''
       };
       console.log('Form data being sent:', data);
       try {
@@ -159,18 +182,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const result = await response.json();
         console.log('Form submission response:', result);
         if (response.ok) {
-          alert('Form submitted successfully!');
+          showPopup('success', 'Form submitted successfully!');
           contactForm.reset();
           generateCaptcha(); // Regenerate CAPTCHA
         } else {
           console.error('Form submission error:', result.error);
-          alert(`Error: ${result.error}`);
-          generateCaptcha(); // Regenerate CAPTCHA on error
+          showPopup('error', `Error: ${result.error}`);
+          generateCaptcha(); // Regenerate CAPTCHA
         }
       } catch (error) {
         console.error('Form submission failed:', error.message);
-        alert('Failed to submit form. Please try again.');
-        generateCaptcha(); // Regenerate CAPTCHA on error
+        showPopup('error', 'Failed to submit form. Please try again.');
+        generateCaptcha(); // Regenerate CAPTCHA
       }
     });
   }
