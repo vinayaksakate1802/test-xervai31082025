@@ -67,6 +67,7 @@ transporter.verify(function (error, success) {
 function validateInput(data, requiredFields) {
   for (const field of requiredFields) {
     if (!data[field] || data[field].trim() === '') {
+      console.error(`Validation failed: Missing or empty field: ${field}`);
       return false;
     }
   }
@@ -80,6 +81,9 @@ app.get('/health', (req, res) => {
 
 app.post('/submit-contact', async (req, res) => {
   const { name, phone, emailId, onlineMeeting, preferredDateTime, timezone, reason, service, message } = req.body;
+  
+  // Log received form data
+  console.log('Received form data:', req.body);
 
   // Validate required fields
   if (!validateInput(req.body, ['name', 'emailId', 'reason', 'service', 'message'])) {
