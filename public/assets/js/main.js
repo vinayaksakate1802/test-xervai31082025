@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
           link.addEventListener('click', toggleDropdown);
           link.addEventListener('touchstart', (e) => {
             toggleDropdown(e);
-            console.log chapitre('Touch event on dropdown link:', link.textContent);
+            console.log('Touch event on dropdown link:', link.textContent);
           });
           // Add keyboard support
           link.addEventListener('keydown', handleKeydown);
@@ -117,9 +117,21 @@ document.addEventListener('DOMContentLoaded', function () {
     menu.classList.remove('show');
   }
 
+  // Generate CAPTCHA
+  const captchaElement = document.getElementById('captchaQuestion');
+  let captchaNum1, captchaNum2;
+  function generateCaptcha() {
+    captchaNum1 = Math.floor(Math.random() * 9) + 1; // 1-9
+    captchaNum2 = Math.floor(Math.random() * 9) + 1; // 1-9
+    if (captchaElement) {
+      captchaElement.textContent = `What is ${captchaNum1} + ${captchaNum2}?`;
+    }
+  }
+
   // Handle contact form submission
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
+    generateCaptcha(); // Generate CAPTCHA on load
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const formData = new FormData(contactForm);
@@ -132,7 +144,10 @@ document.addEventListener('DOMContentLoaded', function () {
         timezone: formData.get('timezone') || '',
         reason: formData.get('reason') || '',
         service: formData.get('service') || '',
-        message: formData.get('message') || ''
+        message: formData.get('message') || '',
+        captchaAnswer: formData.get('captchaAnswer') || '',
+        captchaNum1: captchaNum1.toString(),
+        captchaNum2: captchaNum2.toString()
       };
       console.log('Form data being sent:', data);
       try {
@@ -146,13 +161,16 @@ document.addEventListener('DOMContentLoaded', function () {
         if (response.ok) {
           alert('Form submitted successfully!');
           contactForm.reset();
+          generateCaptcha(); // Regenerate CAPTCHA
         } else {
           console.error('Form submission error:', result.error);
           alert(`Error: ${result.error}`);
+          generateCaptcha(); // Regenerate CAPTCHA on error
         }
       } catch (error) {
         console.error('Form submission failed:', error.message);
         alert('Failed to submit form. Please try again.');
+        generateCaptcha(); // Regenerate CAPTCHA on error
       }
     });
   }
