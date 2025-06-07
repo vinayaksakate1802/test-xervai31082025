@@ -12,11 +12,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Log email config
+console.log('Email config:', {
+  user: process.env.EMAIL_ADDRESS,
+  pass: process.env.EMAIL_PASSWORD ? 'Set' : 'Not set',
+  recipient: process.env.CEMAIL_ADDRESS || 'Not set'
+});
+
 // Rate limit for contact form submissions
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 5,
-  message: 'Too many submissions, please try again later.'
+  message: 'Too many submissions, please try again later.',
+  keyGenerator: (req) => {
+    const ip = req.headers['x-forwarded-for']?.split(',')[0].trim() || req.ip;
+    return ip.split(':')[0]; // Remove port if present
+  }
 });
 app.use('/submit-contact', limiter);
 
@@ -24,7 +35,11 @@ app.use('/submit-contact', limiter);
 const chatbotLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 10,
-  message: 'Too many chatbot interactions, please try again later.'
+  message: 'Too many chatbot interactions, please try again later.',
+  keyGenerator: (req) => {
+    const ip = req.headers['x-forwarded-for']?.split(',')[0].trim() || req.ip;
+    return ip.split(':')[0]; // Remove port if present
+  }
 });
 app.use('/chatbot-notify', chatbotLimiter);
 
@@ -36,6 +51,15 @@ const transporter = nodemailer.createTransport({
   auth: {
     user: process.env.EMAIL_ADDRESS,
     pass: process.env.EMAIL_PASSWORD
+  }
+});
+
+// Verify transporter configuration
+transporter.verify(function (error, success) {
+  if (error) {
+    console.error('Transporter verification failed:', error.message);
+  } else {
+    console.log('Transporter is ready to send emails');
   }
 });
 
@@ -60,6 +84,12 @@ app.post('/submit-contact', async (req, res) => {
   // Validate required fields
   if (!validateInput(req.body, ['name', 'emailId', 'reason', 'service', 'message'])) {
     return res.status(400).json({ error: 'Missing required fields.' });
+  }
+
+  // Check if CEMAIL_ADDRESS is set
+  if (!process.env.CEMAIL_ADDRESS) {
+    console.error('CEMAIL_ADDRESS is not set');
+    return res.status(500).json({ error: 'Server configuration error: Missing recipient email.' });
   }
 
   const mailOptions = {
@@ -99,6 +129,12 @@ app.post('/chatbot-notify', async (req, res) => {
     return res.status(400).json({ error: 'Missing time or timezone for scheduling.' });
   }
 
+  // Check if CEMAIL_ADDRESS is set
+  if (!process.env.CEMAIL_ADDRESS) {
+    console.error('CEMAIL_ADDRESS is not set');
+    return res.status(500).json({ error: 'Server configuration error: Missing recipient email.' });
+  }
+
   let subject = 'Chatbot Interaction';
   let body = `User Message: ${message}\n`;
   if (type === 'schedule') {
@@ -125,6 +161,7 @@ app.post('/chatbot-notify', async (req, res) => {
   }
 });
 
+// Routes for existing pages
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -133,9 +170,108 @@ app.get('/services', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'services', 'index.html'));
 });
 
+app.get('/contact-us', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'contact-us', 'index.html'));
+});
+
+app.get('/careers', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'careers', 'index.html'));
+});
+
+// About routes
+app.get('/our-story', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'About', 'our-story', 'index.html'));
+});
+
+app.get('/our-team', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'About', 'our-team', 'index.html'));
+});
+
+app.get('/vision', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'About', 'vision', 'index.html'));
+});
+
+// Industries routes
+app.get('/healthcare', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Industries', 'healthcare', 'index.html'));
+});
+
+app.get('/banking-finance', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Industries', 'banking-finance', 'index.html'));
+});
+
+app.get('/pharma', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Industries', 'pharma', 'index.html'));
+});
+
+app.get('/consumer', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Industries', 'consumer', 'index.html'));
+});
+
+app.get('/energy', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Industries', 'energy', 'index.html'));
+});
+
+app.get('/retail', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Industries', 'retail', 'index.html'));
+});
+
+app.get('/manufacturing', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Industries', 'manufacturing', 'index.html'));
+});
+
+// Whatwedo routes
+app.get('/ai', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Whatwedo', 'ai', 'index.html'));
+});
+
+app.get('/cloud', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Whatwedo', 'cloud', 'index.html'));
+});
+
+app.get('/cybersecurity', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Whatwedo', 'cybersecurity', 'index.html'));
+});
+
+app.get('/data-analytics', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Whatwedo', 'data-analytics', 'index.html'));
+});
+
+app.get('/devops', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Whatwedo', 'devops', 'index.html'));
+});
+
+app.get('/engineering-solutions', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Whatwedo', 'engineering-solutions', 'index.html'));
+});
+
+app.get('/go-digital', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Whatwedo', 'go-digital', 'index.html'));
+});
+
+app.get('/it-consulting', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Whatwedo', 'it-consulting', 'index.html'));
+});
+
+app.get('/migration', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Whatwedo', 'migration', 'index.html'));
+});
+
+app.get('/onpremise', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Whatwedo', 'onpremise', 'index.html'));
+});
+
+app.get('/smartapps', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Whatwedo', 'smartapps', 'index.html'));
+});
+
+app.get('/startup-zone', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Whatwedo', 'startup-zone', 'index.html'));
+});
+
 // Catch-all for unmatched routes
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
+  res.status(404).send('Page not found');
 });
 
 app.listen(port, () => {
