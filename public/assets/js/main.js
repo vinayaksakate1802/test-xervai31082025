@@ -24,6 +24,25 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  // Handle keyboard events for dropdowns
+  function handleKeydown(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleDropdown(e);
+    }
+  }
+
+  function handleMouseEnter() {
+    clearTimeout(this.hideTimer);
+    this.classList.add('open');
+  }
+
+  function handleMouseLeave() {
+    this.hideTimer = setTimeout(() => {
+      this.classList.remove('open');
+    }, 200);
+  }
+
   // Initialize navigation behavior based on screen size
   function initializeNav() {
     // Refresh selectors to prevent stale references
@@ -73,25 +92,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Handle keyboard events for dropdowns
-  function handleKeydown(e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      toggleDropdown(e);
-    }
-  }
-
-  function handleMouseEnter() {
-    clearTimeout(this.hideTimer);
-    this.classList.add('open');
-  }
-
-  function handleMouseLeave() {
-    this.hideTimer = setTimeout(() => {
-      this.classList.remove('open');
-    }, 200);
-  }
-
   // Hamburger menu toggle
   if (hamburger && menu) {
     hamburger.addEventListener('click', () => {
@@ -115,6 +115,33 @@ document.addEventListener('DOMContentLoaded', function () {
   // Close menu on link click
   function closeMenuOnLinkClick() {
     menu.classList.remove('show');
+  }
+
+  // Handle contact form submission
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(contactForm);
+      try {
+        const response = await fetch('/submit-contact', {
+          method: 'POST',
+          body: formData
+        });
+        const result = await response.json();
+        console.log('Form submission response:', result);
+        if (response.ok) {
+          alert('Form submitted successfully!');
+          contactForm.reset();
+        } else {
+          console.error('Form submission error:', result.error);
+          alert(`Error: ${result.error}`);
+        }
+      } catch (error) {
+        console.error('Form submission failed:', error.message);
+        alert('Failed to submit form. Please try again.');
+      }
+    });
   }
 
   // Initialize navigation on load
