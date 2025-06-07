@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
           link.addEventListener('click', toggleDropdown);
           link.addEventListener('touchstart', (e) => {
             toggleDropdown(e);
-            console.log('Touch event on dropdown link:', link.textContent);
+            console.log chapitre('Touch event on dropdown link:', link.textContent);
           });
           // Add keyboard support
           link.addEventListener('keydown', handleKeydown);
@@ -123,13 +123,23 @@ document.addEventListener('DOMContentLoaded', function () {
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const formData = new FormData(contactForm);
-      // Ensure onlineMeeting is sent as a boolean
-      formData.set('onlineMeeting', formData.get('onlineMeeting') === 'on' ? 'true' : 'false');
-      console.log('Form data being sent:', Object.fromEntries(formData));
+      const data = {
+        name: formData.get('name') || '',
+        phone: formData.get('phone') || '',
+        emailId: formData.get('emailId') || '',
+        onlineMeeting: formData.get('onlineMeeting') === 'on' ? 'true' : 'false',
+        preferredDateTime: formData.get('preferredDateTime') || '',
+        timezone: formData.get('timezone') || '',
+        reason: formData.get('reason') || '',
+        service: formData.get('service') || '',
+        message: formData.get('message') || ''
+      };
+      console.log('Form data being sent:', data);
       try {
         const response = await fetch('/submit-contact', {
           method: 'POST',
-          body: formData
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
         });
         const result = await response.json();
         console.log('Form submission response:', result);
