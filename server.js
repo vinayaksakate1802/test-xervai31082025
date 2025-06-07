@@ -4,64 +4,46 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 const rateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
-const multer = require('multer');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.set('trust proxy', 1);
+app.set('trust proxy', 1); // Trust first proxy for X-Forwarded-For
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Multer setup for file uploads
-const upload = multer({
-  storage: multer.memoryStorage(),
-  limits: { fileSize: 5 * 1024 * 1024 },
-  fileFilter: (req, file, cb) => {
-    if (file.mimetype === 'application/pdf' || file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
-      cb(null, true);
-    } else {
-      cb(new Error('Only .pdf and .docx files are allowed.'), false);
-    }
-  }
-});
-
 // Log email config
 console.log('Email config:', {
   user: process.env.EMAIL_ADDRESS,
-  careersUser: process.env.CAREERS_EMAIL_ADDRESS,
   pass: process.env.EMAIL_PASSWORD ? 'Set' : 'Not set',
-  careersPass: process.env.CAREERS_EMAIL_PASSWORD ? 'Set' : 'Not set',
-  recipient: process.env.CEMAIL_ADDRESS || 'Not set',
-  careersRecipient: process.env.CAREERS_CEMAIL_ADDRESS || 'Not set'
+  recipient: process.env.CEMAIL_ADDRESS || 'Not set'
 });
 
-// Rate limit for form submissions
+// Rate limit for contact form submissions
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
+  windowMs: 15 * 60 * 1000, // 15 minutes
   max: 5,
   message: 'Too many submissions, please try again.',
   keyGenerator: (req) => {
     const ip = req.headers['x-forwarded-for']?.split(',')[0].trim() || req.ip;
-    return ip.split(':')[0];
+    return ip.split(':')[0]; // Remove port if present
   }
 });
 app.use('/submit-contact', limiter);
-app.use('/submit-careers', limiter);
 
 // Rate limit for chatbot notifications
 const chatbotLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
+  windowMs: 15 * 60 * 1000, // 15 minutes
   max: 10,
   message: 'Too many chatbot interactions, please try again later.',
   keyGenerator: (req) => {
     const ip = req.headers['x-forwarded-for']?.split(',')[0].trim() || req.ip;
-    return ip.split(':')[0];
+    return ip.split(':')[0]; // Remove port if present
   }
 });
 app.use('/chatbot-notify', chatbotLimiter);
 
-// Transporters
+// Gmail transporter
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 587,
@@ -72,23 +54,13 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-const careersTransporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.CAREERS_EMAIL_ADDRESS,
-    pass: process.env.CAREERS_EMAIL_PASSWORD
+// Verify transporter configuration
+transporter.verify(function (error, success) {
+  if (error) {
+    console.error('Transporter verification failed:', error.message);
+  } else {
+    console.log('Transporter is ready to send emails');
   }
-});
-
-// Verify transporters
-transporter.verify((error, success) => {
-  console.log(error ? `Transporter verification failed: ${error.message}` : 'Transporter is ready to send emails');
-});
-
-careersTransporter.verify((error, success) => {
-  console.log(error ? `Careers Transporter verification failed: ${error.message}` : 'Careers Transporter is ready to send emails');
 });
 
 // Validate input fields
@@ -110,7 +82,8 @@ app.get('/health', (req, res) => {
 app.post('/submit-contact', async (req, res) => {
   const { name, phone, emailId, onlineMeeting, preferredDateTime, timezone, reason, service, message, captchaAnswer, captchaNum1, captchaNum2 } = req.body;
   
-  console.log('Received contact form data:', req.body);
+  // Log received form data
+  console.log('Received form data:', req.body);
 
   // Validate CAPTCHA
   const expectedAnswer = parseInt(captchaNum1) + parseInt(captchaNum2);
@@ -124,6 +97,7 @@ app.post('/submit-contact', async (req, res) => {
     return res.status(400).json({ error: 'Missing required fields.' });
   }
 
+  // Check if CEMAIL_ADDRESS is set
   if (!process.env.CEMAIL_ADDRESS) {
     console.error('CEMAIL_ADDRESS is not set');
     return res.status(500).json({ error: 'Server configuration error: Missing recipient email.' });
@@ -155,52 +129,10 @@ app.post('/submit-contact', async (req, res) => {
   }
 });
 
-app.post('/submit-careers', upload.single('resume'), async (req, res) => {
-  const { name, contact, email, 'job-type': jobType, skills } = req.body;
-  const resume = req.file;
-
-  console.log('Received careers form data:', { name, contact, email, jobType, skills, resume: resume ? resume.originalname : 'None' });
-
-  if (!validateInput(req.body, ['name', 'contact', 'email', 'job-type', 'skills']) || !resume) {
-    return res.status(400).json({ error: 'Missing required fields or resume.' });
-  }
-
-  if (!process.env.CAREERS_CEMAIL_ADDRESS || !process.env.CAREERS_EMAIL_ADDRESS) {
-    console.error('Careers email configuration not set');
-    return res.status(500).json({ error: 'Server configuration error: Missing email settings.' });
-  }
-
-  const mailOptions = {
-    from: `"Xerv-Ai Careers" <${process.env.CAREERS_EMAIL_ADDRESS}>`,
-    to: process.env.CAREERS_CEMAIL_ADDRESS,
-    subject: `New Career Application: ${name} - ${skills}`,
-    text: `
-      Name: ${name}
-      Contact: ${contact}
-      Email: ${email}
-      Job Type: ${jobType}
-      Primary Skill: ${skills}
-    `,
-    attachments: [
-      {
-        filename: resume.originalname,
-        content: resume.buffer
-      }
-    ]
-  };
-
-  try {
-    await careersTransporter.sendMail(mailOptions);
-    res.status(200).json({ message: 'Application submitted successfully!' });
-  } catch (error) {
-    console.error('Error sending careers email:', error.message);
-    res.status(500).json({ error: 'Failed to submit application. Please try again.' });
-  }
-});
-
 app.post('/chatbot-notify', async (req, res) => {
   const { type, name, message, preferredTime, timezone } = req.body;
 
+  // Validate required fields based on type
   if (!type || !message) {
     return res.status(400).json({ error: 'Missing required fields.' });
   }
@@ -208,6 +140,7 @@ app.post('/chatbot-notify', async (req, res) => {
     return res.status(400).json({ error: 'Missing time or timezone for scheduling.' });
   }
 
+  // Check if CEMAIL_ADDRESS is set
   if (!process.env.CEMAIL_ADDRESS) {
     console.error('CEMAIL_ADDRESS is not set');
     return res.status(500).json({ error: 'Server configuration error: Missing recipient email.' });
@@ -216,10 +149,10 @@ app.post('/chatbot-notify', async (req, res) => {
   let subject = 'Chatbot Interaction';
   let body = `User Message: ${message}\n`;
   if (type === 'schedule') {
-    subject = `Chatbot Scheduling Request from ${name || 'Unknown'}`;
+    subject = `Chatbot Scheduling Request from ${name || 'Anonymous'}`;
     body += `Type: Schedule Call\nPreferred Time: ${preferredTime}\nTimezone: ${timezone}\nName: ${name || 'Unknown'}`;
   } else if (type === 'phone') {
-    subject = `Chatbot Phone Inquiry from ${name || 'Unknown'}`;
+    subject = `Chatbot Phone Inquiry from ${name || 'Anonymous'}`;
     body += `Type: Phone Inquiry\nName: ${name || 'Unknown'}`;
   }
 
@@ -256,6 +189,7 @@ app.get('/careers', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'careers', 'index.html'));
 });
 
+// About routes
 app.get('/our-story', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'About', 'our-story', 'index.html'));
 });
@@ -268,6 +202,7 @@ app.get('/vision', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'About', 'vision', 'index.html'));
 });
 
+// Industries routes
 app.get('/healthcare', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'Industries', 'healthcare', 'index.html'));
 });
@@ -296,6 +231,7 @@ app.get('/manufacturing', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'Industries', 'manufacturing', 'index.html'));
 });
 
+// Whatwedo routes
 app.get('/ai', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'Whatwedo', 'ai', 'index.html'));
 });
@@ -344,9 +280,6 @@ app.get('/startup-zone', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'Whatwedo', 'startup-zone', 'index.html'));
 });
 
-app.get('/quote', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'quote', 'index.html'));
-});
 
 app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, 'public', 'oops', 'index.html'));
