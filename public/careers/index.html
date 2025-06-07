@@ -13,6 +13,55 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/styles.css" />
   <link rel="stylesheet" href="/assets/css/chatbot.css" />
+  <style>
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateY(100vh);
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      width: 300px;
+      text-align: center;
+      transition: transform 0.5s ease-in-out;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .popup.show {
+      transform: translate(-50%, -50%);
+    }
+    .popup .message {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    .popup button {
+      background: #f28c38;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .popup button:hover {
+      background: #e07b30;
+    }
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      display: none;
+    }
+    .popup-overlay.show {
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <nav class="navbar">
@@ -74,7 +123,7 @@
     <div class="hero-content">
       <h1>
         <span class="word">Join</span>
-        <span class="word">XervAi</span>
+        <span class="word">Xerv<span style="color: #f28c38;">Ai</span></span>
       </h1>
       <p>
         <span class="word">Shape</span>
@@ -90,16 +139,15 @@
   <main>
     <section id="careers" style="padding: 60px 20px; background: #f9f6f2;">
       <h2>Careers at XervAi</h2>
-    <p>We don’t care where you went to school. We care how you think, build, fix, and improve.</p>
-    <p>If you speak fluent Azure, AWS, PowerShell, Python, CyberSecurity, Terraform etc —we want to talk.</p>
-    <p>We’re the team behind the scenes, solving messy infra, securing identities with SailPoint, cleaning up AD forests, and making MFA actually work.</p>
-    <p>You’ll migrate legacy nightmares into clean, scalable environments—without downtime, without drama.</p>
-    <p>You’ll work on real DevOps pipelines, not just write about them in your resume.</p>
-    <p>Have an idea to make something better? Say it. We encourage initiative, not hierarchy.</p>
-    <p>At XervAi, your voice matters, <b>You</b> matter!. Code runs in production, and your schedule respects your life.</p>
-    <p>We believe great work doesn’t come from burnout. Flexibility, balance, and trust are how we get the best from each other.</p>
-        <p>Sound like your kind of place? Let’s build things that don’t break.</p>
-      
+<p>
+At XervAi, we believe that every great idea starts with a passionate mind. We’re not just looking for someone to fill a role—we’re inviting you to join a team that values what you bring to the table and helps you grow every day. 
+<p>
+Imagine working somewhere where your expertise in Azure, AWS, PowerShell, Python, CyberSecurity, or Terraform isn’t just required—it’s celebrated. At XervAi, you’ll have the opportunity to transform complex infrastructures into clean, scalable, and secure environments. We take pride in solving challenging puzzles like tidying up AD forests, making MFA work reliably, and migrating legacy systems without a hitch.
+<p>
+We offer more than a job. Our team thrives on collaboration, genuine respect, and the freedom to share new ideas. We believe that when you’re empowered and your voice is truly heard, innovative solutions happen—and that means you get to see your influence in every project we deliver. Flexibility, balance, and trust are the cornerstones of our culture; we understand that great work comes when your schedule respects your life.
+<p>
+If you’re looking to be part of a company that puts people and progress first, where every contribution can shape the future, then XervAi is the place for you. Join us, and be part of a team that values you.
+<p>
 
       <form id="careers-form" action="/submit-careers" method="POST" enctype="multipart/form-data" style="margin-top: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
         <div style="margin-bottom: 20px;">
@@ -113,8 +161,6 @@
         <div style="margin-bottom: 20px;">
           <label for="email" style="display: block; margin-bottom: 5px;">Email *</label>
           <input type="email" id="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
-        </div>
-        
         </div>
         <div style="margin-bottom: 20px;">
           <label for="job-type" style="display: block; margin-bottom: 5px;">Select the job opportunity you are looking for *</label>
@@ -157,14 +203,20 @@
             <option value="Other">Other</option>
           </select>
         </div>
-
-          <div style="margin-bottom: 20px;">
+        <div style="margin-bottom: 20px;">
           <label for="resume" style="display: block; margin-bottom: 5px;">Resume * (docx/pdf, max 5MB)</label>
           <input type="file" id="resume" name="resume" accept=".docx,.pdf" required style="width: 100%; padding: 10px;" />
-          <button type="submit" style="background: #FF4500; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Apply</button>
+        </div>
+        <button type="submit" style="background: #f28c38; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Apply</button>
       </form>
     </section>
   </main>
+
+  <div class="popup-overlay" id="popupOverlay"></div>
+  <div class="popup" id="popup">
+    <div class="message" id="popupMessage"></div>
+    <button onclick="hidePopup()">OK</button>
+  </div>
 
   <footer>
     <p>© 2023 <a href="/" class="hover:opacity-80">xervai solutions</a>. All Rights Reserved.</p>
@@ -174,19 +226,10 @@
       <a href="/terms" class="hover:opacity-80">Terms & Conditions</a>
     </p>
     <div id="xervai-chatbot" class="chatbot-container">
-      <button class="chatbot-toggle" style="background: #FF4500; color: white;">Talk to Xerv-Ai</button>
+      <button class="chatbot-toggle" style="background: #f28c38; color: white;">Talk to Xerv-Ai</button>
     </div>
   </footer>
 
-  <script>
-    document.getElementById('careers-form').addEventListener('submit', function(e) {
-      const resume = document.getElementById('resume').files[0];
-      if (resume && resume.size > 5 * 1024 * 1024) {
-        alert('Resume file size should not exceed 5MB.');
-        e.preventDefault();
-      }
-    });
-  </script>
   <script src="/assets/js/main.js"></script>
   <script src="/assets/js/chatbot.js"></script>
 </body>
