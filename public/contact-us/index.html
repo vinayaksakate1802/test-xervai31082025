@@ -4,17 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Us - XervAi</title>
-  <link rel="https://apple-touch-icon" sizes="180x180" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/favicon-32x32.png">
-  <link rel="https://icon" type="image/png-icon" sizes="16x16" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/favicon-16x16.png">
-  <link rel="https://icon" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/favicon.ico" type="image/x-icon">
-  <link rel="icon" type="image/png-icon" sizes="192x192" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/android-chrome-192x192.png">
-  <link rel="icon" type="image/png-icon" sizes="512x512" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/android-chrome-512x512.png">
-  <link href="https://fonts.googleapis.com/css/2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/favicon-16x16.png">
+  <link rel="icon" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/android-chrome-512x512.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/styles.css" />
   <link rel="stylesheet" href="/assets/css/chatbot.css" />
-  
-  <!-- ## CSS for addresses -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.css">
   <style>
     .address-card {
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -26,6 +26,53 @@
     .address-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateY(100vh);
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      width: 300px;
+      text-align: center;
+      transition: transform 0.5s ease-in-out;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .popup.show {
+      transform: translate(-50%, -50%);
+    }
+    .popup .message {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    .popup button {
+      background: #f28c38; /* Orange theme */
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .popup button:hover {
+      background: #e07b30; /* Slightly darker orange on hover */
+    }
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      display: none;
+    }
+    .popup-overlay.show {
+      display: block;
     }
   </style>
 </head>
@@ -46,42 +93,42 @@
       <li>
         <a href="#">What we do</a>
         <ul class="dropdown">
-          <li><a href="/Whatwedo/it-consulting">Managed IT & Consulting</a></li>
-          <li><a href="/Whatwedo/cybersecurity">Cybersecurity</a></li>
-          <li><a href="/Whatwedo/cloud">Cloud</a></li>
-          <li><a href="/Whatwedo/ai">Artificial Intelligence</a></li>
-          <li><a href="/Whatwedo/devops">DevOps & Automation</a></li>
-          <li><a href="/Whatwedo/data-analytics">Data Analytics</a></li>
-          <li><a href="/Whatwedo/engineering-solutions">Engineering Solutions</a></li>
-          <li><a href="/Whatwedo/onpremise">On Premise & Legacy Apps</a></li>
-          <li><a href="/Whatwedo/migration">Migration</a></li>
-          <li><a href="/Whatwedo/go-digital">Digital Transformation</a></li>
-          <li><a href="/Whatwedo/smartapps">Smart Apps Development</a></li>
-          <li><a href="/Whatwedo/startup-zone">Startup Zone</a></li>
+          <li><a href="https://xervai.com/it-consulting">Managed IT & Consulting</a></li>
+          <li><a href="https://xervai.com/cybersecurity">Cybersecurity</a></li>
+          <li><a href="https://xervai.com/cloud">Cloud</a></li>
+          <li><a href="https://xervai.com/ai">Artificial Intelligence</a></li>
+          <li><a href="https://xervai.com/devops">DevOps & Automation</a></li>
+          <li><a href="https://xervai.com/data-analytics">Data Analytics</a></li>
+          <li><a href="https://xervai.com/engineering-solutions">Engineering Solutions</a></li>
+          <li><a href="https://xervai.com/onpremise">On Premise & Legacy Apps</a></li>
+          <li><a href="https://xervai.com/migration">Migration</a></li>
+          <li><a href="https://xervai.com/go-digital">Digital Transformation</a></li>
+          <li><a href="https://xervai.com/smartapps">Smart Apps Development</a></li>
+          <li><a href="https://xervai.com/startup-zone">Startup Zone</a></li>
         </ul>
       </li>
       <li>
         <a href="#">Industries</a>
         <ul class="dropdown">
-          <li><a href="/Industries/healthcare">Healthcare</a></li>
-          <li><a href="/Industries/banking-finance">Banking & Finance</a></li>
-          <li><a href="/Industries/pharma">Pharma</a></li>
-          <li><a href="/Industries/consumer">Consumer</a></li>
-          <li><a href="/Industries/energy">Energy</a></li>
-          <li><a href="/Industries/retail">Retail</a></li>
-          <li><a href="/Industries/manufacturing">Manufacturing</a></li>
+          <li><a href="https://xervai.com/healthcare">Healthcare</a></li>
+          <li><a href="https://xervai.com/banking-finance">Banking & Finance</a></li>
+          <li><a href="https://xervai.com/pharma">Pharma</a></li>
+          <li><a href="https://xervai.com/consumer">Consumer</a></li>
+          <li><a href="https://xervai.com/energy">Energy</a></li>
+          <li><a href="https://xervai.com/retail">Retail</a></li>
+          <li><a href="https://xervai.com/manufacturing">Manufacturing</a></li>
         </ul>
       </li>
       <li>
         <a href="#">About</a>
         <ul class="dropdown">
-          <li><a href="/About/our-story">Our Story</a></li>
-          <li><a href="/About/our-team">Our Team</a></li>
-          <li><a href="/About/vision">Mission & Vision</a></li>
+          <li><a href="https://xervai.com/our-story">Our Story</a></li>
+          <li><a href="https://xervai.com/our-team">Our Team</a></li>
+          <li><a href="https://xervai.com/vision">Mission & Vision</a></li>
         </ul>
       </li>
-      <li><a href="/careers">Careers</a></li>
-      <li><a href="/contact-us">Contact Us</a></li>
+      <li><a href="https://xervai.com/careers">Careers</a></li>
+      <li><a href="https://xervai.com/contact-us">Contact Us</a></li>
     </ul>
   </nav>
 
@@ -97,7 +144,7 @@
         <span class="word">XervAi</span>
         <span class="word">today</span>
       </p>
-      <a href="#contact-us" class="btn">Get in Touch</a>
+      <a href="#contact" class="btn">Get in Touch</a>
     </div>
   </header>
 
@@ -132,63 +179,97 @@
         </div>
       </div>
 
-      <section id="contact" style="padding: 60px 20px;">
-        <h2 style="text-align:center;">Get in Touch</h2>
-        <form id="contactForm" style="max-width:600px; margin:auto;" method="POST" action="/submit-contact">
-          <input type="text" id="name" name="name" placeholder="Name*" required style="width:100%; padding:10px; margin-bottom:15px;">
-          <input type="tel" id="phone" name="phone" placeholder="Phone Number* (e.g., +1 123-456-7890)" pattern="^\+?\d{1,4}?[\s-]?\(?\d{1,4}?\)?[\s-]?\d{1,9}$" required style="width:100%; padding:10px; margin-bottom:15px;">
-          <input type="email" id="email" name="emailId" placeholder="Email*" required style="width:100%; padding:10px; margin-bottom:15px;">
-          <div style="display: flex; gap:10px; margin-bottom:15px;">
-            <input type="text" id="preferredDateTime" name="preferredDateTime" placeholder="Choose date & time" style="flex:1; padding:10px;">
-            <input type="text" id="timezone" name="timezone" placeholder="Timezone (e.g., CET)" style="width:100px; padding:10px;">
-          </div>
-          <div class="checkbox-container" style="margin-bottom:20px; display:flex; align-items:center; justify-content:flex-start;">
-            <input type="checkbox" id="onlineMeeting" name="onlineMeeting" style="margin:0 8px 0 0; display:inline;">
-            <span>Connect with me over an online meeting</span>
-          </div>
-          <select id="reason" name="reason" required style="width:100%; padding:10px; margin-bottom:15px;">
-            <option value="" disabled selected>Choose reason for Contact*</option>
-            <option value="Sales">Sales</option>
-            <option value="Project">Project</option>
-            <option value="Technical Support">Technical Support</option>
-            <option value="Press">Press</option>
-            <option value="Others">Others</option>
-          </select>
-          <select id="service" name="service" required style="width:100%; padding:10px; margin-bottom:15px;">
-            <option value="" disabled selected>Choose relevant Service*</option>
-            <option>Managed IT & Consulting</option>
-            <option>Cybersecurity</option>
-            <option>Cloud</option>
-            <option>Artificial Intelligence</option>
-            <option>DevOps & Automation</option>
-            <option>Data Analytics</option>
-            <option>Engineering Solutions</option>
-            <option>On Premise & Legacy Apps</option>
-            <option>Migration Services</option>
-            <option>Digital Transformation</option>
-            <option>Smart Apps</option>
-            <option>Startup Zone</option>
-            <option>Other</option>
-          </select>
-          <textarea id="message" name="message" rows="5" placeholder="Your Message*" required style="width:100%; padding:10px; margin-bottom:15px;"></textarea>
-          <button type="submit" class="btn" style="width:20%;">Submit</button>
-        </form>
-      </section>
+      <h2 style="text-align:center; margin-top: 40px;">Get in Touch</h2>
+      <form id="contactForm" style="max-width:600px; margin:auto;" method="POST" action="/submit-contact">
+        <input type="text" id="name" name="name" placeholder="Name*" required style="width:100%; padding:10px; margin-bottom:15px;">
+        <input type="tel" id="phone" name="phone" placeholder="Phone Number* (e.g., +1 123-456-7890)" pattern="^\+?\d{1,4}?[\s-]?\(?\d{1,4}?\)?[\s-]?\d{1,9}$" required style="width:100%; padding:10px; margin-bottom:15px;">
+        <input type="email" id="email" name="emailId" placeholder="Email*" required style="width:100%; padding:10px; margin-bottom:15px;">
+        <div style="display: flex; gap:10px; margin-bottom:15px;">
+          <input type="text" id="preferredDateTime" name="preferredDateTime" placeholder="Choose date & time" style="flex:1; padding:10px;">
+          <input type="text" id="timezone" name="timezone" placeholder="Timezone (e.g., CET)" style="width:100px; padding:10px;">
+        </div>
+        <div class="checkbox-container" style="margin-bottom:20px; display:inline-flex; align-items:center;">
+          <input type="checkbox" id="onlineMeeting" name="onlineMeeting" style="margin:0 8px 0 0; display:inline;">
+          <span>Connect with me over an online meeting</span>
+        </div>
+        <select id="reason" name="reason" required style="width:100%; padding:10px; margin-bottom:15px;">
+          <option value="" disabled selected>Choose reason for Contact*</option>
+          <option value="Sales">Sales</option>
+          <option value="Project">Project</option>
+          <option value="Technical Support">Technical Support</option>
+          <option value="Press">Press</option>
+          <option value="Others">Others</option>
+        </select>
+        <select id="service" name="service" required style="width:100%; padding:10px; margin-bottom:15px;">
+          <option value="" disabled selected>Choose relevant Service*</option>
+          <option>Managed IT & Consulting</option>
+          <option>Cybersecurity</option>
+          <option>Cloud</option>
+          <option>Artificial Intelligence</option>
+          <option>DevOps & Automation</option>
+          <option>Data Analytics</option>
+          <option>Engineering Solutions</option>
+          <option>On Premise & Legacy Apps</option>
+          <option>Migration Services</option>
+          <option>Digital Transformation</option>
+          <option>Smart Apps</option>
+          <option>Startup Zone</option>
+          <option>Other</option>
+        </select>
+        <textarea id="message" name="message" rows="5" placeholder="Your Message*" required style="width:100%; padding:10px; margin-bottom:15px;"></textarea>
+        <div style="margin-bottom:15px;">
+          <label id="captchaQuestion" style="display:block; margin-bottom:10px;"></label>
+          <input type="number" id="captchaAnswer" name="captchaAnswer" placeholder="Enter answer" required style="width:100%; padding:10px;">
+          <input type="hidden" id="captchaNum1" name="captchaNum1">
+          <input type="hidden" id="captchaNum2" name="captchaNum2">
+        </div>
+        <button type="submit" class="btn" style="width:20%;">Submit</button>
+      </form>
     </section>
   </main>
 
-  <footer>
-    <p>© 2023 <a href="/" class="hover:opacity-80">xervai solutions</a>. All Rights Reserved.</p>
+  <div class="popup-overlay" id="popupOverlay"></div>
+  <div class="popup" id="popup">
+    <div class="message" id="popupMessage"></div>
+    <button onclick="hidePopup()">OK</button>
+  </div>
+
+  <footer class="py-6 text-center text-sm border-t border-gray-700">
+    <p>© 2025 <a href="https://xervai.com/" class="hover:opacity-80">xervai solutions LLP</a>. All rights reserved.</p>
     <p>
-      <a href="/privacy" class="hover:opacity-80">Privacy Policy</a> | 
-      <a href="/contact-us" class="hover">Contact Us</a> | 
-      <a href="/terms" class="hover:opacity-80">Terms & Conditions</a>
+      <a href="https://xervai.com/privacy" class="hover:opacity-80">Privacy Policy</a> |
+      <a href="https://xervai.com/contact-us" class="hover:opacity-80">Contact Us</a> |
+      <a href="https://xervai.com/terms" class="hover:opacity-80">Terms & Conditions</a>
     </p>
+    <div class="social-links">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://xervai.com" target="_blank" title="Share on Facebook">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3V2z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/xervaiofficial" target="_blank" title="Follow on Instagram">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.326 3.608 1.301.975.975 1.24 2.242 1.3 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.06 1.366-.325 2.633-1.3 3.608-.975.975-2.242 1.24-3.608 1.3-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.06-2.633-.325-3.608-1.3-.975-.975-1.24-2.242-1.3-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.06-1.366.325-2.633 1.3-3.608.975-.975 2.242-1.24 3.608-1.3 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-1.614.073-3.033.414-4.192 1.573-1.159 1.159-1.5 2.578-1.573 4.192-.058 1.28-.072 1.688-.072 4.947s.014 3.667.072 4.947c.073 1.614.414 3.033 1.573 4.192 1.159 1.159 2.578 1.5 4.192 1.573 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.614-.073 3.033-.414 4.192-1.573 1.159-1.159 1.5-2.578 1.573-4.192.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.073-1.614-.414-3.033-1.573-4.192-1.159-1.159-2.578-1.5-4.192-1.573-1.28-.058-1.688-.072-4.947-.072zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100-2.88 1.44 1.44 0 000 2.88z"/></svg>
+      </a>
+      <a href="https://twitter.com/intent/tweet?url=https://xervai.com&text=Check%20out%20XervAi%20-%20Your%20partner%20in%20innovative%20IT%20solutions!" target="_blank" title="Share on Twitter">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.643 4.937c-.835.37-1.732.62-2.675.733a4.67 4.67 0 002.048-2.578 9.3 9.3 0 01-2.958 1.13 4.66 4.66 0 00-7.938 4.25 13.229 13.229 0 01-9.602-4.868c-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878a4.647 4.647 0 01-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568a4.68 4.68 0 01-2.103.08c.592 1.846 2.313 3.192 4.353 3.228a13.252 13.252 0 01-8.215 2.834c-.536 0-1.067-.031-1.587-.092a18.705 18.705 0 0010.14 2.975c12.167 0 18.822-10.077 18.822-18.822 0-.287-.006-.573-.019-.856A13.468 13.468 0 0024 4.556l-.357.381z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://xervai.com&title=XervAi&summary=Your%20partner%20in%20innovative%20IT%20solutions&source=XervAi" target="_blank" title="Share on LinkedIn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg>
+      </a>
+    </div>
     <div id="xervai-chatbot" class="chatbot-container">
-      <button class="chatbot-toggle" style="background: #FF4500; color: white;"></button>
+      <button class="chatbot-toggle"></button>
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.js"></script>
+  <script>
+    flatpickr("#preferredDateTime", {
+      enableTime: true,
+      dateFormat: "Y-m-d h:i K",
+      time_24hr: false,
+      plugins: [new confirmDatePlugin({ confirmText: "OK", showAlways: false })]
+    });
+  </script>
   <script src="/assets/js/main.js"></script>
   <script src="/assets/js/chatbot.js"></script>
 </body>
