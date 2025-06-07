@@ -59,6 +59,12 @@
     .error-container .btn:hover {
       background: #e07b30;
     }
+    /* Style for the countdown message */
+    #countdown {
+      font-size: 1rem;
+      color: #666;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -121,6 +127,7 @@
     <h1>404 - Page Not Found</h1>
     <p>Oops! The page you're looking for doesn't exist.</p>
     <a href="/" class="btn">Return to Home</a>
+    <p id="countdown">Redirecting in 10 seconds...</p>
   </div>
   <footer class="py-6 text-center text-sm border-t border-gray-700">
     <p>© 2025 <a href="/" class="hover:opacity-80">xervai solutions LLP</a>. All rights reserved.</p>
@@ -144,6 +151,22 @@
       </a>
     </div>
   </footer>
+  
+  <!-- ## 10-second Auto-Redirect with Countdown Script -->
+  <script>
+    var timeLeft = 10;
+    var countdownElem = document.getElementById('countdown');
+
+    var timerInterval = setInterval(function() {
+      timeLeft--;
+      countdownElem.textContent = "Redirecting in " + timeLeft + " ...";
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        window.location.href = "https://xervai.com";
+      }
+    }, 1000);
+  </script>
+  
   <script src="/assets/js/main.js"></script>
 </body>
 </html>
