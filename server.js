@@ -23,7 +23,7 @@ console.log('Email config:', {
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 5,
-  message: 'Too many submissions, please try again later.',
+  message: 'Too many submissions, please try again.',
   keyGenerator: (req) => {
     const ip = req.headers['x-forwarded-for']?.split(',')[0].trim() || req.ip;
     return ip.split(':')[0]; // Remove port if present
@@ -80,10 +80,17 @@ app.get('/health', (req, res) => {
 });
 
 app.post('/submit-contact', async (req, res) => {
-  const { name, phone, emailId, onlineMeeting, preferredDateTime, timezone, reason, service, message } = req.body;
+  const { name, phone, emailId, onlineMeeting, preferredDateTime, timezone, reason, service, message, captchaAnswer, captchaNum1, captchaNum2 } = req.body;
   
   // Log received form data
   console.log('Received form data:', req.body);
+
+  // Validate CAPTCHA
+  const expectedAnswer = parseInt(captchaNum1) + parseInt(captchaNum2);
+  if (parseInt(captchaAnswer) !== expectedAnswer) {
+    console.error('CAPTCHA validation failed:', { captchaAnswer, expectedAnswer });
+    return res.status(400).json({ error: 'Incorrect CAPTCHA answer.' });
+  }
 
   // Validate required fields
   if (!validateInput(req.body, ['name', 'emailId', 'reason', 'service', 'message'])) {
