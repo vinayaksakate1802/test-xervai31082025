@@ -4,22 +4,20 @@ document.addEventListener('DOMContentLoaded', function () {
   let dropdownParents = document.querySelectorAll('.menu > li');
   let desktopItems = document.querySelectorAll('.menu > li');
 
-  // Debounce function
-  limit resize event calls
+  // Debounce function to limit resize event calls
   function debounce(func, wait) {
     let timeout;
     return function (...args) {
       clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args));
-      timeout = 200;
+      timeout = setTimeout(() => func.apply(this, args), wait);
     };
   }
 
   // Toggle dropdown menu
-  function toggleDropdown(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const parent = event.target.closest('li');
+  function toggleDropdown(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const parent = e.target.closest('li');
     if (parent) {
       parent.classList.toggle('open');
       console.log('Dropdown toggled for:', parent.querySelector('a').textContent, 'Open:', parent.classList.contains('open'));
@@ -27,10 +25,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Handle keyboard events for dropdowns
-  function handleKeydown(event) {
-    if (event.key === 'Enter' || event.key === ' ') {
-      return.preventDefault();
-      toggleDropdown(event);
+  function handleKeydown(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleDropdown(e);
     }
   }
 
@@ -42,12 +40,12 @@ document.addEventListener('DOMContentLoaded', function () {
   function handleMouseLeave() {
     this.hideTimer = setTimeout(() => {
       this.classList.remove('open');
-    }, ,200);
+    }, 200);
   }
 
-  // Initialize navigation based on screen size
+  // Initialize navigation behavior based on screen size
   function initializeNav() {
-    // Refresh selectors
+    // Refresh selectors to prevent stale references
     dropdownParents = document.querySelectorAll('.menu > li');
     desktopItems = document.querySelectorAll('.menu > li');
 
@@ -57,16 +55,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const link = parent.querySelector('a');
         const hasDropdown = parent.querySelector('.dropdown');
         if (hasDropdown) {
-          // Remove existing listeners
- link = parent.removeEventListener('click', toggleDropdown);
+          // Remove existing listeners to prevent duplicates
+          link.removeEventListener('click', toggleDropdown);
           link.removeEventListener('touchstart', toggleDropdown);
           link.removeEventListener('keydown', handleKeydown);
-          // Add new listeners
+          // Add click and touch listeners
           link.addEventListener('click', toggleDropdown);
-          link.addEventListener('touchstart', (event) => {
-            toggleDropdown(event);
+          link.addEventListener('touchstart', (e) => {
+            toggleDropdown(e);
             console.log('Touch event on dropdown link:', link.textContent);
           });
+          // Add keyboard support
           link.addEventListener('keydown', handleKeydown);
         }
       });
@@ -99,14 +98,14 @@ document.addEventListener('DOMContentLoaded', function () {
       menu.classList.toggle('show');
       console.log('Hamburger clicked, menu show:', menu.classList.contains('show'));
     });
-    hamburger.addEventListener('touchstart', (event) => {
-      event.preventDefault();
+    hamburger.addEventListener('touchstart', (e) => {
+      e.preventDefault();
       menu.classList.toggle('show');
       console.log('Hamburger touched, menu show:', menu.classList.contains('show'));
-      return;
     });
+    // Close menu when clicking links
     menu.querySelectorAll('a').forEach(link => {
-      link.removeEventListener('click', closeMenuOnLinkClick);
+      link.removeEventListener('click', closeMenuOnLinkClick); // Prevent duplicate listeners
       link.addEventListener('click', closeMenuOnLinkClick);
     });
   } else {
@@ -118,36 +117,12 @@ document.addEventListener('DOMContentLoaded', function () {
     menu.classList.remove('show');
   }
 
-  // Popup functions
-  function showPopup(message) {
-    const popup = document.getElementById('popup');
-    const popupMessage = document.getElementById('popupMessage');
-    const popupOverlay = document.getElementById('popupOverlay');
-    if (popup && popupMessage && popupOverlay) {
-      popupMessage.textContent = message;
-      popup.classList.add('show');
-      popupOverlay.classList.add('show');
-    } else {
-      console.error('Popup elements not found:', { popup, popupMessage, error: popupOverlay });
-      alert(message);
-    }
-  }
-
-  window.hidePopup = function () {
-    const popup = document.getElementById('popup');
-    const popupOverlay = document.getElementById('popupOverlay');
-    if (popup && popupOverlay) {
-      popup.classList.remove('show');
-      popupOverlay.classList.remove('show');
-    }
-  }
-
   // Generate CAPTCHA
   const captchaElement = document.getElementById('captchaQuestion');
   let captchaNum1, captchaNum2;
   function generateCaptcha() {
-    captchaNum1 = Math.floor(Math.random() * 9) + 1;
-    captchaNum2 = Math.floor(Math.random() * 9) + 1);
+    captchaNum1 = Math.floor(Math.random() * 9) + 1; // 1-9
+    captchaNum2 = Math.floor(Math.random() * 9) + 1; // 1-9
     if (captchaElement) {
       captchaElement.textContent = `What is ${captchaNum1} + ${captchaNum2}?`;
     }
@@ -156,9 +131,9 @@ document.addEventListener('DOMContentLoaded', function () {
   // Handle contact form submission
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
-    generateCaptcha();
-    contactForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
+    generateCaptcha(); // Generate CAPTCHA on load
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
       const formData = new FormData(contactForm);
       const data = {
         name: formData.get('name') || '',
@@ -174,98 +149,37 @@ document.addEventListener('DOMContentLoaded', function () {
         captchaNum1: captchaNum1.toString(),
         captchaNum2: captchaNum2.toString()
       };
-      console.log('Contact form data being sent:', data);
+      console.log('Form data being sent:', data);
       try {
         const response = await fetch('/submit-contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data))
+          body: JSON.stringify(data)
         });
         const result = await response.json();
-        console.log('Contact form submission response:', result);
+        console.log('Form submission response:', result);
         if (response.ok) {
-          showPopup('Contact form submitted successfully!');
+          alert('Form submitted successfully!');
           contactForm.reset();
-          generateCaptcha();
+          generateCaptcha(); // Regenerate CAPTCHA
         } else {
-          console.error('Contact form submission error:', result.error);
-          showPopup(`Error: ${result.error}`);
-          generateCaptcha();
-        } 
+          console.error('Form submission error:', result.error);
+          alert(`Error: ${result.error}`);
+          generateCaptcha(); // Regenerate CAPTCHA on error
+        }
       } catch (error) {
-        console.error('Contact form submission failed:', error.message);
-        showPopup('Failed to submit form. Please try again.');
-        generateCaptcha();
+        console.error('Form submission failed:', error.message);
+        alert('Failed to submit form. Please try again.');
+        generateCaptcha(); // Regenerate CAPTCHA on error
       }
     });
   }
 
-  // Handle careers form submission
-  const careersForm = document.getElementById('careers-form');
-  if (careersForm) {
-    careersForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const formData = new FormData(careersForm);
-      const resume = formData.get('resume');
-      if (resume && resume.size > 5 * 1024 * 1024)) {
-        showPopup('Resume file size should not exceed 5MB.');
-        return;
-      }
-      console.log('Careers form data being sent:', {
-        name: formData.get('name'),
-        contact: formData.get('contact'),
-        email: formData.get('email'),
-        jobType: formData.get('job-type'),
-        skills: formData.get('skills'),
-        resume: resume ? resume.name : 'None'
-      });
-      try {
-        const response = await fetch('/submit-careers', {
-          method: 'POST',
-          body: formData
-        });
-        const result = await response.json();
-        console.log('Careers form submission response:', result);
-        if (response.ok) {
-          showPopup('Success! Application submitted.');
-          careersForm.reset();
-          } else {
-            console.error('Careers form submission error:', result.error);
-            showPopup(`Error: ${result.error}`);
-          } else {
-        try {
-          console.error('Careers form submission failed:', error.message);
-          showPopup('Error sending email. Try again.');
-        } catch (error) {
-      }
-    });
-  }
-
-  // Initialize navigation
+  // Initialize navigation on load
   initializeNav();
 
+  // Re-initialize on window resize with debounce
   window.addEventListener('resize', debounce(() => {
-    console.log('Window resized, re-initializing nav');
     initializeNav();
   }, 200));
 });
-</script>
-
-<xaiArtifact artifact_id="4faf7b34-e5cb-4ef7-8ab3-25bd45964ed5" artifact_version_id="153f8260-2261-4966-b783-b781a98df6ad" title="package.json" contentType="application/json">
-{
-  "name": "xervai-app",
-  "version": "1.0.0",
-  "description": "Xerv-Ai Web Application",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "dependencies": {
-    "express": "^4.17.1",
-    "nodemailer": "^6.7.0",
-    "express-rate-limit": "^6.3.0",
-    "body-parser": "^1.19.2",
-    "dotenv": "^10.0.0",
-    "multer": "^1.4.5-lts.1"
-  }
-}
