@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.set('trust proxy', 1); // Trust first proxy for X-Forwarded-For
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -27,17 +28,14 @@ const chatbotLimiter = rateLimit({
 });
 app.use('/chatbot-notify', chatbotLimiter);
 
-// Office 365 transporter
+// Gmail transporter
 const transporter = nodemailer.createTransport({
-  host: 'smtp.office365.com',
+  host: 'smtp.gmail.com',
   port: 587,
   secure: false,
   auth: {
     user: process.env.EMAIL_ADDRESS,
     pass: process.env.EMAIL_PASSWORD
-  },
-  tls: {
-    ciphers: 'SSLv3'
   }
 });
 
