@@ -154,12 +154,12 @@
   
   <!-- ## 10-second Auto-Redirect with Countdown Script -->
   <script>
-    var timeLeft = 10;
+    var timeLeft = 30;
     var countdownElem = document.getElementById('countdown');
 
     var timerInterval = setInterval(function() {
       timeLeft--;
-      countdownElem.textContent = "Redirecting in " + timeLeft + " ...";
+      countdownElem.textContent = "Redirecting in " + timeLeft + " seconds...";
       if (timeLeft <= 0) {
         clearInterval(timerInterval);
         window.location.href = "https://xervai.com";
