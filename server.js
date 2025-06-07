@@ -280,9 +280,9 @@ app.get('/startup-zone', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'Whatwedo', 'startup-zone', 'index.html'));
 });
 
-// Catch-all for unmatched routes
+
 app.use((req, res) => {
-  res.status(404).send('Page not found');
+  res.status(404).sendFile(path.join(__dirname, 'public', 'oops', 'index.html'));
 });
 
 app.listen(port, () => {
