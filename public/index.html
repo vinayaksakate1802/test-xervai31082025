@@ -34,31 +34,21 @@
     .popup.show {
       transform: translate(-50%, -50%);
     }
-    .popup.success .icon {
-      color: #f28c38; /* Orange */
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
-    .popup.error .icon {
-      color: #ff0000; /* Red */
-      font-size: 24px;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      cursor: pointer;
-    }
     .popup .message {
       margin: 10px 0;
       font-size: 16px;
     }
     .popup button {
-      background: #007bff;
+      background: #f28c38; /* Orange theme */
       color: white;
       border: none;
       padding: 8px 16px;
       border-radius: 4px;
       cursor: pointer;
       font-size: 14px;
+    }
+    .popup button:hover {
+      background: #e07b30; /* Slightly darker orange on hover */
     }
     .popup-overlay {
       position: fixed;
@@ -227,7 +217,6 @@
   </main>
   <div class="popup-overlay" id="popupOverlay"></div>
   <div class="popup" id="popup">
-    <div class="icon" id="popupIcon"></div>
     <div class="message" id="popupMessage"></div>
     <button onclick="hidePopup()">OK</button>
   </div>
