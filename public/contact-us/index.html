@@ -7,12 +7,27 @@
   <link rel="https://apple-touch-icon" sizes="180x180" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/favicon-32x32.png">
   <link rel="https://icon" type="image/png-icon" sizes="16x16" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/favicon-16x16.png">
-  <link rel="https://icon" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/favicon.ico"> type="image/x-icon">
-  <link rel="icon" type="image/png-icon" sizes="https://192x192" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/android-chrome-192x192.png">
-  <link rel="icon" type="https://image/png-icon" sizes="512x512" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/android-chrome-512x512.png">
+  <link rel="https://icon" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png-icon" sizes="192x192" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/android-chrome-192x192.png">
+  <link rel="icon" type="image/png-icon" sizes="512x512" href="https://xervaiblobstorage.blob.core.windows.net/blog-images/favicon/2/android-chrome-512x512.png">
   <link href="https://fonts.googleapis.com/css/2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/styles.css" />
   <link rel="stylesheet" href="/assets/css/chatbot.css" />
+  
+  <!-- ## CSS for addresses -->
+  <style>
+    .address-card {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      border-radius: 5px;
+      background-color: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .address-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+  </style>
 </head>
 <body>
   <nav class="navbar">
@@ -86,30 +101,29 @@
     </div>
   </header>
 
-<main>
-  <section id="contact" style="padding: 60px 20px; background: #f9f6f2; text-align: center;">
-    <h2>Let’s Talk</h2>
-    <p>Big idea? Stuck system? Confused cloud bills? Or just need someone to make your IT less painful?</p>
-    <p>We don’t do pushy sales. We listen, we solve, we move fast. That’s it.</p>
-    <p>Drop us a line. We’ll handle the tech—you handle the growth.</p>
+  <main>
+    <section id="contact" style="padding: 60px 20px; background: #f9f6f2; text-align: center;">
+      <h2>Let’s Talk</h2>
+      <p>Big idea? Stuck system? Confused cloud bills? Or just need someone to make your IT less painful?</p>
+      <p>We don’t do pushy sales. We listen, we solve, we move fast. That’s it.</p>
+      <p>Drop us a line. We’ll handle the tech—you handle the growth.</p>
   
-
       <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 40px;">
-        <div style="flex: 1; min-width: 250px; margin: 10px;">
+        <div class="address-card" style="flex: 1; min-width: 250px; margin: 10px;">
           <h3>New York City</h3>
           <p>123 Tech Avenue, Suite 500</p>
           <p>New York, NY 10018, USA</p>
           <p>Phone: +1 212-555-7890</p>
           <p>Email: nyc@xervai.com</p>
         </div>
-        <div style="flex: 1; min-width: 250px; margin: 10px;">
+        <div class="address-card" style="flex: 1; min-width: 250px; margin: 10px;">
           <h3>Dubai</h3>
           <p>Tech Tower, Floor 12</p>
           <p>Sheikh Zayed Road, Dubai, UAE</p>
           <p>Phone: +971 4-555-6789</p>
           <p>Email: dubai@xervai.com</p>
         </div>
-        <div style="flex: 1; min-width: 250px; margin: 10px;">
+        <div class="address-card" style="flex: 1; min-width: 250px; margin: 10px;">
           <h3>Pune</h3>
           <p>Innovate Park, Building B</p>
           <p>Hinjewadi Phase 1, Pune, MH 411057, India</p>
@@ -118,21 +132,48 @@
         </div>
       </div>
 
-      <form id="contact-form" action="/submit-contact" method="POST" style="margin-top: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
-        <div style="margin-bottom: 20px;">
-          <label for="name" style="display: block; margin-bottom: 5px;">Name *</label>
-          <input type="text" id="name" name="name" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
-        </div>
-        <div style="margin-bottom: 20px;">
-          <label for="email" style="display: block; margin-bottom: 5px;">Email *</label>
-          <input type="email" id="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
-        </div>
-        <div style="margin-bottom: 20px;">
-          <label for="message" style="display: block; margin-bottom: 5px;">Message *</label>
-          <textarea id="message" name="message" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; height: 150px;"></textarea>
-        </div>
-        <button type="submit" style="background: #FF4500; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Send Message</button>
-      </form>
+      <section id="contact" style="padding: 60px 20px;">
+        <h2 style="text-align:center;">Get in Touch</h2>
+        <form id="contactForm" style="max-width:600px; margin:auto;" method="POST" action="/submit-contact">
+          <input type="text" id="name" name="name" placeholder="Name*" required style="width:100%; padding:10px; margin-bottom:15px;">
+          <input type="tel" id="phone" name="phone" placeholder="Phone Number* (e.g., +1 123-456-7890)" pattern="^\+?\d{1,4}?[\s-]?\(?\d{1,4}?\)?[\s-]?\d{1,9}$" required style="width:100%; padding:10px; margin-bottom:15px;">
+          <input type="email" id="email" name="emailId" placeholder="Email*" required style="width:100%; padding:10px; margin-bottom:15px;">
+          <div style="display: flex; gap:10px; margin-bottom:15px;">
+            <input type="text" id="preferredDateTime" name="preferredDateTime" placeholder="Choose date & time" style="flex:1; padding:10px;">
+            <input type="text" id="timezone" name="timezone" placeholder="Timezone (e.g., CET)" style="width:100px; padding:10px;">
+          </div>
+          <div class="checkbox-container" style="margin-bottom:20px; display:flex; align-items:center; justify-content:flex-start;">
+            <input type="checkbox" id="onlineMeeting" name="onlineMeeting" style="margin:0 8px 0 0; display:inline;">
+            <span>Connect with me over an online meeting</span>
+          </div>
+          <select id="reason" name="reason" required style="width:100%; padding:10px; margin-bottom:15px;">
+            <option value="" disabled selected>Choose reason for Contact*</option>
+            <option value="Sales">Sales</option>
+            <option value="Project">Project</option>
+            <option value="Technical Support">Technical Support</option>
+            <option value="Press">Press</option>
+            <option value="Others">Others</option>
+          </select>
+          <select id="service" name="service" required style="width:100%; padding:10px; margin-bottom:15px;">
+            <option value="" disabled selected>Choose relevant Service*</option>
+            <option>Managed IT & Consulting</option>
+            <option>Cybersecurity</option>
+            <option>Cloud</option>
+            <option>Artificial Intelligence</option>
+            <option>DevOps & Automation</option>
+            <option>Data Analytics</option>
+            <option>Engineering Solutions</option>
+            <option>On Premise & Legacy Apps</option>
+            <option>Migration Services</option>
+            <option>Digital Transformation</option>
+            <option>Smart Apps</option>
+            <option>Startup Zone</option>
+            <option>Other</option>
+          </select>
+          <textarea id="message" name="message" rows="5" placeholder="Your Message*" required style="width:100%; padding:10px; margin-bottom:15px;"></textarea>
+          <button type="submit" class="btn" style="width:20%;">Submit</button>
+        </form>
+      </section>
     </section>
   </main>
 
