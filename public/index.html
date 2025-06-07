@@ -15,55 +15,6 @@
   <link rel="stylesheet" href="/assets/css/chatbot.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.css">
-  <style>
-    .popup {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) translateY(100vh);
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-      width: 300px;
-      text-align: center;
-      transition: transform 0.5s ease-in-out;
-      font-family: 'Montserrat', sans-serif;
-    }
-    .popup.show {
-      transform: translate(-50%, -50%);
-    }
-    .popup .message {
-      margin: 10px 0;
-      font-size: 16px;
-    }
-    .popup button {
-      background: #f28c38; /* Orange theme */
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-    .popup button:hover {
-      background: #e07b30; /* Slightly darker orange on hover */
-    }
-    .popup-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 999;
-      display: none;
-    }
-    .popup-overlay.show {
-      display: block;
-    }
-  </style>
 </head>
 <body>
   <nav class="navbar">
@@ -215,11 +166,6 @@
       </form>
     </section>
   </main>
-  <div class="popup-overlay" id="popupOverlay"></div>
-  <div class="popup" id="popup">
-    <div class="message" id="popupMessage"></div>
-    <button onclick="hidePopup()">OK</button>
-  </div>
   <footer class="py-6 text-center text-sm border-t border-gray-700">
     <p>© 2025 <a href="https://xervai.com/" class="hover:opacity-80">xervai solutions LLP</a>. All rights reserved.</p>
     <p>
