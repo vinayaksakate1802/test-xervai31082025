@@ -117,7 +117,7 @@
         </div>
       </div>
     </section>
-<section id="contact" style="padding: 60px 20px;">
+    <section id="contact" style="padding: 60px 20px;">
       <h2 style="text-align:center;">Get in Touch</h2>
       <form id="contactForm" style="max-width:600px; margin:auto;" method="POST" action="/submit-contact">
         <input type="text" id="name" name="name" placeholder="Name*" required style="width:100%; padding:10px; margin-bottom:15px;">
@@ -156,6 +156,12 @@
           <option>Other</option>
         </select>
         <textarea id="message" name="message" rows="5" placeholder="Your Message*" required style="width:100%; padding:10px; margin-bottom:15px;"></textarea>
+        <div style="margin-bottom:15px;">
+          <label id="captchaQuestion" style="display:block; margin-bottom:10px;"></label>
+          <input type="number" id="captchaAnswer" name="captchaAnswer" placeholder="Enter answer" required style="width:100%; padding:10px;">
+          <input type="hidden" id="captchaNum1" name="captchaNum1">
+          <input type="hidden" id="captchaNum2" name="captchaNum2">
+        </div>
         <button type="submit" class="btn" style="width:20%;">Submit</button>
       </form>
     </section>
@@ -193,41 +199,6 @@
       dateFormat: "Y-m-d h:i K",
       time_24hr: false,
       plugins: [new confirmDatePlugin({ confirmText: "OK", showAlways: false })]
-    });
-    document.addEventListener('DOMContentLoaded', function () {
-      const hamburger = document.getElementById('hamburger');
-      const menu = document.querySelector('.menu');
-      hamburger.addEventListener('click', () => {
-        menu.classList.toggle('show');
-      });
-      if (window.innerWidth <= 768) {
-        const dropdownParents = document.querySelectorAll('.menu > li');
-        dropdownParents.forEach(parent => {
-          const link = parent.querySelector('a');
-          const hasDropdown = parent.querySelector('.dropdown');
-          if (hasDropdown) {
-            link.addEventListener('click', function (e) {
-              e.preventDefault();
-              parent.classList.toggle('open');
-            });
-          }
-        });
-      }
-      if (window.innerWidth > 768) {
-        const items = document.querySelectorAll('.menu > li');
-        items.forEach(item => {
-          let hideTimer;
-          item.addEventListener('mouseenter', () => {
-            clearTimeout(hideTimer);
-            item.classList.add('open');
-          });
-          item.addEventListener('mouseleave', () => {
-            hideTimer = setTimeout(() => {
-              item.classList.remove('open');
-            }, 200);
-          });
-        });
-      }
     });
   </script>
   <script src="/assets/js/main.js"></script>
