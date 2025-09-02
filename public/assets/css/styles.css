@@ -393,3 +393,16 @@ footer {
 #onlineMeeting {
   accent-color: #FF4500;
 }
+
+
+
+/* Logo base colors */
+.logo-text,
+.logo-ai {
+  color: black !important;
+}
+
+/* Only the 'A' in 'Ai' turns dark orange */
+.logo-ai .logo-a {
+  color: #FF4500 !important;
+}
