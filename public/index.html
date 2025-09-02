@@ -15,6 +15,31 @@
   <link rel="stylesheet" href="/assets/css/chatbot.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.css">
+  <style>
+    .animated-title {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .animated-title .word {
+      opacity: 0;
+      transform: translateX(-100px);
+      animation: slideIn 0.5s ease-out forwards;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+    .animated-title .word:nth-child(even) {
+      transform: translateX(100px);
+    }
+    .animated-title .xerv .ai .logo-a {
+      color: #e67e22;
+    }
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  </style>
 </head>
 <body>
   <nav class="navbar">
@@ -71,10 +96,10 @@
   </nav>
   <header class="hero" style="background-image: url('https://storagewestin.blob.core.windows.net/aboutusbanner/about-us.png');">
     <div class="hero-content">
-      <h1>
+      <h1 class="animated-title">
         <span class="word">Welcome</span>
         <span class="word">to</span>
-        <span class="word xerv">Xerv<span class="ai">Ai</span></span>
+        <span class="word xerv">Xerv<span class="ai"><span class="logo-a">A</span>i</span></span>
       </h1>
       <p>
         <span class="word">Your</span>
@@ -90,7 +115,10 @@
   </header>
   <main>
     <section id="explore" style="padding: 60px 20px; background: #f9f6f2;">
-      <h2><a href="/services">Our Services</a></h2>
+      <h2 class="animated-title">
+        <span class="word">Our</span>
+        <span class="word">Services</span>
+      </h2>
       <div class="cards">
         <div class="card">
           <img src="https://storagewestin.blob.core.windows.net/whatwedo/ai.png" alt="AI">
@@ -141,5 +169,13 @@
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.js"></script>
   <script src="/assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const words = document.querySelectorAll('.animated-title .word');
+      words.forEach((word, index) => {
+        word.style.animationDelay = `${index * 0.2}s`;
+      });
+    });
+  </script>
 </body>
 </html>
