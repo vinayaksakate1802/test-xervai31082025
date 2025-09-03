@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const words = document.querySelectorAll('.animated-title .word');
+  words.forEach((word, index) => {
+    word.style.animationDelay = `${index * 0.2}s`;
+  });
+
   const navLinks = document.querySelectorAll('nav a');
   navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
@@ -6,6 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = link.getAttribute('href');
     });
   });
+
+  const hamburger = document.querySelector('#hamburger');
+  const menu = document.querySelector('.menu');
+  if (hamburger && menu) {
+    hamburger.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+  }
 
   const contactForm = document.querySelector('#contact-form');
   if (contactForm) {
