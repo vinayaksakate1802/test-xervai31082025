@@ -4,6 +4,12 @@ body {
   padding: 0;
   box-sizing: border-box;
   background-color: #f9f6f2;
+  height: 100%;
+  overflow-y: auto;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 header, footer {
@@ -19,6 +25,10 @@ header, footer {
   align-items: center;
   background-color: #333;
   padding: 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .navbar .logo a {
@@ -27,8 +37,12 @@ header, footer {
   font-weight: 700;
 }
 
+.navbar .logo .logo-text span {
+  color: white;
+}
+
 .navbar .logo .logo-text .logo-a {
-  color: #e67e22;
+  color: #E64500; /* Updated for better contrast */
 }
 
 .navbar .menu {
@@ -51,6 +65,11 @@ header, footer {
 
 .navbar .menu a:hover {
   background-color: #555;
+}
+
+.navbar .menu a:focus-visible {
+  outline: 2px solid #E64500;
+  outline-offset: 2px;
 }
 
 .dropdown {
@@ -90,13 +109,14 @@ header, footer {
   align-items: center;
   justify-content: center;
   color: white;
+  padding-top: 60px; /* Adjust for fixed navbar */
 }
 
 .hero-content {
   text-align: center;
 }
 
-.hero h1, .hero p {
+.hero-content h1, .hero-content p {
   margin: 0.5rem 0;
 }
 
@@ -118,7 +138,7 @@ header, footer {
 }
 
 .animated-title .xerv .ai .logo-a {
-  color: #e67e22;
+  color: #E64500; /* Updated for better contrast */
 }
 
 @keyframes slideIn {
@@ -126,6 +146,16 @@ header, footer {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+.hero-content p {
+  font-size: 1.875rem; /* 30px equivalent */
+  max-width: 700px;
+  margin: 0 auto 1.875rem;
+  letter-spacing: 0.3px;
+  background-color: rgba(128, 128, 128, 0.2);
+  padding: 0.625rem;
+  border-radius: 0.3125rem;
 }
 
 .btn {
@@ -140,6 +170,11 @@ header, footer {
 
 .btn:hover {
   background-color: #c8641b;
+}
+
+.btn:focus-visible {
+  outline: 2px solid #E64500;
+  outline-offset: 2px;
 }
 
 .container {
@@ -159,6 +194,7 @@ header, footer {
   overflow: hidden;
   border-radius: 8px;
   border: 1px solid #ddd;
+  text-decoration: none;
 }
 
 .card img {
@@ -204,6 +240,11 @@ footer {
   color: white;
 }
 
+.social-links a:focus-visible {
+  outline: 2px solid #E64500;
+  outline-offset: 2px;
+}
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
@@ -221,5 +262,28 @@ footer {
 
   .hamburger {
     display: block;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #121212;
+    color: #f2f2f2;
+  }
+  header, footer, .navbar {
+    background: #1e1e1e;
+    border-color: #333;
+  }
+  .navbar .logo a, .navbar .menu a, .social-links a {
+    color: #f2f2f2;
+  }
+  .navbar .menu a:hover {
+    background-color: #2a2a2a;
+  }
+  .hero {
+    color: #f2f2f2;
+  }
+  .card-overlay {
+    background: rgba(26, 26, 26, 0.7);
   }
 }
