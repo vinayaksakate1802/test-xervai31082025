@@ -11,16 +11,87 @@
   <link rel="icon" type="image/png" sizes="192x192" href="https://storagewestin.blob.core.windows.net/favicons/android-chrome-192x192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="https://storagewestin.blob.core.windows.net/favicons/android-chrome-512x512.png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/styles.css">
-  <link rel="stylesheet" href="/assets/css/chatbot.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Montserrat', sans-serif; background: #fff; color: #333; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    .navbar { width: 100%; background: #fff; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eaeaea; position: fixed; top: 0; z-index: 1000; }
+    .logo a { display: flex; flex-direction: column; align-items: flex-start; }
+    .logo-text { font-size: 24px; font-weight: 700; color: #000; }
+    .logo-x { color: #000; }
+    .logo-e { color: #000; }
+    .logo-r { color: #000; }
+    .logo-v { color: #000; }
+    .logo-a { color: #FF4500; }
+    .logo-i { color: #000; }
+    .motto { font-size: 12px; color: #555; }
+    .menu { list-style: none; display: flex; gap: 20px; }
+    .menu > li { position: relative; }
+    .menu > li > a { padding: 8px 12px; font-size: 16px; border-radius: 4px; transition: background-color 0.3s ease; }
+    .menu > li > a:hover { background: #ffd4a3; }
+    .dropdown { position: absolute; top: calc(100% - 5px); left: 0; background: #fff; min-width: 220px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 4px; overflow: hidden; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.3s ease; z-index: 2000; }
+    .menu > li.open .dropdown { opacity: 1; visibility: visible; pointer-events: auto; }
+    .dropdown li a { display: block; padding: 10px 15px; font-size: 14px; transition: background 0.3s ease; color: #333; }
+    .dropdown li a:hover { background: #ffd4a3; }
+    .hero { background: url('https://storagewestin.blob.core.windows.net/other/homepage_banner.png') no-repeat center center/cover; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 80px; }
+    .hero-content { max-width: 800px; padding: 20px; margin-top: 2cm; }
+    .hero-content h1 { font-size: 48px; margin-bottom: 20px; }
+    .hero-content h1 .word { display: inline-block; opacity: 0; animation-duration: 0.8s; animation-fill-mode: forwards; animation-timing-function: ease-out; color: #000; text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.4); }
+    .hero-content h1 .word.xerv { color: #000; }
+    .hero-content h1 .word .ai { color: #FF4500; }
+.hero-content p {
+  font-size: 30px;
+  color: #000; /* Changed from #fff to black */
+  margin-bottom: 30px;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.9),
+               0 0 10px rgba(255, 255, 255, 0.9),
+               0 0 20px rgba(255, 255, 255, 1);
+  background-color: rgba(128, 128, 128, 0.2);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+    .hero-content p .word { display: inline-block; opacity: 0; animation-duration: 0.8s; animation-fill-mode: forwards; animation-timing-function: ease-out; }
+    .hero-content h1 .word:nth-child(odd) { animation-name: scrambleLeft; }
+    .hero-content h1 .word:nth-child(even) { animation-name: scrambleRight; }
+    .hero-content p .word:nth-child(odd) { animation-name: scrambleLeft; animation-delay: 0.5s; }
+    .hero-content p .word:nth-child(even) { animation-name: scrambleRight; animation-delay: 0.5s; }
+    @keyframes scrambleLeft { 0% { transform: translateX(-100vw); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
+    @keyframes scrambleRight { 0% { transform: translateX(100vw); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
+    .hero-content h1 .word:nth-child(1) { animation-delay: 0.1s; }
+    .hero-content h1 .word:nth-child(2) { animation-delay: 0.2s; }
+    .hero-content h1 .word:nth-child(3) { animation-delay: 0.3s; }
+    .hero-content p .word:nth-child(1) { animation-delay: 0.6s; }
+    .hero-content p .word:nth-child(2) { animation-delay: 0.7s; }
+    .hero-content p .word:nth-child(3) { animation-delay: 0.8s; }
+    .hero-content p .word:nth-child(4) { animation-delay: 0.9s; }
+    .hero-content p .word:nth-child(5) { animation-delay: 1.0s; }
+    .hero-content p .word:nth-child(6) { animation-delay: 1.1s; }
+    .hero-content p .word:nth-child(7) { animation-delay: 1.2s; }
+    .hero-content p .word:nth-child(8) { animation-delay: 1.3s; }
+    .btn { padding: 12px 30px; background: #ffd4a3; color: #333; font-weight: 700; border: none; border-radius: 4px; cursor: pointer; transition: background 0.3s ease; }
+    .btn:hover { background: #ffbb80; }
+    main { padding: 120px 20px 60px; }
+    section { margin-bottom: 60px; }
+    section h2 { text-align: center; margin-bottom: 20px; font-size: 32px; }
+    section p { max-width: 800px; margin: 0 auto; text-align: center; font-size: 16px; }
+    footer { background: #fff; text-align: center; padding: 20px; border-top: 1px solid #eaeaea; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+    .card { position: relative; overflow: hidden; border: 1px solid #eaeaea; border-radius: 8px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); }
+    .card img { width: 100%; height: auto; display: block; }
+    .card-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.6); color: #333; padding: 20px; backdrop-filter: blur(5px); text-align: center; }
+    .card-title { font-size: 20px; font-weight: 700; font-family: 'Montserrat', sans-serif; }
+    .hamburger { display: none; flex-direction: column; justify-content: space-between; width: 25px; height: 20px; cursor: pointer; }
+    .hamburger span { height: 3px; background: #333; border-radius: 2px; }
+    @media (max-width: 768px) { .menu { flex-direction: column; position: absolute; top: 60px; right: 0; background: #fff; width: 100%; display: none; padding: 20px 0; border-top: 1px solid #eaeaea; } .menu.show { display: flex; } .menu > li { width: 100%; text-align: center; } .dropdown { position: static; box-shadow: none; opacity: 1; visibility: visible; pointer-events: auto; display: none; } .menu > li.open .dropdown { display: block; } .hamburger { display: flex; } }
+  </style>
 </head>
 <body>
   <nav class="navbar">
     <div class="logo">
       <a href="/">
-        <span class="logo-text">Xerv<span class="logo-ai"><span class="logo-a">A</span>i</span></span>
+        <span class="logo-text"><span class="logo-x">X</span><span class="logo-e">e</span><span class="logo-r">r</span><span class="logo-v">v</span><span class="logo-a">A</span><span class="logo-i">i</span></span>
         <span class="motto">Infinity is just the beginning</span>
       </a>
     </div>
@@ -31,86 +102,85 @@
     </div>
     <ul class="menu">
       <li>
-        <a href="#">What we do</a>
+        <a href="https://xervai.com/services">What we do</a>
         <ul class="dropdown">
-          <li><a href="/it-consulting">Managed IT & Consulting</a></li>
-          <li><a href="/cybersecurity">Cybersecurity</a></li>
-          <li><a href="/cloud">Cloud</a></li>
-          <li><a href="/ai">Artificial Intelligence</a></li>
-          <li><a href="/devops">DevOps & Automation</a></li>
-          <li><a href="/data-analytics">Data Analytics</a></li>
-          <li><a href="/engineering-solutions">Engineering Solutions</a></li>
-          <li><a href="/onpremise">On Premise & Legacy Apps</a></li>
-          <li><a href="/migration">Migration</a></li>
-          <li><a href="/go-digital">Digital Transformation</a></li>
-          <li><a href="/smartapps">Smart Apps Development</a></li>
-          <li><a href="/startup-zone">Startup Zone</a></li>
+          <li><a href="https://xervai.com/managed-it">Managed IT & Outsourcing</a></li>
+          <li><a href="https://xervai.com/cybersecurity">Cybersecurity</a></li>
+          <li><a href="https://xervai.com/cloud">Cloud</a></li>
+          <li><a href="https://xervai.com/ai">Ai</a></li>
+          <li><a href="https://xervai.com/bpo-services">BPO Services</a></li>
+          <li><a href="https://xervai.com/automation">DevOps & Automation</a></li>
+          <li><a href="https://xervai.com/data-analytics">Data Analytics</a></li>
+          <li><a href="https://xervai.com/legacy-apps">On Premise & Legacy Apps</a></li>
+          <li><a href="https://xervai.com/migration">Migration</a></li>
+          <li><a href="https://xervai.com/digital-transformation">Digital Transformation</a></li>
+          <li><a href="https://xervai.com/smart-apps">Smart Apps Development</a></li>
+          <li><a href="https://xervai.com/startup-zone">Startup Zone</a></li>
         </ul>
       </li>
       <li>
         <a href="#">Case Studies</a>
         <ul class="dropdown">
-          <li><a href="/case-studies/healthcare">Healthcare</a></li>
-          <li><a href="/case-studies/finance">Banking & Finance</a></li>
-          <li><a href="/case-studies/pharma">Pharma</a></li>
-          <li><a href="/case-studies/oil">Oil</a></li>
-          <li><a href="/case-studies/manufacturing">Manufacturing</a></li>
+          <li><a href="https://xervai.com/case-studies-healthcare">Healthcare</a></li>
+          <li><a href="https://xervai.com/case-studies-bfsi">Banking & Finance</a></li>
+          <li><a href="https://xervai.com/case-studies-pharma">Pharma</a></li>
+          <li><a href="https://xervai.com/case-studies-oil">Oil</a></li>
+          <li><a href="https://xervai.com/case-studies-manufacturing">Manufacturing</a></li>
         </ul>
       </li>
       <li>
         <a href="#">Who we are</a>
         <ul class="dropdown">
-          <li><a href="/our-story">Our Story</a></li>
-          <li><a href="/our-team">Our Team</a></li>
-          <li><a href="/vision">Mission & Vision</a></li>
+          <li><a href="https://xervai.com/our-story">Our Story</a></li>
+          <li><a href="https://xervai.com/our-team">Our Team</a></li>
+          <li><a href="https://xervai.com/vision">Mission & Vision</a></li>
         </ul>
       </li>
-      <li><a href="/careers">Careers</a></li>
-      <li><a href="/contact-us">Contact Us</a></li>
+      <li><a href="https://xervai.com/careers">Careers</a></li>
+      <li><a href="https://xervai.com/contact-us">Contact Us</a></li>
     </ul>
   </nav>
-  <header class="hero" style="background-image: url('https://storagewestin.blob.core.windows.net/aboutusbanner/about-us.png');">
+  <header class="hero">
     <div class="hero-content">
-      <h1 class="animated-title">
+      <h1>
         <span class="word">Welcome</span>
         <span class="word">to</span>
-        <span class="word xerv">Xerv<span class="ai"><span class="logo-a">A</span>i</span></span>
+        <span class="word xerv"><span class="logo-x">X</span><span class="logo-e">e</span><span class="logo-r">r</span><span class="logo-v">v</span><span class="logo-a" style="color: #FF4500;">A</span><span class="logo-i">i</span></span>
       </h1>
       <p>
         <span class="word">Your</span>
         <span class="word">partner</span>
         <span class="word">in</span>
         <span class="word">innovative,</span>
+        <span class="word">affordable</span>
+        <span class="word">&</span>
         <span class="word">reliable</span>
         <span class="word">IT</span>
         <span class="word">solutions</span>
       </p>
-      <a href="/services" class="btn">Discover More</a>
+      <a href="https://xervai.com/services" class="btn">Discover More</a>
     </div>
   </header>
   <main>
     <section id="explore" style="padding: 60px 20px; background: #f9f6f2;">
-      <h2 class="animated-title">
-        <span class="word">Our</span>
-        <span class="word">Services</span>
-      </h2>
+      <h2><a href="https://xervai.com/services">Our Services</a></h2>
       <div class="cards">
         <div class="card">
-          <img src="https://storagewestin.blob.core.windows.net/whatwedo/ai.png" alt="AI">
+          <img src="https://storagewestin.blob.core.windows.net/whatwedo/ai.png" alt="AI" />
           <div class="card-overlay">
             <div class="card-title">AI</div>
             Empowering the future through Artificial Intelligence.
           </div>
         </div>
         <div class="card">
-          <img src="https://storagewestin.blob.core.windows.net/whatwedo/managedit.png" alt="Managed IT">
+          <img src="https://storagewestin.blob.core.windows.net/whatwedo/managedit.png" alt="Managed IT" />
           <div class="card-overlay">
             <div class="card-title">Managed IT</div>
             Expert IT management so you can focus on growth.
           </div>
         </div>
         <div class="card">
-          <img src="https://storagewestin.blob.core.windows.net/whatwedo/customer-first.png" alt="Customer First">
+          <img src="https://storagewestin.blob.core.windows.net/other/customer-first.png" alt="Customer First" />
           <div class="card-overlay">
             <div class="card-title">Customer First</div>
             Your success is our highest priority.
@@ -119,30 +189,43 @@
       </div>
     </section>
   </main>
-  <footer class="py-6 text-center text-sm border-t border-gray-700">
-    <p>© 2025 <a href="/" class="hover:opacity-80">Xervai Solutions LLP</a>. All rights reserved.</p>
+  <footer>
+    <p>© 2025 <a href="https://xervai.com/" class="hover:opacity-80">xervai solutions LLP</a>. All rights reserved.</p>
     <p>
-      <a href="/privacy" class="hover:opacity-80">Privacy Policy</a> |
-      <a href="/contact-us" class="hover:opacity-80">Contact Us</a> |
-      <a href="/terms" class="hover:opacity-80">Terms & Conditions</a>
+      <a href="https://xervai.com/privacy" class="hover:opacity-80">Privacy Policy</a> |
+      <a href="https://xervai.com/contactus" class="hover:opacity-80">Contact Us</a> |
+      <a href="https://xervai.com/terms" class="hover:opacity-80">Terms & Conditions</a>
     </p>
-    <div class="social-links">
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https://xervai.com" target="_blank" title="Share on Facebook">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3V2z"/></svg>
-      </a>
-      <a href="https://www.instagram.com/xervaiofficial" target="_blank" title="Follow on Instagram">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.326 3.608 1.301.975.975 1.24 2.242 1.3 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.06 1.366-.325 2.633-1.3 3.608-.975.975-2.242 1.24-3.608 1.3-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.06-2.633-.325-3.608-1.3-.975-.975-1.24-2.242-1.3-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.06-1.366.325-2.633 1.3-3.608.975-.975 2.242-1.24 3.608-1.3 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-1.614.073-3.033.414-4.192 1.573-1.159 1.159-1.5 2.578-1.573 4.192-.058 1.28-.072 1.688-.072 4.947s.014 3.667.072 4.947c.073 1.614.414 3.033 1.573 4.192 1.159 1.159 2.578 1.5 4.192 1.573 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.614-.073 3.033-.414 4.192-1.573 1.159-1.159 1.5-2.578 1.573-4.192.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.073-1.614-.414-3.033-1.573-4.192-1.159-1.159-2.578-1.5-4.192-1.573-1.28-.058-1.688-.072-4.947-.072zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100-2.88 1.44 1.44 0 000 2.88z"/></svg>
-      </a>
-      <a href="https://twitter.com/intent/tweet?url=https://xervai.com&text=Check%20out%20XervAi%20-%20Your%20partner%20in%20innovative%20IT%20solutions!" target="_blank" title="Share on Twitter">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.643 4.937c-.835.37-1.732.62-2.675.733a4.67 4.67 0 002.048-2.578 9.3 9.3 0 01-2.958 1.13 4.66 4.66 0 00-7.938 4.25 13.229 13.229 0 01-9.602-4.868c-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878a4.647 4.647 0 01-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568a4.68 4.68 0 01-2.103.08c.592 1.846 2.313 3.192 4.353 3.228a13.252 13.252 0 01-8.215 2.834c-.536 0-1.067-.031-1.587-.092a18.705 18.705 0 0010.14 2.975c12.167 0 18.822-10.077 18.822-18.822 0-.287-.006-.573-.019-.856A13.468 13.468 0 0024 4.556l-.357.381z"/></svg>
-      </a>
-      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://xervai.com&title=XervAi&summary=Your%20partner%20in%20innovative%20IT%20solutions&source=XervAi" target="_blank" title="Share on LinkedIn">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg>
-      </a>
-    </div>
   </footer>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/confirmDate/confirmDate.js"></script>
-  <script src="/assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const hamburger = document.getElementById('hamburger');
+      const menu = document.querySelector('.menu');
+      hamburger.addEventListener('click', () => { menu.classList.toggle('show'); });
+      if (window.innerWidth <= 768) {
+        const dropdownParents = document.querySelectorAll('.menu > li');
+        dropdownParents.forEach(parent => {
+          const link = parent.querySelector('a');
+          const hasDropdown = parent.querySelector('.dropdown');
+          if (hasDropdown) {
+            link.addEventListener('click', function (e) {
+              e.preventDefault();
+              parent.classList.toggle('open');
+            });
+          }
+        });
+      }
+      if (window.innerWidth > 768) {
+        const items = document.querySelectorAll('.menu > li');
+        items.forEach(item => {
+          let hideTimer;
+          item.addEventListener('mouseenter', () => { clearTimeout(hideTimer); item.classList.add('open'); });
+          item.addEventListener('mouseleave', () => {
+            hideTimer = setTimeout(() => { item.classList.remove('open'); }, 200);
+          });
+        });
+      }
+    });
+  </script>
 </body>
 </html>
