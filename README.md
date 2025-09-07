@@ -10,3 +10,4 @@ A static website for XervAi, showcasing IT services including AI, cloud, cyberse
 - Responsive design with hamburger menu for mobile
 
 ## Project Structure
+XrevAi
